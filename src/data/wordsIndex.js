@@ -70,7 +70,7 @@ export const bookStructure = [
       {
         partId: "part_02",
         partNo: "০২",
-        partTitle: "পর্ব ২: মেশিনের উপাদান (The Ingredients)",
+        partTitle: "পর্ব ২: মেশিনের উপাদান",
         words: [
           {
             id: "word_07_Algorithm",
