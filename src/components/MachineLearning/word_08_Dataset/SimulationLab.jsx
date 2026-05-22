@@ -94,15 +94,15 @@ export default function SimulationLab() {
   };
 
   return (
-    <div className="w-full space-y-8 font-sans text-slate-200">
+    <div className="w-full space-y-6 md:space-y-8 font-sans text-slate-200">
       
       {/* Header Area */}
-      <div className="pb-4 space-y-3 text-center">
-        <h2 className="flex items-center justify-center gap-3 text-2xl font-bold text-white md:text-3xl">
-          <span className="px-3 py-1 text-xs border rounded-full bg-sky-500/20 text-sky-400 border-sky-500/30">ল্যাব-০৮</span>
+      <div className="pb-3 space-y-3 text-center sm:pb-4">
+        <h2 className="flex flex-wrap items-center justify-center gap-2 text-xl font-bold text-white sm:text-2xl md:gap-3 md:text-3xl">
+          <span className="px-2.5 py-1 text-[10px] border rounded-full bg-sky-500/20 text-sky-400 border-sky-500/30 sm:px-3 sm:text-xs">ল্যাব-০৮</span>
           ডেটাসেট (Dataset)
         </h2>
-        <p className="max-w-2xl mx-auto text-sm text-slate-400 md:text-base">
+        <p className="max-w-2xl mx-auto px-2 text-[13px] text-slate-400 sm:px-0 sm:text-sm md:text-base">
           অ্যালগরিদম হলো এআই-এর ক্ষুরধার ব্রেন, আর ব্রেনকে কাজ করানোর জন্য সংগৃহীত প্রমাণ বা তথ্যের গোছানো ভাণ্ডারই হলো ডেটাসেট।
         </p>
       </div>
@@ -111,13 +111,13 @@ export default function SimulationLab() {
       <div className="flex justify-center bg-white/[0.02] p-1.5 rounded-xl border border-white/5 max-w-md mx-auto w-full gap-2 shadow-lg">
         <button 
           onClick={() => { setActiveTab('crime-scene'); clearLab(); }}
-          className={`flex-1 py-2.5 px-3 rounded-lg text-xs md:text-sm font-bold transition-all ${activeTab === 'crime-scene' ? 'bg-sky-600 text-white shadow-md' : 'text-slate-400 hover:text-white'}`}
+          className={`flex-1 py-2.5 px-3 rounded-lg text-[11px] sm:text-xs md:text-sm font-bold transition-all ${activeTab === 'crime-scene' ? 'bg-sky-600 text-white shadow-md' : 'text-slate-400 hover:text-white'}`}
         >
           🕵️♂️ শার্লকের ক্রাইম সিন ল্যাব
         </button>
         <button 
           onClick={() => setActiveTab('types')}
-          className={`flex-1 py-2.5 px-3 rounded-lg text-xs md:text-sm font-bold transition-all ${activeTab === 'types' ? 'bg-sky-600 text-white shadow-md' : 'text-slate-400 hover:text-white'}`}
+          className={`flex-1 py-2.5 px-3 rounded-lg text-[11px] sm:text-xs md:text-sm font-bold transition-all ${activeTab === 'types' ? 'bg-sky-600 text-white shadow-md' : 'text-slate-400 hover:text-white'}`}
         >
           📂 ডেটাসেটের প্রকারভেদ
         </button>
@@ -125,15 +125,15 @@ export default function SimulationLab() {
 
       {/* --- SUB-TAB 1: SHERLOCK'S CRIME BOARD SIMULATOR --- */}
       {activeTab === 'crime-scene' && (
-        <div className="grid items-stretch grid-cols-1 gap-6 lg:grid-cols-12">
+        <div className="grid items-stretch grid-cols-1 gap-5 md:gap-6 lg:grid-cols-12">
           
           {/* Left: Interactive Crime Scene Hotspots */}
-          <div className="lg:col-span-7 bg-white/[0.02] p-6 rounded-2xl border border-white/5 flex flex-col justify-between shadow-lg">
+          <div className="lg:col-span-7 bg-white/[0.02] p-4 sm:p-6 rounded-2xl border border-white/5 flex flex-col justify-between shadow-lg">
             <div>
-              <h3 className="flex items-center gap-2 pb-2 mb-2 text-base font-bold border-b text-sky-400 border-white/5">
+              <h3 className="flex items-center gap-2 pb-2 mb-2 text-sm sm:text-base font-bold border-b text-sky-400 border-white/5">
                 <span>🏢</span> ঘটনাস্থল (The Crime Scene Room)
               </h3>
-              <p className="mb-4 text-xs text-slate-400">
+              <p className="mb-4 text-[11px] text-slate-400 leading-relaxed">
                 নিচের বস্তুগুলোতে ক্লিক করে প্রমাণ বা ডেটা সংগ্রহ করুন। মনে রাখবেন—সব প্রমাণ কাজের নাও হতে পারে (নয়েজ)!
               </p>
 
@@ -145,7 +145,7 @@ export default function SimulationLab() {
                       key={item.id}
                       disabled={deductionStatus === 'running'}
                       onClick={() => toggleEvidence(item.id)}
-                      className={`p-4 rounded-xl border text-left transition-all h-28 flex flex-col justify-between ${
+                      className={`p-3.5 sm:p-4 rounded-xl border text-left transition-all h-28 flex flex-col justify-between ${
                         isAdded 
                           ? item.type === 'useful'
                             ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300 shadow-md scale-[1.02]'
@@ -154,7 +154,7 @@ export default function SimulationLab() {
                       }`}
                     >
                       <div className="flex items-start justify-between w-full">
-                        <span className="text-2xl">{item.name.split(' ')[0]}</span>
+                        <span className="text-xl sm:text-2xl">{item.name.split(' ')[0]}</span>
                         {isAdded && (
                           <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded border ${item.type === 'useful' ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : 'bg-amber-500/20 text-amber-400 border-amber-500/30'}`}>
                             {item.type === 'useful' ? 'দরকারি ক্লু' : 'নয়েজ ডেটা'}
@@ -171,7 +171,7 @@ export default function SimulationLab() {
               </div>
 
               {/* Data Cleaning Filter */}
-              <div className="flex items-center justify-between gap-4 p-4 border bg-black/20 rounded-xl border-white/5">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4 p-4 border bg-black/20 rounded-xl border-white/5">
                 <div className="flex-1">
                   <span className="text-[11px] font-bold block text-white">✨ ডেটা ক্লিনিং (Data Cleaning)</span>
                   <span className="text-[9px] text-slate-400 leading-tight block mt-1">
@@ -180,7 +180,7 @@ export default function SimulationLab() {
                 </div>
                 <button
                   onClick={() => { setIsDataCleaned(!isDataCleaned); setDeductionStatus('idle'); }}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${
+                  className={`px-3 py-1.5 rounded-lg text-[11px] sm:text-xs font-bold border transition-all ${
                     isDataCleaned 
                       ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' 
                       : 'bg-white/5 border-white/10 text-slate-400 hover:text-white'
@@ -195,7 +195,7 @@ export default function SimulationLab() {
               <button
                 onClick={handleRunDeduction}
                 disabled={deductionStatus === 'running'}
-                className="flex-[2] py-3 bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-500 hover:to-sky-400 text-white font-bold rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 text-xs"
+                className="flex-[2] py-3 bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-500 hover:to-sky-400 text-white font-bold rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 text-[11px] sm:text-xs"
               >
                 {deductionStatus === 'running' ? (
                   <><span className="animate-spin">🕵️♂️</span><span>তদন্ত চলছে...</span></>
@@ -205,7 +205,7 @@ export default function SimulationLab() {
               </button>
               <button 
                 onClick={clearLab}
-                className="flex-1 py-3 text-xs font-bold transition-colors border bg-white/5 hover:bg-white/10 text-slate-300 border-white/10 rounded-xl"
+                className="flex-1 py-3 text-[11px] sm:text-xs font-bold transition-colors border bg-white/5 hover:bg-white/10 text-slate-300 border-white/10 rounded-xl"
               >
                 রিসেট ল্যাব
               </button>
@@ -213,11 +213,11 @@ export default function SimulationLab() {
           </div>
 
           {/* Right: Case File & Suspect Reveal */}
-          <div className="lg:col-span-5 bg-white/[0.02] p-6 rounded-2xl border border-white/5 flex flex-col justify-between gap-6 shadow-lg">
+          <div className="lg:col-span-5 bg-white/[0.02] p-4 sm:p-6 rounded-2xl border border-white/5 flex flex-col justify-between gap-6 shadow-lg">
             
             <div className="space-y-6">
-              <div className="flex items-center justify-between pb-2 border-b border-white/5">
-                <h3 className="flex items-center gap-2 text-base font-bold text-white">
+              <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-white/5">
+                <h3 className="flex items-center gap-2 text-sm sm:text-base font-bold text-white">
                   <span>📋</span> শার্লক কেস ফাইল
                 </h3>
                 <span className="text-[9px] bg-sky-500/10 text-sky-400 border border-sky-500/20 px-2 py-0.5 rounded-full font-bold uppercase tracking-widest">
@@ -226,7 +226,7 @@ export default function SimulationLab() {
               </div>
 
               {/* Animated Display Area */}
-              <div className="grid items-center grid-cols-2 gap-4">
+              <div className="grid items-center grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="relative flex flex-col items-center justify-center p-4 overflow-hidden text-center border shadow-inner bg-black/20 rounded-xl border-white/5 h-36">
                   <span className="text-[9px] uppercase font-bold text-slate-500 absolute top-2">শনাক্ত আসামী</span>
                   {deductionStatus === 'solved' && suspect ? (

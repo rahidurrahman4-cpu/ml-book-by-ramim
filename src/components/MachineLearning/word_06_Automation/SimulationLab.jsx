@@ -24,31 +24,31 @@ export default function SimulationLab() {
   };
 
   return (
-    <div className="w-full space-y-8 font-sans text-gray-200">
+    <div className="w-full space-y-6 md:space-y-8 font-sans text-gray-200">
       
       {/* Header Area */}
-      <div className="pb-4 space-y-3 text-center">
-        <h2 className="flex items-center justify-center gap-3 text-2xl font-bold text-white md:text-3xl">
-          <span className="bg-sky-600 text-white text-sm px-3 py-1 rounded-full shadow-[0_0_10px_rgba(2,132,199,0.5)]">ল্যাব-০৬</span>
+      <div className="pb-3 space-y-3 text-center sm:pb-4">
+        <h2 className="flex flex-wrap items-center justify-center gap-2 text-xl font-bold text-white sm:text-2xl md:gap-3 md:text-3xl">
+          <span className="bg-sky-600 text-white text-[10px] px-2.5 py-1 rounded-full shadow-[0_0_10px_rgba(2,132,199,0.5)] sm:px-3 sm:text-xs">ল্যাব-০৬</span>
           অটোমেশন (Automation)
         </h2>
-        <p className="max-w-2xl mx-auto text-sm text-gray-400 md:text-base">
+        <p className="max-w-2xl mx-auto px-2 text-[13px] text-gray-400 sm:px-0 sm:text-sm md:text-base">
           মানুষের সরাসরি হস্তক্ষেপ ছাড়া একটি একঘেয়ে কাজ বারবার এবং নির্ভুলভাবে হওয়ার ব্যবস্থা। সাধারণ টাইমার বনাম পরিবেশ সচেতন বুদ্ধিমত্তা!
         </p>
       </div>
 
-      <div className="grid items-stretch grid-cols-1 gap-8 lg:grid-cols-12">
+      <div className="grid items-stretch grid-cols-1 gap-6 md:gap-8 lg:grid-cols-12">
         
         {/* Left: Environment Controls */}
-        <div className="lg:col-span-4 bg-[#1e2430] p-6 rounded-2xl border border-gray-700 flex flex-col justify-between gap-6 shadow-xl">
+        <div className="lg:col-span-4 bg-[#1e2430] p-4 sm:p-6 rounded-2xl border border-gray-700 flex flex-col justify-between gap-6 shadow-xl">
           <div>
-            <h3 className="flex items-center gap-2 mb-6 text-lg font-bold text-sky-400">
+            <h3 className="flex items-center gap-2 mb-6 text-sm sm:text-lg font-bold text-sky-400">
               <span>🌍</span> পরিবেশ নিয়ন্ত্রণ প্যানেল (Environment)
             </h3>
             
             {/* Time Slider */}
             <div className="mb-6">
-              <div className="flex justify-between mb-3 text-sm font-bold text-white">
+              <div className="flex flex-wrap justify-between gap-2 mb-3 text-[13px] sm:text-sm font-bold text-white">
                 <span className="flex items-center gap-1">⏰ দিনের সময় (Time of Day):</span>
                 <span className="text-sky-400">
                   {time === 12 ? 'দুপুর ১২:০০' : time === 24 ? 'রাত ১২:০০' : time > 12 ? `রাত ${time-12}:০০` : `সকাল ${time}:০০`}
@@ -86,7 +86,7 @@ export default function SimulationLab() {
 
             {/* Weather Selector */}
             <div className="pt-4 border-t border-gray-700">
-              <label className="block mb-3 text-sm font-bold text-white">☁️ আজকের আবহাওয়া (Weather Condition):</label>
+              <label className="block mb-3 text-[13px] sm:text-sm font-bold text-white">☁️ আজকের আবহাওয়া (Weather Condition):</label>
               <div className="grid grid-cols-3 gap-2">
                 {[
                   { id: 'sunny', label: 'রৌদ্রোজ্জ্বল', icon: '☀️' },
@@ -96,7 +96,7 @@ export default function SimulationLab() {
                   <button
                     key={w.id}
                     onClick={() => setWeather(w.id)}
-                    className={`py-3 px-1 rounded-lg text-xs font-bold transition-all border flex flex-col items-center gap-1.5 ${
+                    className={`py-3 px-1 rounded-lg text-[11px] font-bold transition-all border flex flex-col items-center gap-1.5 ${
                       weather === w.id 
                         ? 'bg-[#0f172a] border-sky-500 text-sky-400 shadow-md' 
                         : 'bg-[#161b22] border-gray-700 text-gray-400 hover:bg-gray-800'
@@ -112,20 +112,20 @@ export default function SimulationLab() {
 
           <button 
             onClick={() => { setTime(8); setMoisture(61); setWeather('sunny'); }}
-            className="w-full py-3 bg-[#161b22] hover:bg-gray-800 text-gray-300 border border-gray-700 text-sm font-bold rounded-lg transition-colors"
+            className="w-full py-3 bg-[#161b22] hover:bg-gray-800 text-gray-300 border border-gray-700 text-[13px] sm:text-sm font-bold rounded-lg transition-colors"
           >
             ডিফল্ট পরিবেশ সেট করুন (সকাল ৮:০০)
           </button>
         </div>
 
         {/* Right: Simulation Response of Both Pumps */}
-        <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6 bg-[#1e2430] p-6 rounded-2xl border border-gray-700 shadow-xl">
+        <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 bg-[#1e2430] p-4 sm:p-6 rounded-2xl border border-gray-700 shadow-xl">
           
           {/* Pump 1: Simple Automation */}
-          <div className="bg-[#161b22] p-5 rounded-xl border border-gray-700 flex flex-col justify-between shadow-inner">
+          <div className="bg-[#161b22] p-4 sm:p-5 rounded-xl border border-gray-700 flex flex-col justify-between shadow-inner">
             <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="flex items-center gap-2 text-sm font-bold text-gray-300">⚙️ সাধারণ অটোমেশন<br/><span className="text-xs font-normal text-gray-500">(টাইমার পাম্প)</span></span>
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+                <span className="flex items-center gap-2 text-[13px] sm:text-sm font-bold text-gray-300">⚙️ সাধারণ অটোমেশন<br/><span className="text-xs font-normal text-gray-500">(টাইমার পাম্প)</span></span>
                 <span className={`text-xs font-bold px-3 py-1 rounded bg-[#1e2430] border border-gray-700 text-gray-500`}>
                   {isTimerPumpOn ? 'চলছে (ON)' : 'বন্ধ (OFF)'}
                 </span>
@@ -146,21 +146,21 @@ export default function SimulationLab() {
               </div>
               
               <div className="mt-4">
-                <p className="mb-1 text-lg font-bold text-white">বিশ্লেষণ:</p>
-                <p className="text-sm font-bold text-gray-300">{getTimerAnalysis()}</p>
+                <p className="mb-1 text-base sm:text-lg font-bold text-white">বিশ্লেষণ:</p>
+                <p className="text-[13px] sm:text-sm font-bold text-gray-300 leading-relaxed">{getTimerAnalysis()}</p>
               </div>
             </div>
             
-            <p className="pt-4 mt-6 text-xs leading-relaxed text-gray-500 border-t border-gray-800">
+            <p className="pt-4 mt-6 text-[11px] leading-relaxed text-gray-500 border-t border-gray-800">
               <span className="text-gray-400">হুকুমের গোলাম:</span> এটি কেবল ঘড়িতে সকাল ৮টা বাজার নিয়ম মেনে অন্ধের মতো চালু হয়। মাটির আর্দ্রতা বেশি বা আকাশে মুষলধারে বৃষ্টি হলেও সে পানি ঢালতেই থাকে!
             </p>
           </div>
 
           {/* Pump 2: Intelligent Automation */}
-          <div className="bg-[#161b22] p-5 rounded-xl border border-gray-700 flex flex-col justify-between shadow-inner">
+          <div className="bg-[#161b22] p-4 sm:p-5 rounded-xl border border-gray-700 flex flex-col justify-between shadow-inner">
             <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="flex items-center gap-2 text-sm font-bold text-emerald-400">🧠 ইন্টেলিজেন্ট অটোমেশন<br/><span className="text-xs font-normal text-emerald-600">(এআই পাম্প)</span></span>
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+                <span className="flex items-center gap-2 text-[13px] sm:text-sm font-bold text-emerald-400">🧠 ইন্টেলিজেন্ট অটোমেশন<br/><span className="text-xs font-normal text-emerald-600">(এআই পাম্প)</span></span>
                 <span className={`text-xs font-bold px-3 py-1 rounded bg-[#1e2430] border border-gray-700 text-gray-500`}>
                   {isSmartPumpOn ? 'চলছে (ON)' : 'বন্ধ (OFF)'}
                 </span>
@@ -181,12 +181,12 @@ export default function SimulationLab() {
               </div>
 
               <div className="mt-4">
-                <p className="mb-1 text-lg font-bold text-white">বিশ্লেষণ:</p>
-                <p className="text-sm font-bold text-gray-300">{getSmartAnalysis()}</p>
+                <p className="mb-1 text-base sm:text-lg font-bold text-white">বিশ্লেষণ:</p>
+                <p className="text-[13px] sm:text-sm font-bold text-gray-300 leading-relaxed">{getSmartAnalysis()}</p>
               </div>
             </div>
 
-            <p className="pt-4 mt-6 text-xs leading-relaxed text-gray-500 border-t border-gray-800">
+            <p className="pt-4 mt-6 text-[11px] leading-relaxed text-gray-500 border-t border-gray-800">
               <span className="text-gray-400">বুদ্ধিমত্তার ইঞ্জিন:</span> এটি সকাল ৮টা বাজলেও প্রথমে মাটির রস এবং বাইরের আকাশ মেঘলা কি না তা সেন্সর ও পূর্ব অভিজ্ঞতার লজিক দিয়ে বিশ্লেষণ করে। প্রয়োজন মনে করলেই কেবল চালু হয়!
             </p>
           </div>

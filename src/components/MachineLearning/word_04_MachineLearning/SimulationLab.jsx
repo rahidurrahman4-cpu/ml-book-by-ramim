@@ -45,33 +45,33 @@ export default function SimulationLab() {
   };
 
   return (
-    <div className="w-full space-y-8 font-sans text-slate-200">
+    <div className="w-full space-y-6 md:space-y-8 font-sans text-slate-200">
       
       {/* Header Area */}
-      <div className="pb-4 space-y-3 text-center">
-        <h2 className="flex items-center justify-center gap-3 text-2xl font-bold text-white md:text-3xl">
-          <span className="px-3 py-1 text-xs border rounded-full bg-sky-500/20 text-sky-400 border-sky-500/30">ল্যাব-০৪</span>
+      <div className="pb-3 space-y-3 text-center sm:pb-4">
+        <h2 className="flex flex-wrap items-center justify-center gap-2 text-xl font-bold text-white sm:text-2xl md:gap-3 md:text-3xl">
+          <span className="px-2.5 py-1 text-[10px] border rounded-full bg-sky-500/20 text-sky-400 border-sky-500/30 sm:px-3 sm:text-xs">ল্যাব-০৪</span>
           মেশিন লার্নিং (Machine Learning)
         </h2>
-        <p className="max-w-2xl mx-auto text-sm text-slate-400 md:text-base">
+        <p className="max-w-2xl mx-auto px-2 text-[13px] text-slate-400 sm:px-0 sm:text-sm md:text-base">
           কম্পিউটারকে বিশাল ডেটা (অভিজ্ঞতা) থেকে নিজে নিজে প্যাটার্ন খুঁজে লজিক তৈরি করতে দেওয়ার ম্যাজিক।
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 md:gap-6 lg:grid-cols-2">
         
         {/* Left Side: The Magic Equation Visualizer */}
-        <div className="space-y-6">
-          <div className="bg-white/[0.02] p-6 rounded-2xl border border-white/5 h-full flex flex-col">
-            <h3 className="flex items-center gap-2 pb-3 mb-6 text-base font-bold border-b text-sky-400 border-white/5">
+        <div className="space-y-5 md:space-y-6">
+          <div className="bg-white/[0.02] p-4 sm:p-6 rounded-2xl border border-white/5 h-full flex flex-col">
+            <h3 className="flex items-center gap-2 pb-3 mb-5 sm:mb-6 text-sm sm:text-base font-bold border-b text-sky-400 border-white/5">
               <span>✨</span> দ্য ম্যাজিক ইকুয়েশন
             </h3>
 
-            <div className="flex-1 space-y-8">
+            <div className="flex-1 space-y-6 sm:space-y-8">
               {/* Traditional Programming */}
               <div className="relative">
                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2 block">১. প্রথাগত প্রোগ্রামিং (রুল-বেজড)</span>
-                <div className="flex items-center justify-between bg-[#0b0f19] p-4 rounded-xl border border-white/5">
+                <div className="flex flex-wrap items-center justify-between gap-3 bg-[#0b0f19] p-3 sm:p-4 rounded-xl border border-white/5">
                   <div className="text-center">
                     <div className="p-2 mb-1 text-lg border rounded-lg bg-indigo-500/10 border-indigo-500/20">📊</div>
                     <span className="text-[10px] text-slate-400 font-bold">ডেটা (Input)</span>
@@ -93,7 +93,7 @@ export default function SimulationLab() {
               {/* Machine Learning */}
               <div className="relative">
                 <span className="text-[10px] font-bold text-sky-400 uppercase tracking-widest mb-2 block">২. মেশিন লার্নিং (ডেটা-ড্রিভেন)</span>
-                <div className="relative flex items-center justify-between p-4 overflow-hidden border bg-sky-500/5 rounded-xl border-sky-500/20">
+                <div className="relative flex flex-wrap items-center justify-between gap-3 p-3 sm:p-4 overflow-hidden border bg-sky-500/5 rounded-xl border-sky-500/20">
                   <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-sky-500/10 to-transparent -translate-x-full animate-[shimmer_3s_infinite]"></div>
                   
                   <div className="relative z-10 text-center">
@@ -120,24 +120,24 @@ export default function SimulationLab() {
         </div>
 
         {/* Right Side: Pattern Recognition Game */}
-        <div className="space-y-6">
+        <div className="space-y-5 md:space-y-6">
           <div className="rounded-2xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent overflow-hidden shadow-lg flex flex-col h-full">
             <div className="w-full h-1 bg-gradient-to-r from-slate-500 to-sky-500"></div>
             
-            <div className="p-4 border-b border-white/5">
-              <h3 className="flex items-center gap-2 text-base font-bold text-white">
+            <div className="p-4 border-b border-white/5 sm:p-4">
+              <h3 className="flex items-center gap-2 text-sm sm:text-base font-bold text-white">
                 <span>🐾</span> বিড়াল নাকি কুকুর? (প্যাটার্ন লার্নিং)
               </h3>
-              <p className="text-[11px] text-slate-400 mt-1">
+              <p className="text-[11px] text-slate-400 mt-1 leading-relaxed">
                 মডেলকে কোনো 'IF-ELSE' রুল না দিয়ে শুধু ছবি দিয়ে শেখান।
               </p>
             </div>
 
-            <div className="flex flex-col items-center justify-center flex-1 p-6 space-y-6">
+            <div className="flex flex-col items-center justify-center flex-1 p-4 sm:p-6 space-y-5 sm:space-y-6">
               <div className="w-full text-center">
                 {mlModelStatus === 'untrained' && (
                   <div className="space-y-2 text-slate-500">
-                    <div className="mb-4 text-5xl opacity-50">🤖</div>
+                    <div className="mb-4 text-4xl sm:text-5xl opacity-50">🤖</div>
                     <p className="text-sm font-bold text-slate-300">মডেল এখন একদম বোকা!</p>
                     <p className="text-[11px]">সে বিড়াল বা কুকুর কিছুই চেনে না। তাকে ডেটা দিন।</p>
                   </div>
@@ -145,7 +145,7 @@ export default function SimulationLab() {
 
                 {mlModelStatus === 'training' && (
                   <div className="space-y-4 text-sky-400">
-                    <div className="mb-2 text-5xl animate-bounce">📥</div>
+                    <div className="mb-2 text-4xl sm:text-5xl animate-bounce">📥</div>
                     <p className="text-sm font-bold">ডেটা থেকে প্যাটার্ন শিখছে...</p>
                     <div className="flex items-center justify-center gap-3 text-[11px] font-mono bg-black/20 py-2 px-4 rounded border border-white/5">
                       <span>প্রসেস করা ছবি:</span>
@@ -160,7 +160,7 @@ export default function SimulationLab() {
 
                 {mlModelStatus === 'trained' && !testResult && (
                   <div className="space-y-2 text-emerald-400 animate-fade-in">
-                    <div className="mb-4 text-5xl">🧠✨</div>
+                    <div className="mb-4 text-4xl sm:text-5xl">🧠✨</div>
                     <p className="text-sm font-bold">মডেল এখন স্মার্ট!</p>
                     <p className="text-[11px] text-slate-300 px-4">সে ১০,০০০ ছবি দেখে বিড়াল ও কুকুরের গাণিতিক প্যাটার্ন চিনে গেছে। এবার অজানা ছবি দিয়ে টেস্ট করুন।</p>
                   </div>
@@ -191,23 +191,23 @@ export default function SimulationLab() {
             {/* Controls */}
             <div className="flex flex-col gap-3 p-4 border-t border-white/5 bg-black/20 sm:flex-row">
               {mlModelStatus === 'untrained' && (
-                <button onClick={startMLTraining} className="w-full bg-sky-500 hover:bg-sky-400 text-white font-bold py-2.5 rounded-lg text-sm transition-all flex items-center justify-center gap-2">
+                <button onClick={startMLTraining} className="w-full bg-sky-500 hover:bg-sky-400 text-white font-bold py-2.5 rounded-lg text-[13px] sm:text-sm transition-all flex items-center justify-center gap-2">
                   <span>▶️</span> ১০,০০০ ছবি দিয়ে ট্রেইন করুন
                 </button>
               )}
 
               {mlModelStatus === 'training' && (
-                <button disabled className="w-full bg-white/5 text-sky-400 font-bold py-2.5 rounded-lg cursor-not-allowed text-sm flex items-center justify-center gap-2">
+                <button disabled className="w-full bg-white/5 text-sky-400 font-bold py-2.5 rounded-lg cursor-not-allowed text-[13px] sm:text-sm flex items-center justify-center gap-2">
                   <span className="animate-spin">⚙️</span> লার্নিং চলছে...
                 </button>
               )}
 
               {mlModelStatus === 'trained' && (
                 <>
-                  <button onClick={testMLModel} disabled={isTrainingML} className="flex-[2] bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/30 font-bold py-2.5 rounded-lg transition-all disabled:opacity-50 text-xs flex items-center justify-center gap-2">
+                  <button onClick={testMLModel} disabled={isTrainingML} className="flex-[2] bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/30 font-bold py-2.5 rounded-lg transition-all disabled:opacity-50 text-[11px] sm:text-xs flex items-center justify-center gap-2">
                     <span>🧪</span> নতুন ছবি দিয়ে টেস্ট করুন
                   </button>
-                  <button onClick={resetMLSystem} disabled={isTrainingML} className="flex-1 bg-white/5 hover:bg-white/10 text-slate-300 font-bold py-2.5 rounded-lg border border-white/10 transition-colors disabled:opacity-50 text-xs">
+                  <button onClick={resetMLSystem} disabled={isTrainingML} className="flex-1 bg-white/5 hover:bg-white/10 text-slate-300 font-bold py-2.5 rounded-lg border border-white/10 transition-colors disabled:opacity-50 text-[11px] sm:text-xs">
                     রিসেট
                   </button>
                 </>

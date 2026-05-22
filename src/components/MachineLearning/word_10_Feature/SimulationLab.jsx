@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const featureScenarios = {
   spam: {
@@ -106,26 +106,26 @@ export default function SimulationLab() {
   const scenario = featureScenarios[activeScenario];
 
   return (
-    <div className="w-full space-y-8 font-sans text-slate-200">
+    <div className="w-full space-y-6 font-sans md:space-y-8 text-slate-200">
       
       {/* Header Area */}
-      <div className="pb-4 space-y-3 text-center">
-        <h2 className="flex items-center justify-center gap-3 text-2xl font-bold text-white md:text-3xl">
-          <span className="px-3 py-1 text-xs text-indigo-400 border rounded-full bg-indigo-500/20 border-indigo-500/30">ল্যাব-১০</span>
+      <div className="pb-3 space-y-3 text-center sm:pb-4">
+        <h2 className="flex flex-col items-center justify-center gap-2 text-xl font-bold text-white sm:flex-row sm:flex-wrap sm:gap-2 sm:text-2xl md:gap-3 md:text-3xl">
+          <span className="px-2.5 py-1 text-[10px] text-indigo-400 border rounded-full bg-indigo-500/20 border-indigo-500/30 sm:px-3 sm:text-xs">ল্যাব-১০</span>
           ফিচার (Feature Engineering)
         </h2>
-        <p className="max-w-2xl mx-auto text-sm text-slate-400 md:text-base">
+        <p className="max-w-2xl mx-auto px-2 text-[13px] text-slate-400 sm:px-0 sm:text-sm md:text-base">
           আস্ত ইনপুট ডেটা থেকে ছাঁকনি দিয়ে ছেঁকে বের করা সুনির্দিষ্ট, পরিমাপযোগ্য এবং সিদ্ধান্ত নেওয়ার জন্য সবচেয়ে প্রয়োজনীয় বৈশিষ্ট্যই হলো ফিচার।
         </p>
       </div>
 
-      <div className="grid items-stretch grid-cols-1 gap-6 lg:grid-cols-12">
+      <div className="grid items-stretch grid-cols-1 gap-5 md:gap-6 lg:grid-cols-12">
         
         {/* Left Side: Feature Selector Simulator */}
-        <div className="lg:col-span-7 bg-white/[0.02] p-6 rounded-2xl border border-white/5 flex flex-col justify-between gap-6 shadow-lg">
+        <div className="lg:col-span-7 bg-white/[0.02] p-4 sm:p-6 rounded-2xl border border-white/5 flex flex-col justify-between gap-5 sm:gap-6 shadow-lg">
           <div>
             <div className="flex flex-wrap items-center justify-between gap-3 pb-3 mb-4 border-b border-white/5">
-              <h3 className="flex items-center gap-2 text-base font-bold text-indigo-400">
+              <h3 className="flex items-center gap-2 text-sm font-bold text-indigo-400 sm:text-base">
                 <span>🌪️</span> ফিচার ছাঁকনি সিমুলেটর
               </h3>
               <span className="text-[10px] bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 px-2 py-0.5 rounded-full uppercase tracking-wider font-mono">
@@ -133,7 +133,7 @@ export default function SimulationLab() {
               </span>
             </div>
 
-            <div className="grid grid-cols-1 gap-2 mb-6 sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-2 mb-5 sm:grid-cols-3 sm:mb-6">
               {[
                 { id: 'spam', label: '📩 স্প্যাম ফিল্টার' },
                 { id: 'house', label: '🏠 বাড়ির দাম' },
@@ -142,7 +142,7 @@ export default function SimulationLab() {
                 <button
                   key={item.id}
                   onClick={() => { setActiveScenario(item.id); setSelectedFeatures([]); }}
-                  className={`p-2.5 rounded-xl text-xs font-bold border transition-all ${
+                  className={`p-2.5 rounded-xl text-[11px] sm:text-xs font-bold border transition-all ${
                     activeScenario === item.id
                       ? 'bg-indigo-500/15 border-indigo-500/50 text-indigo-300 shadow-md scale-[1.02]'
                       : 'bg-black/20 border-white/5 hover:border-white/10 text-slate-400'
@@ -153,13 +153,13 @@ export default function SimulationLab() {
               ))}
             </div>
 
-            <div className="p-4 mb-5 text-xs border bg-black/20 rounded-xl border-white/5">
+            <div className="p-4 mb-5 text-[11px] border bg-black/20 rounded-xl border-white/5">
               <span className="block mb-1 font-bold tracking-wider uppercase text-slate-500">Raw Input Data (গোটা ডেটা):</span>
               <p className="italic text-slate-300">{scenario.inputDesc}</p>
             </div>
 
             <div className="space-y-2.5">
-              <label className="block text-[11px] font-bold text-slate-400 mb-2">
+              <label className="block text-[11px] font-bold text-slate-400 mb-2 leading-relaxed">
                 🛠️ মডেলকে ট্রেইন করার জন্য কোন কোন বৈশিষ্ট্য (Feature) ছাঁকনিতে নেবেন?
               </label>
               {scenario.features.map((feature) => {
@@ -168,7 +168,7 @@ export default function SimulationLab() {
                   <button
                     key={feature.id}
                     onClick={() => handleToggleFeature(feature.id)}
-                    className={`w-full p-3.5 rounded-xl border text-xs text-left font-bold transition-all flex items-center justify-between gap-3 ${
+                    className={`w-full p-3.5 rounded-xl border text-[11px] sm:text-xs text-left font-bold transition-all flex items-center justify-between gap-3 ${
                       isChecked
                         ? 'bg-indigo-500/10 border-indigo-500/30 text-indigo-200 shadow-sm'
                         : 'bg-white/[0.02] border-white/5 hover:bg-white/5 text-slate-300'
@@ -197,7 +197,7 @@ export default function SimulationLab() {
             ) : (
               <div className="space-y-3">
                 <p className="font-bold text-indigo-400">🔍 নির্বাচিত ফিচারের গাণিতিক প্রভাব বিশ্লেষণ:</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[140px] overflow-y-auto pr-1 scrollbar-thin">
+                <div className="grid grid-cols-1 gap-3 max-h-[140px] overflow-y-auto pr-1 md:grid-cols-2 scrollbar-thin">
                   {selectedFeatures.map((id) => {
                     const feature = scenario.features.find((item) => item.id === id);
                     return (
@@ -216,15 +216,15 @@ export default function SimulationLab() {
         </div>
 
         {/* Right Side: Analysis and Face ID Demo */}
-        <div className="flex flex-col justify-between space-y-6 lg:col-span-5">
-          <div className="bg-white/[0.02] p-6 rounded-2xl border border-white/5 shadow-lg space-y-4">
-            <h4 className="pb-2 text-sm font-bold border-b text-slate-300 border-white/5">
+        <div className="flex flex-col justify-between space-y-5 lg:col-span-5 sm:space-y-6">
+          <div className="bg-white/[0.02] p-4 sm:p-6 rounded-2xl border border-white/5 shadow-lg space-y-4">
+            <h4 className="pb-2 text-[13px] sm:text-sm font-bold border-b text-slate-300 border-white/5">
               🔮 মডেলের ইন্টেলিজেন্স ও ছাঁকনি স্ক্যানার
             </h4>
 
             <div className="grid items-center grid-cols-1 gap-4 sm:grid-cols-2">
               {/* Sieve Visualizer */}
-              <div className="relative flex flex-col items-center justify-center p-4 overflow-hidden text-center border shadow-inner bg-black/20 rounded-xl border-white/5 h-44">
+              <div className="relative flex flex-col items-center justify-center h-40 p-3 overflow-hidden text-center border shadow-inner rounded-xl border-white/5 bg-black/20 sm:h-44 sm:p-4">
                 <span className="text-[9px] uppercase font-bold text-slate-500 absolute top-3">ছাঁকনি (The Sieve)</span>
                 {selectedFeatures.length === 0 ? (
                   <div className="mt-4 space-y-2 text-slate-500">
@@ -248,7 +248,7 @@ export default function SimulationLab() {
               </div>
 
               {/* Accuracy Scanner */}
-              <div className="relative flex flex-col items-center justify-center p-4 text-center border shadow-inner bg-black/20 rounded-xl border-white/5 h-44">
+              <div className="relative flex flex-col items-center justify-center h-40 p-3 text-center border shadow-inner rounded-xl border-white/5 bg-black/20 sm:h-44 sm:p-4">
                 <span className="text-[9px] uppercase font-bold text-slate-500 absolute top-3">অ্যাকুরেসি স্ক্যানার</span>
                 <div className="w-full px-2 mt-4 space-y-3">
                   <p className={`text-[10px] font-bold leading-tight ${metrics.statusColor}`}>{metrics.status}</p>
@@ -262,18 +262,18 @@ export default function SimulationLab() {
           </div>
 
           {/* Interactive Face ID Feature Extraction */}
-          <div className="bg-white/[0.02] p-6 rounded-2xl border border-white/5 shadow-lg space-y-4 flex-1 flex flex-col justify-between">
+          <div className="bg-white/[0.02] p-4 sm:p-6 rounded-2xl border border-white/5 shadow-lg space-y-4 flex-1 flex flex-col justify-between">
             <div>
-              <h4 className="flex flex-wrap justify-between gap-2 pb-2 text-sm font-bold border-b text-slate-300 border-white/5">
+              <h4 className="flex flex-wrap justify-between gap-2 pb-2 text-[13px] sm:text-sm font-bold border-b text-slate-300 border-white/5">
                 <span>📸 ফেস আইডি এক্সট্রাকশন</span>
                 <span className="text-[10px] text-emerald-400 font-mono bg-emerald-500/10 px-2 py-0.5 rounded">Live Nodes</span>
               </h4>
-              <p className="text-[10px] text-slate-400 mt-3 leading-relaxed">
+              <p className="text-[11px] text-slate-400 mt-3 leading-relaxed">
                 স্থির মুখের ছবি থেকে এআই কীভাবে জ্যামিতিক বিন্দুর ফিচার পরিমাপ করে, তা স্লাইডার টেনে দেখুন।
               </p>
 
-              <div className="relative flex items-center justify-center h-40 p-4 my-5 overflow-hidden border shadow-inner bg-black/20 rounded-xl border-white/5">
-                <svg viewBox="0 0 160 140" className="w-28 h-28">
+              <div className="relative flex items-center justify-center p-3 my-5 overflow-hidden border shadow-inner h-36 sm:h-40 sm:p-4 bg-black/20 rounded-xl border-white/5">
+                <svg viewBox="0 0 160 140" className="w-24 h-24 sm:w-28 sm:h-28">
                   <path d="M 80,10 C 120,10 135,45 135,80 C 135,115 110,130 80,130 C 50,130 25,115 25,80 C 25,45 40,10 80,10 Z" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="2" />
                   
                   {/* Eye Distance Feature */}
@@ -298,7 +298,7 @@ export default function SimulationLab() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-[10px]">
+            <div className="grid grid-cols-1 gap-3 text-[10px] sm:grid-cols-3 sm:gap-4">
               <div>
                 <label className="block text-slate-400 font-bold mb-1.5">👀 চোখের দূরত্ব:</label>
                 <input type="range" min="30" max="80" value={faceFeatures.eyeDistance} onChange={(e) => handleFeatureChange('eyeDistance', e.target.value)} className="w-full accent-indigo-500 h-1.5 bg-white/10 rounded-lg appearance-none" />

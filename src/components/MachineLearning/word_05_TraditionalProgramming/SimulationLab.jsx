@@ -119,15 +119,15 @@ export default function SimulationLab() {
   };
 
   return (
-    <div className="w-full space-y-8 font-sans text-slate-200">
+    <div className="w-full space-y-6 md:space-y-8 font-sans text-slate-200">
       
       {/* Header Area */}
-      <div className="pb-4 space-y-3 text-center">
-        <h2 className="flex items-center justify-center gap-3 text-2xl font-bold text-white md:text-3xl">
-          <span className="px-3 py-1 text-xs border rounded-full bg-amber-500/20 text-amber-400 border-amber-500/30">ল্যাব-০৫</span>
+      <div className="pb-3 space-y-3 text-center sm:pb-4">
+        <h2 className="flex flex-wrap items-center justify-center gap-2 text-xl font-bold text-white sm:text-2xl md:gap-3 md:text-3xl">
+          <span className="px-2.5 py-1 text-[10px] border rounded-full bg-amber-500/20 text-amber-400 border-amber-500/30 sm:px-3 sm:text-xs">ল্যাব-০৫</span>
           প্রচলিত প্রোগ্রামিং (Traditional)
         </h2>
-        <p className="max-w-2xl mx-auto text-sm text-slate-400 md:text-base">
+        <p className="max-w-2xl mx-auto px-2 text-[13px] text-slate-400 sm:px-0 sm:text-sm md:text-base">
           এখানে মানুষ নিয়ম বানায় আর কম্পিউটার অন্ধের মতো হুকুম তামিল করে। নিয়মের বাইরে এক চুলও নড়ার শক্তি তার নেই!
         </p>
       </div>
@@ -136,7 +136,7 @@ export default function SimulationLab() {
       <div className="bg-white/[0.02] p-1.5 mx-auto flex w-full max-w-md justify-center gap-2 rounded-xl border border-white/5 text-center shadow-lg">
         <button
           onClick={() => setSandboxMode('five')}
-          className={`flex-1 rounded-lg px-3 py-2 text-xs font-bold transition-all md:text-sm ${
+          className={`flex-1 rounded-lg px-3 py-2 text-[11px] font-bold transition-all sm:text-xs md:text-sm ${
             sandboxMode === 'five' ? 'bg-amber-600 text-white shadow-md' : 'text-slate-400 hover:text-white'
           }`}
         >
@@ -144,7 +144,7 @@ export default function SimulationLab() {
         </button>
         <button
           onClick={() => setSandboxMode('atm')}
-          className={`flex-1 rounded-lg px-3 py-2 text-xs font-bold transition-all md:text-sm ${
+          className={`flex-1 rounded-lg px-3 py-2 text-[11px] font-bold transition-all sm:text-xs md:text-sm ${
             sandboxMode === 'atm' ? 'bg-amber-600 text-white shadow-md' : 'text-slate-400 hover:text-white'
           }`}
         >
@@ -154,15 +154,15 @@ export default function SimulationLab() {
 
       {/* --- SIMULATOR 1: DRAW A 5 CHALLENGE --- */}
       {sandboxMode === 'five' && (
-        <div className="grid items-stretch grid-cols-1 gap-6 lg:grid-cols-12">
+        <div className="grid items-stretch grid-cols-1 gap-5 lg:grid-cols-12 md:gap-6">
           
           {/* Left: Pixel Drawer */}
-          <div className="bg-white/[0.02] p-5 flex flex-col justify-between rounded-2xl border border-white/5 lg:col-span-4 shadow-lg">
+          <div className="bg-white/[0.02] p-4 sm:p-5 flex flex-col justify-between rounded-2xl border border-white/5 lg:col-span-4 shadow-lg">
             <div>
-              <h3 className="flex items-center gap-2 pb-2 mb-3 text-base font-bold border-b text-amber-400 border-white/5">
+              <h3 className="flex items-center gap-2 pb-2 mb-3 text-sm sm:text-base font-bold border-b text-amber-400 border-white/5">
                 <span>✏️</span> গ্রিডে ৫ আঁকুন
               </h3>
-              <p className="mb-4 text-xs leading-relaxed text-slate-400">
+              <p className="mb-4 text-[11px] leading-relaxed text-slate-400 sm:text-xs">
                 পিক্সেলগুলোতে ক্লিক করে আপনার নিজস্ব ভঙ্গিতে '৫' আঁকার চেষ্টা করুন।
               </p>
 
@@ -196,17 +196,17 @@ export default function SimulationLab() {
           </div>
 
           {/* Middle: Engine Processing Comparison */}
-          <div className="bg-gradient-to-br from-white/[0.03] to-transparent p-5 flex flex-col justify-between rounded-2xl border border-white/5 lg:col-span-5 shadow-lg relative overflow-hidden">
+          <div className="bg-gradient-to-br from-white/[0.03] to-transparent p-4 sm:p-5 flex flex-col justify-between rounded-2xl border border-white/5 lg:col-span-5 shadow-lg relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-500 to-sky-500"></div>
             <div>
-              <h3 className="flex items-center gap-2 pb-2 mb-4 text-base font-bold text-white border-b border-white/5">
+              <h3 className="flex items-center gap-2 pb-2 mb-4 text-sm sm:text-base font-bold text-white border-b border-white/5">
                 ⚙️ রিয়েল-টাইম সিদ্ধান্ত
               </h3>
 
               <div className="space-y-4">
                 {/* Traditional Engine Card */}
                 <div className={`rounded-xl border p-4 transition-all ${traditionalPassed ? 'border-emerald-500/30 bg-emerald-500/10' : 'border-rose-500/20 bg-rose-500/10'}`}>
-                  <div className="flex items-center justify-between mb-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                     <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">১. প্রচলিত প্রোগ্রামিং (রুল-বেজড)</span>
                     <span className={`rounded px-2 py-0.5 text-[10px] font-bold ${traditionalPassed ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400'}`}>
                       {traditionalPassed ? 'শনাক্ত হয়েছে' : 'ব্যর্থ'}
@@ -247,9 +247,9 @@ export default function SimulationLab() {
           </div>
 
           {/* Right: Difference Panel */}
-          <div className="bg-white/[0.02] p-5 flex flex-col justify-between rounded-2xl border border-white/5 lg:col-span-3 shadow-lg">
+          <div className="bg-white/[0.02] p-4 sm:p-5 flex flex-col justify-between rounded-2xl border border-white/5 lg:col-span-3 shadow-lg">
             <div>
-              <h3 className="flex items-center gap-2 pb-2 mb-4 text-base font-bold text-white border-b border-white/5">
+              <h3 className="flex items-center gap-2 pb-2 mb-4 text-sm sm:text-base font-bold text-white border-b border-white/5">
                 <span>⚖️</span> সমীকরণের তফাৎ
               </h3>
 

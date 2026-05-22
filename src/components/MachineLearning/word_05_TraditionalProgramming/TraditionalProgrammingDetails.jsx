@@ -22,40 +22,40 @@ export default function TraditionalProgrammingDetails() {
   const itemVariants = { hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
 
   return (
-    <div className="max-w-[1440px] mx-auto px-5 md:px-16 py-6 md:py-8 space-y-8 text-[#dfe0ff]">
+    <div className="max-w-[1440px] mx-auto px-4 sm:px-5 md:px-16 py-5 md:py-8 space-y-6 md:space-y-8 text-[#dfe0ff]">
       
       {/* Header Tabs */}
-      <div className="flex items-center justify-between pb-2 border-b border-white/10">
-        <div className="flex gap-4">
-          <button onClick={() => setActiveTab('reading')} className={`relative flex items-center gap-2 pb-2 font-bold text-sm transition-colors ${activeTab === 'reading' ? 'text-[#00daf3]' : 'text-[#8080a0]'}`}>
+      <div className="flex flex-col gap-3 pb-2 border-b border-white/10 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-wrap gap-2 sm:gap-4">
+          <button onClick={() => setActiveTab('reading')} className={`relative flex items-center gap-2 pb-2 font-bold text-[13px] sm:text-sm transition-colors ${activeTab === 'reading' ? 'text-[#00daf3]' : 'text-[#8080a0]'}`}>
             <BookOpen size={16} /> 📖 পাঠ্যক্রম (Lesson)
             {activeTab === 'reading' && <motion.div layoutId="activeTabUnderline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#00daf3]" />}
           </button>
-          <button onClick={() => setActiveTab('lab')} className={`relative flex items-center gap-2 pb-2 font-bold text-sm transition-colors ${activeTab === 'lab' ? 'text-amber-400' : 'text-[#8080a0]'}`}>
+          <button onClick={() => setActiveTab('lab')} className={`relative flex items-center gap-2 pb-2 font-bold text-[13px] sm:text-sm transition-colors ${activeTab === 'lab' ? 'text-amber-400' : 'text-[#8080a0]'}`}>
             <FlaskConical size={16} /> 🔬 ল্যাব সিমুলেটর
             {activeTab === 'lab' && <motion.div layoutId="activeTabUnderline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-400" />}
           </button>
         </div>
-        <div className="hidden sm:block text-xs font-mono tracking-widest text-[#8080a0]">
+        <div className="hidden sm:block text-[11px] font-mono tracking-widest text-[#8080a0]">
           ML WORD BY WORD • CHAPTER 1
         </div>
       </div>
 
       <AnimatePresence mode="wait">
         {activeTab === 'reading' ? (
-          <motion.div key="reading" variants={containerVariants} initial="hidden" animate="visible" exit={{ opacity: 0, y: -10 }} className="space-y-12 text-[#c6c5d4]">
+          <motion.div key="reading" variants={containerVariants} initial="hidden" animate="visible" exit={{ opacity: 0, y: -10 }} className="space-y-10 md:space-y-12 text-[#c6c5d4]">
             
             <motion.div variants={itemVariants} className="pb-4 space-y-2 border-b border-white/5">
-              <div className="text-xs font-bold text-[#00daf3] tracking-wide uppercase">{traditionalData.chapter} / {traditionalData.part}</div>
-              <h1 className="flex items-center gap-2 text-3xl font-extrabold text-white">
-                <Binary className="text-[#00daf3]" size={28} /> {traditionalData.word_bn} <span className="text-lg font-normal text-[#8080a0]">({traditionalData.word_en})</span>
+              <div className="text-[11px] sm:text-xs font-bold text-[#00daf3] tracking-wide uppercase">{traditionalData.chapter} / {traditionalData.part}</div>
+              <h1 className="flex flex-wrap items-center gap-2 text-2xl sm:text-3xl font-extrabold text-white">
+                <Binary className="text-[#00daf3]" size={24} /> {traditionalData.word_bn} <span className="text-sm sm:text-lg font-normal text-[#8080a0]">({traditionalData.word_en})</span>
               </h1>
             </motion.div>
 
             <motion.div variants={itemVariants} className="grid items-start grid-cols-1 gap-8 md:grid-cols-12">
               <div className="space-y-4 md:col-span-7">
-                <div className="flex items-center gap-2 text-[#d846ef] font-bold text-xs uppercase tracking-wider"><Sparkles size={16} />{traditionalData.real_world_flash.title}</div>
-                {traditionalData.real_world_flash.paragraphs.map((p, idx) => <p key={idx} className="text-lg text-justify indent-6">{p}</p>)}
+                <div className="flex items-center gap-2 text-[#d846ef] font-bold text-[11px] sm:text-xs uppercase tracking-wider"><Sparkles size={15} />{traditionalData.real_world_flash.title}</div>
+                {traditionalData.real_world_flash.paragraphs.map((p, idx) => <p key={idx} className="text-[14px] sm:text-lg text-justify leading-relaxed indent-5 sm:indent-6">{p}</p>)}
               </div>
               <div className="flex justify-center pt-2 md:col-span-5">
                 <div className="w-full max-w-[280px] rounded-2xl bg-[#070512] border border-white/5 p-5 shadow-xl flex flex-col items-center">
@@ -87,20 +87,20 @@ export default function TraditionalProgrammingDetails() {
             </LogbookContainer>
 
             {/* Inline Reflection Poll */}
-            <motion.div variants={itemVariants} className="p-6 rounded-xl border border-[#d846ef]/20 bg-gradient-to-r from-[#4f46e5]/3 to-[#d846ef]/3 shadow-md space-y-4">
-              <h3 className="flex gap-2 text-lg font-bold text-white"><Sparkles className="text-[#d846ef]" size={18}/>{traditionalData.readers_reflection.title}</h3>
-              <p className="font-serif italic whitespace-pre-line">{traditionalData.readers_reflection.question}</p>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <motion.div variants={itemVariants} className="p-4 sm:p-6 rounded-xl border border-[#d846ef]/20 bg-gradient-to-r from-[#4f46e5]/3 to-[#d846ef]/3 shadow-md space-y-4">
+              <h3 className="flex gap-2 text-base sm:text-lg font-bold text-white"><Sparkles className="text-[#d846ef] mt-0.5" size={17}/>{traditionalData.readers_reflection.title}</h3>
+              <p className="font-serif italic whitespace-pre-line text-[14px] sm:text-base leading-relaxed">{traditionalData.readers_reflection.question}</p>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
                 {traditionalData.readers_reflection.options.map((option, idx) => (
-                  <button key={idx} onClick={() => setPollSelected(option.id)} className={`p-4 rounded-xl border text-left flex gap-2.5 ${pollSelected === option.id ? (option.isCorrect ? 'bg-green-500/10 border-green-500/40 text-white animate-pulse' : 'bg-red-500/10 border-red-500/40 text-white') : 'bg-white/5 border-white/10 text-slate-400'}`}>
+                  <button key={idx} onClick={() => setPollSelected(option.id)} className={`p-3.5 sm:p-4 rounded-xl border text-left flex gap-2.5 ${pollSelected === option.id ? (option.isCorrect ? 'bg-green-500/10 border-green-500/40 text-white animate-pulse' : 'bg-red-500/10 border-red-500/40 text-white') : 'bg-white/5 border-white/10 text-slate-400'}`}>
                     <div className="mt-0.5">{pollSelected === option.id ? (option.isCorrect ? <CheckCircle className="text-green-500" size={18}/> : <XCircle className="text-red-500" size={18}/>) : <div className="w-4 h-4 rounded-full border text-[10px] flex items-center justify-center">{idx === 0 ? '১' : '২'}</div>}</div>
-                    <div><span className="block font-bold text-white">অপশন {idx === 0 ? '১' : '২'}</span>{option.text}</div>
+                    <div className="text-[13px] sm:text-sm"><span className="block font-bold text-white">অপশন {idx === 0 ? '১' : '২'}</span>{option.text}</div>
                   </button>
                 ))}
               </div>
               <AnimatePresence>
                 {pollSelected && (
-                  <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="p-4 rounded-lg border bg-white/[0.01] border-white/10 text-[#c6c5d4] mt-4 text-sm">
+                  <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="p-4 rounded-lg border bg-white/[0.01] border-white/10 text-[#c6c5d4] mt-4 text-[13px] sm:text-sm leading-relaxed">
                     {traditionalData.readers_reflection.options.map(option => pollSelected === option.id && (
                       <div key={option.id} className="space-y-1">
                         <span className={`flex items-center gap-1 font-bold ${option.isCorrect ? 'text-green-400' : 'text-red-400'}`}>{option.isCorrect ? <CheckCircle size={14}/> : <XCircle size={14}/>} {option.isCorrect ? 'একদম সঠিক উত্তর!' : 'উত্তরটি সঠিক হয়নি!'}</span>
@@ -113,9 +113,9 @@ export default function TraditionalProgrammingDetails() {
             </motion.div>
 
             {/* Teaser CTA */}
-            <motion.div variants={itemVariants} className="p-6 rounded-xl border border-[#d846ef]/20 bg-[#1c0c35]">
-              <p className="text-[#c6c5d4]">উপরে থাকা <strong>"🔬 ল্যাব সিমুলেটর"</strong> ট্যাবে ক্লিক করে নিজে "৫" আঁকার চ্যালেঞ্জ এবং এটিএম বুথ সিমুলেটর ট্রাই করুন!</p>
-              <button onClick={() => { setActiveTab('lab'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="mt-3 px-5 py-2 bg-[#d846ef] text-white rounded-lg text-sm font-bold flex gap-2">লাইভ ল্যাব সিমুলেটর খুলুন <ChevronRight size={14}/></button>
+            <motion.div variants={itemVariants} className="p-4 sm:p-6 rounded-xl border border-[#d846ef]/20 bg-[#1c0c35]">
+              <p className="text-[13px] sm:text-base text-[#c6c5d4] leading-relaxed">উপরে থাকা <strong>"🔬 ল্যাব সিমুলেটর"</strong> ট্যাবে ক্লিক করে নিজে "৫" আঁকার চ্যালেঞ্জ এবং এটিএম বুথ সিমুলেটর ট্রাই করুন!</p>
+              <button onClick={() => { setActiveTab('lab'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="mt-3 inline-flex items-center gap-2 px-4 sm:px-5 py-2 bg-[#d846ef] text-white rounded-lg text-[13px] sm:text-sm font-bold">লাইভ ল্যাব সিমুলেটর খুলুন <ChevronRight size={14}/></button>
             </motion.div>
 
           </motion.div>

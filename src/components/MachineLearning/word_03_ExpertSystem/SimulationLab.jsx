@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function SimulationLab() {
   const [expertNode, setExpertNode] = useState('q1');
@@ -48,37 +48,41 @@ export default function SimulationLab() {
   };
 
   return (
-    <div className="w-full space-y-8 font-sans text-slate-200">
+    <div className="w-full space-y-6 font-sans md:space-y-8 text-slate-200">
       {/* Header Area */}
-      <div className="pb-4 space-y-3 text-center">
-        <h2 className="flex items-center justify-center gap-3 text-2xl font-bold text-white md:text-3xl">
-          <span className="px-3 py-1 text-xs text-teal-400 border rounded-full bg-teal-500/20 border-teal-500/30">ল্যাব-০৩</span>
-          এক্সপার্ট সিস্টেম (Expert System)
-        </h2>
-        <p className="max-w-2xl mx-auto text-sm text-slate-400 md:text-base">
+      <div className="pb-3 space-y-3 text-center sm:pb-4">
+        <div className="flex flex-col items-center gap-2">
+          <span className="px-2.5 py-1 text-[10px] text-teal-400 border rounded-full bg-teal-500/20 border-teal-500/30 sm:px-3 sm:text-xs">
+            ল্যাব-০৩
+          </span>
+          <h2 className="text-xl font-bold text-white sm:text-2xl md:text-3xl">
+            এক্সপার্ট সিস্টেম (Expert System)
+          </h2>
+        </div>
+        <p className="max-w-2xl mx-auto px-2 text-[13px] text-slate-400 sm:px-0 sm:text-sm md:text-base">
           রুল-ভিত্তিক এক্সপার্ট সিস্টেমের লাইভ ইন্টারেক্টিভ ডেমো এবং গ্লাস বক্স ভিউ।
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 md:gap-6">
         {/* Left Side: Medical Chat Simulator */}
-        <div className="space-y-6">
-          <div className="rounded-2xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent overflow-hidden shadow-lg flex flex-col h-[520px]">
+        <div className="space-y-5 md:space-y-6">
+          <div className="flex flex-col h-auto overflow-hidden shadow-lg rounded-2xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent lg:h-[520px]">
             <div className="w-full h-1 bg-gradient-to-r from-teal-500 to-emerald-500"></div>
             
-            <div className="flex items-center justify-between p-4 border-b border-white/5">
-              <h3 className="flex items-center gap-2 text-base font-bold text-teal-400">
+            <div className="flex flex-col gap-3 p-4 border-b border-white/5 sm:flex-row sm:items-center sm:justify-between">
+              <h3 className="flex items-center gap-2 text-sm font-bold text-teal-400 sm:text-base">
                 <span>🩺</span> এআই ডাক্তার সিমুলেটর
               </h3>
-              <button onClick={resetExpertSystem} className="text-xs bg-white/5 hover:bg-white/10 text-slate-300 font-bold px-3 py-1.5 rounded-lg border border-white/10 transition-colors">
+              <button onClick={resetExpertSystem} className="self-start px-3 py-1.5 text-[11px] font-bold text-slate-300 transition-colors bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 sm:self-auto sm:text-xs">
                 🔄 রিস্টার্ট
               </button>
             </div>
 
-            <div className="flex-1 p-5 space-y-4 overflow-y-auto scrollbar-thin">
+            <div className="flex-1 p-4 space-y-4 overflow-y-auto sm:p-5 scrollbar-thin">
               {expertLogs.map((log, idx) => (
                 <div key={idx} className={`flex ${log.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm shadow-sm ${
+                  <div className={`max-w-[92%] rounded-2xl px-3.5 py-2.5 text-[13px] sm:px-4 sm:py-3 sm:text-sm shadow-sm ${
                     log.type === 'user' 
                       ? 'bg-teal-500/20 border border-teal-500/30 text-teal-100 rounded-tr-none' 
                       : log.isError 
@@ -95,21 +99,21 @@ export default function SimulationLab() {
             </div>
 
             {/* User Input Area */}
-            <div className="p-4 border-t border-white/5 bg-black/20">
+            <div className="p-3.5 border-t border-white/5 bg-black/20 sm:p-4">
               {!expertTree[expertNode]?.isResult ? (
-                <div className="flex gap-2">
-                  <button onClick={() => handleExpertAnswer('yes', 'হ্যাঁ')} className="flex-1 py-3 text-sm font-bold text-teal-300 transition-colors border rounded-lg bg-teal-500/20 hover:bg-teal-500/30 border-teal-500/40">
+                <div className="grid grid-cols-3 gap-2">
+                  <button onClick={() => handleExpertAnswer('yes', 'হ্যাঁ')} className="px-2 py-3 text-xs font-bold text-teal-300 transition-colors border rounded-lg bg-teal-500/20 hover:bg-teal-500/30 border-teal-500/40 sm:text-sm">
                     হ্যাঁ
                   </button>
-                  <button onClick={() => handleExpertAnswer('no', 'না')} className="flex-1 py-3 text-sm font-bold transition-colors border rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 border-white/10">
+                  <button onClick={() => handleExpertAnswer('no', 'না')} className="px-2 py-3 text-xs font-bold transition-colors border rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 border-white/10 sm:text-sm">
                     না
                   </button>
-                  <button onClick={() => handleExpertAnswer('unknown', 'অন্য কিছু')} className="flex-1 py-3 text-xs font-bold transition-colors border rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border-rose-500/30 sm:text-sm">
+                  <button onClick={() => handleExpertAnswer('unknown', 'অন্য কিছু')} className="py-3 px-2 text-[11px] font-bold transition-colors border rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border-rose-500/30 sm:text-sm">
                     অন্য লক্ষণ
                   </button>
                 </div>
               ) : (
-                <div className="text-center text-sm text-slate-400 p-2 border border-white/5 rounded-lg bg-white/[0.02]">
+                <div className="p-2 text-sm text-center border rounded-lg bg-white/[0.02] text-slate-400 border-white/5">
                   রোগ নির্ণয় সম্পন্ন হয়েছে। আবার পরীক্ষা করতে রিস্টার্ট চাপুন।
                 </div>
               )}
@@ -118,18 +122,18 @@ export default function SimulationLab() {
         </div>
 
         {/* Right Side: The Glass Box View */}
-        <div className="space-y-6">
-          <div className="rounded-2xl border border-white/5 bg-white/[0.02] overflow-hidden shadow-lg h-[520px] flex flex-col">
-            <div className="p-4 border-b border-white/5">
-              <h3 className="flex items-center justify-between text-base font-bold text-white">
+        <div className="self-start space-y-5 md:space-y-6 lg:sticky lg:top-6">
+          <div className="flex flex-col h-auto overflow-hidden shadow-lg rounded-2xl border border-white/5 bg-white/[0.02] lg:h-[520px]">
+            <div className="p-4 border-b border-white/5 sm:p-4">
+              <h3 className="flex items-center justify-between text-sm font-bold text-white sm:text-base">
                 <span>🔍 দ্য গ্লাস বক্স</span>
               </h3>
-              <p className="text-[11px] text-slate-400 mt-1 uppercase tracking-wider font-bold">
+              <p className="mt-1 text-[10px] font-bold tracking-wider uppercase text-slate-400 sm:text-[11px]">
                 Knowledge Base & Inference Rules
               </p>
             </div>
             
-            <div className="flex-1 p-5 overflow-y-auto space-y-3 font-mono text-[11px] sm:text-xs scrollbar-thin">
+            <div className="flex-1 p-4 space-y-3 overflow-y-auto font-mono text-[10px] sm:p-5 sm:text-xs scrollbar-thin">
               {Object.keys(expertTree).map((key) => {
                 const node = expertTree[key];
                 const isActive = expertNode === key;
