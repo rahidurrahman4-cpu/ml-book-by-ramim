@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Sidebar from './layout/Sidebar';
 import Navbar from './layout/Navbar';
+import Footer from './layout/Footer';
 import Home from './pages/Home';
 import BookStart from './components/MachineLearning/start/BookStart';
 import BookReader from './pages/BookReader';
@@ -36,6 +37,8 @@ function App() {
         </main>
         
       </div>
+
+      <Footer />
     </div>
   );
 }
