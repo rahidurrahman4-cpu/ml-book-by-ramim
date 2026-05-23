@@ -56,9 +56,9 @@ export default function FeatureDetailsPage() {
                 <div className="flex items-center gap-2 min-w-0 text-[#d846ef] font-bold text-[11px] sm:text-xs uppercase tracking-wider"><Sparkles size={15} /> {featureData.real_world_flash.title}</div>
                 {featureData.real_world_flash.paragraphs.map((p, i) => <p key={i} className="text-[14px] sm:text-lg text-justify leading-relaxed indent-5 sm:indent-6">{p}</p>)}
               </div>
-              <div className="flex justify-center pt-2 lg:col-span-5">
-                <div className="relative w-full max-w-[280px] rounded-2xl border border-white/10 bg-[#070512] flex flex-col items-center justify-center p-4 sm:p-5 shadow-xl">
-                  <div className="relative w-20 h-20 sm:w-28 sm:h-28 border border-dashed border-[#00daf3]/30 flex flex-col items-center justify-center rounded-xl bg-white/[0.02] mb-4">
+              <div className="flex justify-center lg:col-span-5 lg:pt-2">
+                <div className="relative mx-auto flex w-full max-w-[320px] flex-col items-center justify-center rounded-2xl border border-white/10 bg-[#070512] p-4 text-center shadow-xl sm:max-w-[280px] sm:p-5">
+                  <div className="relative mb-4 flex h-20 w-20 flex-col items-center justify-center rounded-xl border border-dashed border-[#00daf3]/30 bg-white/[0.02] sm:h-28 sm:w-28">
                     {filterNoise ? <Filter size={36} className="text-[#00daf3] animate-pulse sm:text-[40px]" /> : <Smartphone size={36} className="text-amber-400 sm:text-[40px]" />}
                     <span className="mt-3 px-2 text-center font-mono text-[9px] uppercase text-white sm:text-[10px]">{filterNoise ? "EXTRACTING FEATURES" : "RAW INPUT DATA"}</span>
                   </div>
