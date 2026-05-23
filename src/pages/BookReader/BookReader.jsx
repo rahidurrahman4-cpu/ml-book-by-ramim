@@ -1,7 +1,6 @@
-import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { getAllWords } from '../data/wordsIndex';
+import { getAllWords } from '../../data/wordsIndex';
 
 export default function BookReader() {
   const { wordPath } = useParams();

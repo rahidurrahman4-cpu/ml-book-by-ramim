@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { bookStructure } from '../data/wordsIndex';
 import { 
   ChevronDown, ChevronRight, ChevronLeft, Home, BookOpen, X 
@@ -35,23 +35,28 @@ export default function Sidebar({ isMobileOpen, closeMobileMenu }) {
       {isMobileOpen && (
         <div 
           onClick={closeMobileMenu}
-          className="fixed inset-0 z-40 transition-opacity md:hidden bg-black/60 backdrop-blur-sm"
+          className="fixed inset-0 z-40 transition-opacity md:hidden bg-black/70 backdrop-blur-md"
         />
       )}
 
       {/* --- Sidebar Container --- */}
       <aside 
-        className={`bg-[#0d1222] text-slate-300 flex flex-col border-r border-slate-800 shrink-0 transition-all duration-300 
+        className={`bg-[#050b12] text-slate-300 flex flex-col border-r border-cyan-100/[0.08] shrink-0 transition-all duration-300 shadow-[16px_0_60px_rgba(0,0,0,0.28)]
           fixed md:relative z-40 top-20 md:top-0 left-0 h-full
           ${isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} 
           ${isCollapsed ? 'md:w-20' : 'md:w-80 lg:w-96'} 
           w-[85vw] sm:w-80
         `}
       >
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute -top-24 left-4 h-56 w-56 rounded-full bg-teal-500/[0.08] blur-[80px]" />
+          <div className="absolute bottom-12 right-[-80px] h-64 w-64 rounded-full bg-cyan-500/[0.06] blur-[90px]" />
+        </div>
+
         {/* Mobile Close Button (X icon) */}
         <button 
           onClick={closeMobileMenu}
-          className="absolute transition-colors md:hidden top-4 right-4 text-slate-400 hover:text-white"
+          className="absolute z-10 transition-colors md:hidden top-4 right-4 text-slate-400 hover:text-teal-200"
         >
           <X size={24} />
         </button>
@@ -59,26 +64,26 @@ export default function Sidebar({ isMobileOpen, closeMobileMenu }) {
         {/* Desktop Minimize/Maximize Toggle Button (Absolutely Centered) */}
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="hidden md:flex absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-[#161d30] border border-slate-700 rounded-full items-center justify-center text-slate-400 hover:text-[#5b5dfa] hover:border-[#5b5dfa] z-50 shadow-[0_0_15px_rgba(0,0,0,0.5)] transition-all"
+          className="hidden md:flex absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-[#071521] border border-teal-300/20 rounded-full items-center justify-center text-slate-400 hover:text-teal-200 hover:border-teal-300/50 z-50 shadow-[0_0_18px_rgba(20,184,166,0.18)] transition-all"
         >
           {isCollapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
         </button>
 
         {/* Scrollable Navigation Section */}
-        <div className="flex-1 p-5 pt-8 pb-20 overflow-x-hidden overflow-y-auto custom-scrollbar md:pb-5">
+        <div className="relative z-10 flex-1 p-5 pt-8 pb-20 overflow-x-hidden overflow-y-auto custom-scrollbar md:pb-5">
           
           {/* Main Menu Items */}
-          <nav className="pb-8 mb-8 space-y-2 border-b border-slate-800/50">
+          <nav className="pb-8 mb-8 space-y-2 border-b border-cyan-100/[0.08]">
             <Link 
-              to="/" 
+              to="/dashboard" 
               onClick={handleLinkClick}
               title="বইয়ের হোম পেজ"
               className={`w-full flex items-center py-3.5 rounded-lg text-[15px] font-bold transition-all ${
                 isCollapsed ? 'justify-center px-0' : 'gap-3 px-4'
               } ${
-                isActive('/') 
-                  ? 'bg-[#5b5dfa] text-white shadow-md' 
-                  : 'hover:bg-slate-800/50 text-slate-400 hover:text-slate-200'
+                isActive('/dashboard') 
+                  ? 'bg-teal-300 text-[#06111d] shadow-[0_0_28px_rgba(45,212,191,0.20)]' 
+                  : 'hover:bg-white/[0.04] text-slate-400 hover:text-teal-100'
               }`}
             >
               <Home size={20} className="shrink-0" /> 
@@ -93,8 +98,8 @@ export default function Sidebar({ isMobileOpen, closeMobileMenu }) {
                 isCollapsed ? 'justify-center px-0' : 'gap-3 px-4'
               } ${
                 isActive('/start') 
-                  ? 'bg-[#5b5dfa] text-white shadow-md' 
-                  : 'hover:bg-slate-800/50 text-slate-400 hover:text-slate-200'
+                  ? 'bg-teal-300 text-[#06111d] shadow-[0_0_28px_rgba(45,212,191,0.20)]' 
+                  : 'hover:bg-white/[0.04] text-slate-400 hover:text-teal-100'
               }`}
             >
               <BookOpen size={20} className="shrink-0" /> 
@@ -105,7 +110,7 @@ export default function Sidebar({ isMobileOpen, closeMobileMenu }) {
           {/* Chapters Section */}
           <div>
             {!isCollapsed && (
-              <p className="px-2 mb-5 text-xs font-bold tracking-widest uppercase text-slate-500 whitespace-nowrap">
+              <p className="px-2 mb-5 text-xs font-bold tracking-widest uppercase text-teal-300/70 whitespace-nowrap">
                 অধ্যায়সমূহ
               </p>
             )}
@@ -121,44 +126,44 @@ export default function Sidebar({ isMobileOpen, closeMobileMenu }) {
                     className={`w-full flex items-center py-3 rounded-xl transition-all ${
                       isCollapsed ? 'justify-center px-0' : 'justify-between px-2'
                     } ${
-                      openChapter === chapter.chapterId ? 'bg-slate-800/30' : 'hover:bg-slate-800/30'
+                      openChapter === chapter.chapterId ? 'bg-[#071521] border border-cyan-100/[0.08]' : 'hover:bg-white/[0.035] border border-transparent'
                     }`}
                   >
                     <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'gap-3'}`}>
                       <span className={`w-8 h-8 flex items-center justify-center rounded-lg text-sm font-black transition-colors shrink-0 ${
-                        openChapter === chapter.chapterId ? 'bg-[#5b5dfa] text-white shadow-md' : 'bg-slate-800 text-slate-400'
+                        openChapter === chapter.chapterId ? 'bg-teal-300 text-[#06111d] shadow-[0_0_18px_rgba(45,212,191,0.20)]' : 'bg-[#071521] text-slate-400 border border-cyan-100/[0.06]'
                       }`}>
                         {chapter.chapterNo}
                       </span>
-                      <span className={isCollapsed ? `block md:hidden text-[15px] md:text-[16px] text-left font-bold truncate max-w-[200px] md:max-w-[220px] ${openChapter === chapter.chapterId ? 'text-white' : 'text-slate-300'}` : `text-[15px] md:text-[16px] text-left font-bold truncate max-w-[200px] md:max-w-[220px] ${openChapter === chapter.chapterId ? 'text-white' : 'text-slate-300'}`}>
+                      <span className={isCollapsed ? `block md:hidden text-[15px] md:text-[16px] text-left font-bold truncate max-w-[200px] md:max-w-[220px] ${openChapter === chapter.chapterId ? 'text-teal-100' : 'text-slate-300'}` : `text-[15px] md:text-[16px] text-left font-bold truncate max-w-[200px] md:max-w-[220px] ${openChapter === chapter.chapterId ? 'text-teal-100' : 'text-slate-300'}`}>
                         অধ্যায়-{chapter.chapterNo}ঃ {chapter.chapterTitle}
                       </span>
                     </div>
                     {!isCollapsed && (
                       <ChevronDown 
                         size={18} 
-                        className={`text-slate-500 transition-transform duration-300 shrink-0 ${openChapter === chapter.chapterId ? 'rotate-180' : ''}`} 
+                        className={`text-slate-500 transition-transform duration-300 shrink-0 ${openChapter === chapter.chapterId ? 'rotate-180 text-teal-300' : ''}`} 
                       />
                     )}
                   </button>
 
                   {/* Parts & Words */}
                   {openChapter === chapter.chapterId && !isCollapsed && (
-                    <div className="pl-3 mt-3 mb-6 ml-4 space-y-3 overflow-hidden border-l-2 border-slate-800/60">
+                    <div className="pl-3 mt-3 mb-6 ml-4 space-y-3 overflow-hidden border-l-2 border-cyan-100/[0.08]">
                       {chapter.parts.map((part) => (
                         <div key={part.partId} className="space-y-1">
                           <button 
                             onClick={() => togglePart(part.partId)}
-                            className="flex items-center justify-between w-full px-3 py-2 transition-colors rounded-lg hover:bg-slate-800/30 group"
+                            className="flex items-center justify-between w-full px-3 py-2 transition-colors rounded-lg hover:bg-white/[0.035] group"
                           >
                             <span className={`text-[14px] md:text-[16px] font-bold tracking-wide text-left truncate ${
-                              openPart === part.partId ? 'text-[#d846ef]' : 'text-slate-400 group-hover:text-slate-300'
+                              openPart === part.partId ? 'text-cyan-300' : 'text-slate-400 group-hover:text-slate-300'
                             }`}>
                               পর্ব-{part.partNo}: {part.partTitle}
                             </span>
                             <ChevronRight 
                               size={16} 
-                              className={`text-slate-500 shrink-0 transition-transform duration-200 ${openPart === part.partId ? 'rotate-90 text-[#d846ef]' : ''}`} 
+                              className={`text-slate-500 shrink-0 transition-transform duration-200 ${openPart === part.partId ? 'rotate-90 text-cyan-300' : ''}`} 
                             />
                           </button>
                           
@@ -176,12 +181,12 @@ export default function Sidebar({ isMobileOpen, closeMobileMenu }) {
                                     onClick={handleLinkClick}
                                     className={`block text-left py-2.5 px-4 rounded-xl text-[13px] md:text-[14px] transition-all relative ${
                                       isWordActive 
-                                        ? 'bg-gradient-to-r from-[#5b5dfa]/15 to-transparent text-[#5b5dfa] font-bold shadow-sm' 
-                                        : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/30 font-medium'
+                                        ? 'bg-gradient-to-r from-teal-300/15 to-transparent text-teal-200 font-bold shadow-sm' 
+                                        : 'text-slate-400 hover:text-slate-200 hover:bg-white/[0.035] font-medium'
                                     }`}
                                   >
                                     {isWordActive && (
-                                      <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-6 bg-[#5b5dfa] rounded-r-md"></span>
+                                      <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-6 bg-teal-300 rounded-r-md"></span>
                                     )}
                                     <span className="leading-relaxed line-clamp-2">{word.title}</span>
                                   </Link>

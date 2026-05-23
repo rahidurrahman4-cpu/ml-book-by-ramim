@@ -1,157 +1,216 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Search, Menu, BrainCircuit } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { BrainCircuit, ChevronDown, Menu, Search, X } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { getAllWords } from '../data/wordsIndex';
+
+const navLinks = [
+  { label: 'হোম', path: '/' },
+  { label: 'বই', path: '/dashboard' },
+  { label: 'এমএল শব্দ', path: '/ml-topics' },
+  { label: 'আমাদের সম্পর্কে', path: '/about' },
+  { label: 'যোগাযোগ', path: '/contact' },
+];
 
 export default function Navbar({ onMenuClick }) {
   const navigate = useNavigate();
+  const location = useLocation();
+  const allWords = useMemo(() => getAllWords(), []);
+  const searchRef = useRef(null);
+
   const [searchQuery, setSearchQuery] = useState('');
-  const [showMobileSearch, setShowMobileSearch] = useState(false);
-  const mobileSearchRef = useRef(null);
-  
-  const allWords = getAllWords();
-  const searchResults = searchQuery.trim() === '' 
-    ? [] 
-    : allWords.filter(word => 
-        word.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        word.summary.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+  const [showSearch, setShowSearch] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+
+  const showSidebarButton = location.pathname === '/dashboard' || location.pathname.startsWith('/word/');
+  const searchResults = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    if (!query) return [];
+
+    return allWords
+      .filter(
+        (word) =>
+          word.title.toLowerCase().includes(query) ||
+          word.summary.toLowerCase().includes(query) ||
+          word.partTitle.toLowerCase().includes(query)
+      )
+      .slice(0, 8);
+  }, [allWords, searchQuery]);
 
   useEffect(() => {
-    if (showMobileSearch) mobileSearchRef.current?.focus();
-  }, [showMobileSearch]);
+    setShowMenu(false);
+    setShowSearch(false);
+    setSearchQuery('');
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (showSearch) searchRef.current?.focus();
+  }, [showSearch]);
+
+  const isActiveLink = (path) => {
+    if (path === '/') return location.pathname === '/';
+    return location.pathname === path;
+  };
+
+  const goToWord = (path) => {
+    navigate(`/word/${path}`);
+    setSearchQuery('');
+    setShowSearch(false);
+    setShowMenu(false);
+  };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#0d1222] border-b border-slate-800/80 flex items-center justify-between px-4 sm:px-6 h-20 shrink-0">
-      
-      {/* Left: Mobile Menu Button & Brand Logo */}
-      <div className="flex items-center flex-shrink-0 gap-4">
-        <button 
-          onClick={onMenuClick}
-          className="p-2 -ml-2 transition-colors md:hidden text-slate-400 hover:text-white"
-        >
-          <Menu size={24} />
-        </button>
+    <header className="sticky top-0 z-50 shrink-0 border-b border-cyan-100/[0.08] bg-[#050b12]/95 backdrop-blur-xl">
+      <div className="mx-auto flex h-16 w-full max-w-7xl items-center gap-3 px-4 sm:h-18 sm:px-6 lg:h-20">
+        {showSidebarButton && (
+          <button
+            type="button"
+            onClick={onMenuClick}
+            aria-label="Open lesson sidebar"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-cyan-100/[0.08] bg-[#071521] text-slate-300 transition hover:border-teal-300/30 hover:text-teal-200 md:hidden"
+          >
+            <Menu size={20} />
+          </button>
+        )}
 
-        <div 
-          className="flex items-center gap-3 transition-opacity cursor-pointer hover:opacity-80" 
-          onClick={() => navigate('/')}
-        >
-          <div className="p-2.5 bg-gradient-to-br from-[#5b5dfa] to-[#d846ef] rounded-xl text-white shadow-lg relative overflow-hidden">
-            <div className="absolute inset-0 bg-white/20 blur-[2px] animate-pulse"></div>
+        <Link to="/" className="flex min-w-0 shrink items-center gap-3 transition hover:opacity-90">
+          <span className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-md bg-teal-300 text-[#06111d] shadow-[0_0_24px_rgba(45,212,191,0.2)] sm:h-11 sm:w-11">
+            <span className="absolute inset-0 bg-white/20 blur-[2px]" />
             <BrainCircuit size={22} className="relative z-10" />
-          </div>
-          <div className="hidden sm:block">
-            <h1 className="text-lg md:text-[20px] font-extrabold leading-tight tracking-wide text-white">
+          </span>
+          <span className="min-w-0">
+            <span className="block truncate text-sm font-black leading-tight text-white sm:text-base lg:text-lg">
               শব্দে শব্দে মেশিন লার্নিং
-            </h1>
-            <p className="text-[11px] md:text-xs text-slate-400 font-medium mt-0.5">রামীম আহমেদ</p>
+            </span>
+            <span className="mt-0.5 hidden truncate text-[11px] font-semibold text-slate-500 sm:block">
+              রামীম আহমেদ
+            </span>
+          </span>
+        </Link>
+
+        <nav className="ml-auto hidden items-center gap-1 xl:flex">
+          {navLinks.map((link) => (
+            <Link
+              key={link.path}
+              to={link.path}
+              className={`rounded-md px-3 py-2 text-sm font-bold transition ${
+                isActiveLink(link.path)
+                  ? 'bg-teal-300/10 text-teal-300'
+                  : 'text-slate-400 hover:bg-white/[0.035] hover:text-teal-100'
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="ml-auto flex shrink-0 items-center gap-2 xl:ml-3">
+          <div className="relative hidden md:block">
+            <SearchBox
+              value={searchQuery}
+              onChange={setSearchQuery}
+              results={searchResults}
+              onSelect={goToWord}
+              placeholder="শব্দ খুঁজুন..."
+            />
           </div>
+
+          <button
+            type="button"
+            onClick={() => {
+              setShowSearch((value) => !value);
+              setShowMenu(false);
+            }}
+            aria-label="Search"
+            className="flex h-10 w-10 items-center justify-center rounded-md border border-cyan-100/[0.08] bg-[#071521] text-slate-300 transition hover:border-teal-300/30 hover:text-teal-200 md:hidden"
+          >
+            <Search size={18} />
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              setShowMenu((value) => !value);
+              setShowSearch(false);
+            }}
+            aria-expanded={showMenu}
+            aria-label="Toggle navigation menu"
+            className="inline-flex h-10 items-center gap-2 rounded-md border border-cyan-100/[0.08] bg-[#071521] px-3 text-sm font-bold text-slate-300 transition hover:border-teal-300/30 hover:text-teal-200 xl:hidden"
+          >
+            <span className="hidden sm:inline">মেনু</span>
+            {showMenu ? <X size={17} /> : <ChevronDown size={17} />}
+          </button>
         </div>
       </div>
 
-      {/* Center search moved to right actions on desktop (see below) */}
-
-      {/* Right: Actions & Profile Section */}
-      <div className="flex items-center justify-end flex-shrink-0 gap-4 sm:gap-6">
-        {/* Desktop search (right side) */}
-        <div className="hidden md:flex items-center max-w-xl w-full md:w-[420px] px-2">
-          <div className="relative w-full">
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="বইয়ের যেকোনো শব্দ খুঁজুন..."
-              className="w-full bg-[#161d30] text-sm text-slate-300 pl-11 pr-4 py-2.5 rounded-full border border-slate-800 focus:outline-none focus:border-[#5b5dfa] transition-all shadow-sm"
-            />
-            <Search size={16} className="absolute -translate-y-1/2 left-4 top-1/2 text-slate-500" />
-
-            {searchQuery.trim() !== '' && (
-              <div className="absolute top-full left-0 w-full mt-2 bg-[#161d30] border border-slate-700 rounded-2xl shadow-2xl overflow-hidden max-h-80 overflow-y-auto custom-scrollbar">
-                {searchResults.length > 0 ? (
-                  <div className="flex flex-col">
-                    {searchResults.map((result) => (
-                      <button
-                        key={result.id}
-                        onClick={() => {
-                          navigate(`/word/${result.path}`);
-                          setSearchQuery('');
-                        }}
-                        className="flex flex-col px-5 py-3.5 text-left transition-colors border-b hover:bg-slate-800/80 border-slate-800/50 last:border-0 group"
-                      >
-                        <span className="text-[14px] font-bold text-white mb-1 group-hover:text-[#5b5dfa] transition-colors line-clamp-1">
-                          {result.title}
-                        </span>
-                        <span className="text-[11px] text-slate-400 line-clamp-1 leading-relaxed">
-                          {result.summary}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="p-4 text-sm font-medium text-center text-slate-400">কোনো ফলাফল পাওয়া যায়নি! 😞</div>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-        <button
-          onClick={() => setShowMobileSearch((s) => !s)}
-          className="transition-colors md:hidden text-slate-400 hover:text-white"
-          aria-label="open mobile search"
-        >
-          <Search size={22} />
-        </button>
-
-        {/* notification and profile removed per request */}
-      </div>
-
-      {/* Mobile Search Panel (appears under navbar on small screens) */}
-      {showMobileSearch && (
-        <div className="absolute left-0 right-0 top-full md:hidden px-4 pb-3 bg-[#0d1222] z-40">
-          <div className="relative w-full">
-            <input
-              ref={mobileSearchRef}
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="বইয়ের যেকোনো শব্দ খুঁজুন..."
-              className="w-full bg-[#161d30] text-sm text-slate-300 pl-11 pr-4 py-2.5 rounded-full border border-slate-800 focus:outline-none focus:border-[#5b5dfa] transition-all shadow-sm"
-            />
-            <Search size={16} className="absolute -translate-y-1/2 left-4 top-1/2 text-slate-500" />
-
-            {searchQuery.trim() !== '' && (
-              <div className="absolute top-full left-0 w-full mt-2 bg-[#161d30] border border-slate-700 rounded-2xl shadow-2xl overflow-hidden max-h-80 overflow-y-auto custom-scrollbar">
-                {searchResults.length > 0 ? (
-                  <div className="flex flex-col">
-                    {searchResults.map((result) => (
-                      <button
-                        key={result.id}
-                        onClick={() => {
-                          navigate(`/word/${result.path}`);
-                          setSearchQuery('');
-                          setShowMobileSearch(false);
-                        }}
-                        className="flex flex-col px-5 py-3.5 text-left transition-colors border-b hover:bg-slate-800/80 border-slate-800/50 last:border-0 group"
-                      >
-                        <span className="text-[14px] font-bold text-white mb-1 group-hover:text-[#5b5dfa] transition-colors line-clamp-1">
-                          {result.title}
-                        </span>
-                        <span className="text-[11px] text-slate-400 line-clamp-1 leading-relaxed">
-                          {result.summary}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="p-4 text-sm font-medium text-center text-slate-400">কোনো ফলাফল পাওয়া যায়নি! 😞</div>
-                )}
-              </div>
-            )}
-          </div>
+      {showSearch && (
+        <div className="border-t border-cyan-100/[0.06] bg-[#050b12] px-4 py-3 md:hidden">
+          <SearchBox
+            refEl={searchRef}
+            value={searchQuery}
+            onChange={setSearchQuery}
+            results={searchResults}
+            onSelect={goToWord}
+            placeholder="যেকোনো শব্দ খুঁজুন..."
+            wide
+          />
         </div>
       )}
 
+      {showMenu && (
+        <div className="border-t border-cyan-100/[0.06] bg-[#050b12] px-4 py-4 shadow-2xl xl:hidden">
+          <nav className="mx-auto grid max-w-7xl gap-2 sm:grid-cols-2">
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`rounded-md border px-4 py-3 text-sm font-bold transition ${
+                  isActiveLink(link.path)
+                    ? 'border-teal-300/35 bg-teal-300/10 text-teal-200'
+                    : 'border-cyan-100/[0.08] bg-[#071521] text-slate-300 hover:border-teal-300/30 hover:text-teal-100'
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      )}
     </header>
+  );
+}
+
+function SearchBox({ refEl, value, onChange, results, onSelect, placeholder, wide = false }) {
+  return (
+    <div className={`relative ${wide ? 'w-full' : 'w-[230px] lg:w-[260px]'}`}>
+      <Search size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-teal-300/70" />
+      <input
+        ref={refEl}
+        type="text"
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        placeholder={placeholder}
+        className="h-10 w-full rounded-md border border-cyan-100/[0.08] bg-[#071521] pl-10 pr-3 text-sm font-semibold text-slate-200 outline-none transition placeholder:text-slate-600 focus:border-teal-300/50 focus:ring-2 focus:ring-teal-300/10"
+      />
+
+      {value.trim() !== '' && (
+        <div className="absolute left-0 right-0 top-full z-50 mt-2 max-h-80 overflow-y-auto rounded-md border border-cyan-100/[0.08] bg-[#071521] shadow-2xl custom-scrollbar">
+          {results.length > 0 ? (
+            results.map((result) => (
+              <button
+                key={result.id}
+                type="button"
+                onClick={() => onSelect(result.path)}
+                className="block w-full border-b border-cyan-100/[0.06] px-4 py-3 text-left transition last:border-0 hover:bg-white/[0.035]"
+              >
+                <span className="block text-sm font-black text-white">{result.title}</span>
+                <span className="mt-1 block truncate text-xs text-slate-500">{result.summary}</span>
+              </button>
+            ))
+          ) : (
+            <div className="px-4 py-5 text-center text-xs font-bold text-slate-500">কোনো ফলাফল পাওয়া যায়নি</div>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
