@@ -26,7 +26,7 @@ export default function LogbookContainer({ title, subtitle, date, itemVariants, 
       </div>
 
       {/* Timeline Container */}
-      <div className="relative pl-1 space-y-5 sm:pl-6 sm:space-y-6">
+      <div className="relative pl-0 space-y-5 sm:pl-6 sm:space-y-6">
         {/* Vertical Connector Line */}
         <div className="absolute left-[13px] top-4 bottom-4 w-0.5 bg-gradient-to-b from-[#00daf3] via-[#d846ef] to-transparent opacity-30 sm:left-[17px] sm:top-6 sm:bottom-6" />
         

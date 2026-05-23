@@ -20,17 +20,17 @@ export default function MachineLearningDetailsPage() {
   const itemVariants = { hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
 
   return (
-    <div className="max-w-[1440px] mx-auto px-4 sm:px-5 md:px-16 py-5 md:py-8 space-y-6 md:space-y-8 text-[#dfe0ff]">
+    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 lg:px-16 py-4 md:py-8 space-y-6 md:space-y-8 text-[#dfe0ff]">
       
       {/* Header Tabs */}
-      <div className="flex flex-col gap-3 pb-2 border-b border-white/10 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-wrap gap-2 sm:gap-4">
-          <button onClick={() => setActiveTab('reading')} className={`relative flex items-center gap-2 pb-2 font-bold text-[13px] sm:text-sm transition-colors ${activeTab === 'reading' ? 'text-[#00daf3]' : 'text-[#8080a0]'}`}>
-            <BookOpen size={16} /> 📖 পাঠ্যক্রম (Lesson)
+      <div className="flex flex-col gap-3 pb-3 border-b sm:flex-row sm:items-center sm:justify-between border-white/10 md:pb-2">
+        <div className="flex w-full gap-2 sm:gap-4 sm:w-auto">
+          <button onClick={() => setActiveTab('reading')} className={`flex-1 sm:flex-none relative flex items-center justify-center sm:justify-start gap-2 pb-2 font-bold text-xs sm:text-sm transition-colors ${activeTab === 'reading' ? 'text-[#00daf3]' : 'text-[#8080a0]'}`}>
+            <BookOpen size={16} className="shrink-0" /> 📖 পাঠ্যক্রম (Lesson)
             {activeTab === 'reading' && <motion.div layoutId="activeTabUnderline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#00daf3]" />}
           </button>
-          <button onClick={() => setActiveTab('lab')} className={`relative flex items-center gap-2 pb-2 font-bold text-[13px] sm:text-sm transition-colors ${activeTab === 'lab' ? 'text-sky-400' : 'text-[#8080a0]'}`}>
-            <FlaskConical size={16} /> 🔬 ল্যাব সিমুলেটর
+          <button onClick={() => setActiveTab('lab')} className={`flex-1 sm:flex-none relative flex items-center justify-center sm:justify-start gap-2 pb-2 font-bold text-xs sm:text-sm transition-colors ${activeTab === 'lab' ? 'text-sky-400' : 'text-[#8080a0]'}`}>
+            <FlaskConical size={16} className="shrink-0" /> 🔬 ল্যাব সিমুলেটর
             {activeTab === 'lab' && <motion.div layoutId="activeTabUnderline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-sky-400" />}
           </button>
         </div>
@@ -41,7 +41,7 @@ export default function MachineLearningDetailsPage() {
 
       <AnimatePresence mode="wait">
         {activeTab === 'reading' ? (
-          <motion.div key="reading" variants={containerVariants} initial="hidden" animate="visible" exit={{ opacity: 0, y: -10 }} className="space-y-10 md:space-y-12 text-[#c6c5d4]">
+          <motion.div key="reading" variants={containerVariants} initial="hidden" animate="visible" exit={{ opacity: 0, y: -10 }} className="space-y-10 md:space-y-12 font-sans text-base sm:text-lg md:text-xl lg:text-[21px] leading-relaxed text-[#c6c5d4]">
             
             <motion.div variants={itemVariants} className="pb-4 space-y-2 border-b border-white/5">
               <div className="text-[11px] sm:text-xs font-bold text-[#00daf3] tracking-wide uppercase">{mlData.chapter} / {mlData.part}</div>
@@ -51,7 +51,7 @@ export default function MachineLearningDetailsPage() {
             </motion.div>
 
             <motion.div variants={itemVariants}>
-              <div className="flex items-center gap-2 text-[#d846ef] font-bold text-[11px] sm:text-xs uppercase tracking-wider mb-4"><Sparkles size={15} />{mlData.real_world_flash.title}</div>
+              <div className="flex items-center gap-2 min-w-0 text-[#d846ef] font-bold text-[11px] sm:text-xs uppercase tracking-wider mb-4"><Sparkles size={15} />{mlData.real_world_flash.title}</div>
               {mlData.real_world_flash.paragraphs.map((p, idx) => <p key={idx} className="mb-4 text-[14px] sm:text-lg text-justify leading-relaxed indent-5 sm:indent-6">{p}</p>)}
             </motion.div>
 
@@ -93,7 +93,7 @@ export default function MachineLearningDetailsPage() {
             {/* Teaser CTA */}
             <motion.div variants={itemVariants} className="p-4 sm:p-6 rounded-xl border border-[#d846ef]/20 bg-[#1c0c35]">
               <p className="text-[13px] sm:text-base text-[#c6c5d4] leading-relaxed">উপরে থাকা <strong>"🔬 ল্যাব সিমুলেটর"</strong> ট্যাবে ক্লিক করে ম্যাজিক ইকুয়েশন এবং বিড়াল-কুকুর লার্নিং টেস্ট করে দেখুন!</p>
-              <button onClick={() => { setActiveTab('lab'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="mt-3 inline-flex items-center gap-2 px-4 sm:px-5 py-2 bg-[#d846ef] text-white rounded-lg text-[13px] sm:text-sm font-bold">লাইভ ল্যাব সিমুলেটর খুলুন <ChevronRight size={14}/></button>
+              <button onClick={() => { setActiveTab('lab'); document.querySelector("[data-reader-scroll]")?.scrollTo?.({ top: 0, behavior: 'smooth' }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="mt-3 inline-flex items-center gap-2 px-4 sm:px-5 py-2 bg-[#d846ef] text-white rounded-lg text-[13px] sm:text-sm font-bold">লাইভ ল্যাব সিমুলেটর খুলুন <ChevronRight size={14}/></button>
             </motion.div>
 
           </motion.div>
@@ -106,3 +106,4 @@ export default function MachineLearningDetailsPage() {
     </div>
   );
 }
+

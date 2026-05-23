@@ -11,24 +11,24 @@ export default function LogbookItem({ number, icon: Icon, title, isHighlight = f
       
       {/* Content Box */}
       <div 
-        className={`flex-1 rounded-xl p-5 transition-colors ${
+        className={`min-w-0 flex-1 rounded-xl p-4 transition-colors sm:p-5 ${
           isHighlight 
             ? 'bg-gradient-to-r from-[#1c0d2b]/60 to-[#0d071b]/60 border border-[#d846ef]/20 hover:border-[#d846ef]/40' 
             : 'border border-white/10 bg-[#161b22]/50 hover:bg-[#161b22]/80'
         }`}
       >
         <div 
-          className={`flex items-center gap-2 font-extrabold text-sm sm:text-base md:text-lg tracking-wide border-b pb-2 mb-3 ${
+          className={`flex min-w-0 items-center gap-2 font-extrabold text-sm sm:text-base md:text-lg tracking-wide border-b pb-2 mb-3 ${
             isHighlight ? 'text-white border-[#d846ef]/20' : 'text-white border-white/10'
           }`}
         >
           {Icon && (
             <Icon 
               size={16} 
-              className={`${isHighlight ? 'text-[#d846ef] filter drop-shadow-[0_0_3px_#d846ef]' : 'text-[#00daf3] filter drop-shadow-[0_0_3px_#00daf3]'}`} 
+              className={`shrink-0 ${isHighlight ? 'text-[#d846ef] filter drop-shadow-[0_0_3px_#d846ef]' : 'text-[#00daf3] filter drop-shadow-[0_0_3px_#00daf3]'}`} 
             />
           )}
-          {title}
+          <span className="min-w-0 break-words">{title}</span>
         </div>
         
         {/* বক্সের ভেতরের কাস্টম কনটেন্ট */}

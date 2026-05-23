@@ -1,14 +1,15 @@
-// সরাসরি কম্পোনেন্টগুলো ইমপোর্ট করে নিচ্ছি
-import AIDetailsPage from '../components/MachineLearning/word_01_AI/AIDetailsPage';
-import TuringDetailsPage from '../components/MachineLearning/word_02_TuringTest/TuringDetailsPage';
-import ExpertDetailsPage from '../components/MachineLearning/word_03_ExpertSystem/ExpertDetailsPage';
-import MachineLearningDetailsPage from '../components/MachineLearning/word_04_MachineLearning/MachineLearningDetailsPage';
-import TraditionalProgrammingDetails from '../components/MachineLearning/word_05_TraditionalProgramming/TraditionalProgrammingDetails';
-import AutomationDetailsPage from '../components/MachineLearning/word_06_Automation/AutomationDetailsPage';
-import AlgorithmDetailsPage from '../components/MachineLearning/word_07_Algorithm/AlgorithmDetailsPage';
-import DatasetDetailsPage from '../components/MachineLearning/word_08_Dataset/DatasetDetailsPage';
-import InputDataDetailsPage from '../components/MachineLearning/word_09_InputData/InputDataDetailsPage';
-import FeatureDetailsPage from '../components/MachineLearning/word_10_Feature/FeatureDetailsPage';
+import { lazy } from 'react';
+
+const AIDetailsPage = lazy(() => import('../components/MachineLearning/word_01_AI/AIDetailsPage'));
+const TuringDetailsPage = lazy(() => import('../components/MachineLearning/word_02_TuringTest/TuringDetailsPage'));
+const ExpertDetailsPage = lazy(() => import('../components/MachineLearning/word_03_ExpertSystem/ExpertDetailsPage'));
+const MachineLearningDetailsPage = lazy(() => import('../components/MachineLearning/word_04_MachineLearning/MachineLearningDetailsPage'));
+const TraditionalProgrammingDetails = lazy(() => import('../components/MachineLearning/word_05_TraditionalProgramming/TraditionalProgrammingDetails'));
+const AutomationDetailsPage = lazy(() => import('../components/MachineLearning/word_06_Automation/AutomationDetailsPage'));
+const AlgorithmDetailsPage = lazy(() => import('../components/MachineLearning/word_07_Algorithm/AlgorithmDetailsPage'));
+const DatasetDetailsPage = lazy(() => import('../components/MachineLearning/word_08_Dataset/DatasetDetailsPage'));
+const InputDataDetailsPage = lazy(() => import('../components/MachineLearning/word_09_InputData/InputDataDetailsPage'));
+const FeatureDetailsPage = lazy(() => import('../components/MachineLearning/word_10_Feature/FeatureDetailsPage'));
 
 
 

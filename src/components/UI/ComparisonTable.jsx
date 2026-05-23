@@ -9,12 +9,12 @@ export default function ComparisonTable({ tableData, itemVariants }) {
         {tableData.title}
       </h2>
 
-      <div className="overflow-x-auto rounded-lg border border-white/10 bg-white/[0.01] shadow-md font-sans">
-        <table className="w-full text-left border-collapse">
+      <div className="overflow-x-auto rounded-lg border border-white/10 bg-white/[0.01] shadow-md font-sans custom-scrollbar">
+        <table className="w-full min-w-[640px] text-left border-collapse">
           <thead>
             <tr className="border-b border-white/10 bg-white/[0.03]">
               {tableData.headers.map((h, i) => (
-                <th key={i} className="p-3 text-base font-extrabold text-[#dfe0ff]">{h}</th>
+                <th key={i} className="p-3 text-sm font-extrabold text-[#dfe0ff] md:text-base">{h}</th>
               ))}
             </tr>
           </thead>

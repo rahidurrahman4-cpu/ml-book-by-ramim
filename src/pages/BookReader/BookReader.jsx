@@ -1,4 +1,5 @@
 import { useParams, Navigate } from 'react-router-dom';
+import { Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { getAllWords } from '../../data/wordsIndex';
 
@@ -18,7 +19,7 @@ export default function BookReader() {
   const WordComponent = currentWord.Component;
 
   return (
-    <div className="flex-1 bg-[#0b0f19] h-screen overflow-y-auto custom-scrollbar">
+    <div data-reader-scroll className="flex-1 bg-[#0b0f19] h-screen overflow-y-auto scroll-smooth overscroll-contain custom-scrollbar">
       
       {/* এসইও এবং মেটা ট্যাগ ম্যানেজার */}
       <Helmet>
@@ -30,7 +31,9 @@ export default function BookReader() {
       </Helmet>
 
       {/* সরাসরি কম্পোনেন্ট রেন্ডার করা হলো (কোনো লোডিং টাইম ছাড়াই) */}
-      <WordComponent />
+      <Suspense fallback={null}>
+        <WordComponent />
+      </Suspense>
 
     </div>
   );

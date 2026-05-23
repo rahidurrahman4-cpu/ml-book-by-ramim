@@ -18,17 +18,17 @@ export default function FeatureDetailsPage() {
   const itemVariants = { hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
 
   return (
-    <div className="max-w-[1440px] mx-auto px-4 sm:px-5 md:px-16 py-5 md:py-8 space-y-6 md:space-y-8 text-[#dfe0ff]">
+    <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 lg:px-16 py-4 md:py-8 space-y-6 md:space-y-8 text-[#dfe0ff]">
       
       {/* Header Tabs */}
-      <div className="flex flex-col gap-3 pb-2 border-b border-white/10 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-wrap gap-2 sm:gap-4">
-          <button onClick={() => setActiveTab('reading')} className={`relative flex items-center gap-2 pb-2 font-bold text-[13px] sm:text-sm transition-colors ${activeTab === 'reading' ? 'text-[#00daf3]' : 'text-[#8080a0]'}`}>
-            <BookOpen size={16} /> 📖 পাঠ্যক্রম (Lesson)
+      <div className="flex flex-col gap-3 pb-3 border-b sm:flex-row sm:items-center sm:justify-between border-white/10 md:pb-2">
+        <div className="flex w-full gap-2 sm:gap-4 sm:w-auto">
+          <button onClick={() => setActiveTab('reading')} className={`flex-1 sm:flex-none relative flex items-center justify-center sm:justify-start gap-2 pb-2 font-bold text-xs sm:text-sm transition-colors ${activeTab === 'reading' ? 'text-[#00daf3]' : 'text-[#8080a0]'}`}>
+            <BookOpen size={16} className="shrink-0" /> 📖 পাঠ্যক্রম (Lesson)
             {activeTab === 'reading' && <motion.div layoutId="activeTabUnderline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#00daf3]" />}
           </button>
-          <button onClick={() => setActiveTab('lab')} className={`relative flex items-center gap-2 pb-2 font-bold text-[13px] sm:text-sm transition-colors ${activeTab === 'lab' ? 'text-indigo-400' : 'text-[#8080a0]'}`}>
-            <FlaskConical size={16} /> 🔬 ল্যাব সিমুলেটর
+          <button onClick={() => setActiveTab('lab')} className={`flex-1 sm:flex-none relative flex items-center justify-center sm:justify-start gap-2 pb-2 font-bold text-xs sm:text-sm transition-colors ${activeTab === 'lab' ? 'text-indigo-400' : 'text-[#8080a0]'}`}>
+            <FlaskConical size={16} className="shrink-0" /> 🔬 ল্যাব সিমুলেটর
             {activeTab === 'lab' && <motion.div layoutId="activeTabUnderline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-400" />}
           </button>
         </div>
@@ -39,7 +39,7 @@ export default function FeatureDetailsPage() {
 
       <AnimatePresence mode="wait">
         {activeTab === 'reading' ? (
-          <motion.div key="reading" variants={containerVariants} initial="hidden" animate="visible" exit={{ opacity: 0, y: -10 }} className="space-y-10 md:space-y-12 text-[#c6c5d4]">
+          <motion.div key="reading" variants={containerVariants} initial="hidden" animate="visible" exit={{ opacity: 0, y: -10 }} className="space-y-10 md:space-y-12 font-sans text-base sm:text-lg md:text-xl lg:text-[21px] leading-relaxed text-[#c6c5d4]">
             
             <motion.div variants={itemVariants} className="pb-4 space-y-2 border-b border-white/5">
               <div className="flex items-center gap-2 text-[11px] sm:text-xs font-bold text-[#00daf3] tracking-wide uppercase">
@@ -51,12 +51,12 @@ export default function FeatureDetailsPage() {
               </h1>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="grid items-start grid-cols-1 gap-6 md:gap-8 md:grid-cols-12">
-              <div className="space-y-4 md:col-span-7">
-                <div className="flex items-center gap-2 text-[#d846ef] font-bold text-[11px] sm:text-xs uppercase tracking-wider"><Sparkles size={15} /> {featureData.real_world_flash.title}</div>
+            <motion.div variants={itemVariants} className="grid items-start grid-cols-1 gap-6 md:gap-8 lg:grid-cols-12">
+              <div className="space-y-4 lg:col-span-7">
+                <div className="flex items-center gap-2 min-w-0 text-[#d846ef] font-bold text-[11px] sm:text-xs uppercase tracking-wider"><Sparkles size={15} /> {featureData.real_world_flash.title}</div>
                 {featureData.real_world_flash.paragraphs.map((p, i) => <p key={i} className="text-[14px] sm:text-lg text-justify leading-relaxed indent-5 sm:indent-6">{p}</p>)}
               </div>
-              <div className="flex justify-center pt-2 md:col-span-5">
+              <div className="flex justify-center pt-2 lg:col-span-5">
                 <div className="relative w-full max-w-[280px] rounded-2xl border border-white/10 bg-[#070512] flex flex-col items-center justify-center p-4 sm:p-5 shadow-xl">
                   <div className="relative w-20 h-20 sm:w-28 sm:h-28 border border-dashed border-[#00daf3]/30 flex flex-col items-center justify-center rounded-xl bg-white/[0.02] mb-4">
                     {filterNoise ? <Filter size={36} className="text-[#00daf3] animate-pulse sm:text-[40px]" /> : <Smartphone size={36} className="text-amber-400 sm:text-[40px]" />}
@@ -111,7 +111,7 @@ export default function FeatureDetailsPage() {
                 <Fingerprint size={12} className="text-[#00daf3]" /> NEXT STEP INGREDIENT
               </span>
               <p className="text-[13px] sm:text-base text-[#c6c5d4] mb-3 italic leading-relaxed">{featureData.next_intro.text}</p>
-              <button onClick={() => { setActiveTab('lab'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#00daf3] px-4 py-2.5 text-[13px] font-bold text-[#001f24] shadow-[0_0_12px_rgba(0,227,253,0.3)] transition-all hover:bg-[#9cf0ff] sm:w-auto sm:px-5 sm:text-sm">
+              <button onClick={() => { setActiveTab('lab'); document.querySelector("[data-reader-scroll]")?.scrollTo?.({ top: 0, behavior: 'smooth' }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#00daf3] px-4 py-2.5 text-[13px] font-bold text-[#001f24] shadow-[0_0_12px_rgba(0,227,253,0.3)] transition-all hover:bg-[#9cf0ff] sm:w-auto sm:px-5 sm:text-sm">
                 ল্যাব সিমুলেটরে ফেস আইডি টেস্ট করুন <ChevronRight size={14}/>
               </button>
             </motion.div>
@@ -126,3 +126,4 @@ export default function FeatureDetailsPage() {
     </div>
   );
 }
+

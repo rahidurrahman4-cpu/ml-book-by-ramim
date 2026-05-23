@@ -9,9 +9,9 @@ export default function StoryDialogue({ title, dialogues, itemVariants }) {
         {title}
       </h2>
       
-      <div className="space-y-6 text-justify">
+      <div className="space-y-5 text-left sm:space-y-6 sm:text-justify">
         {dialogues.map((dlg, idx) => (
-          <p key={idx} className="indent-6 leading-relaxed text-[#c6c5d4]">
+          <p key={idx} className="indent-0 leading-relaxed text-[#c6c5d4] sm:indent-6">
             {dlg.text}
           </p>
         ))}
