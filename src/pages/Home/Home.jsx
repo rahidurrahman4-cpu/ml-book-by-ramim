@@ -65,14 +65,14 @@ const audienceList = [
 function StatTile({ icon: Icon, label, value, note }) {
   return (
     <div className="relative overflow-hidden rounded-2xl border border-cyan-100/[0.08] bg-[#071521] p-5 shadow-[0_18px_50px_rgba(0,0,0,0.22)]">
-      <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-teal-400/10 blur-3xl" />
+      <div className="absolute top-0 right-0 w-24 h-24 rounded-full bg-teal-400/10 blur-3xl" />
       <div className="relative flex items-start justify-between gap-4">
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">{label}</p>
           <h3 className="mt-2 text-4xl font-black leading-none text-white">{value}</h3>
           <p className="mt-2 text-xs font-semibold text-slate-400">{note}</p>
         </div>
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-teal-300/20 bg-teal-400/10 text-teal-300">
+        <div className="flex items-center justify-center text-teal-300 border h-11 w-11 shrink-0 rounded-xl border-teal-300/20 bg-teal-400/10">
           <Icon size={21} />
         </div>
       </div>
@@ -82,7 +82,7 @@ function StatTile({ icon: Icon, label, value, note }) {
 
 function SectionHeader({ eyebrow, title, desc, icon: Icon }) {
   return (
-    <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+    <div className="flex flex-col gap-4 mb-8 md:flex-row md:items-end md:justify-between">
       <div className="max-w-2xl">
         <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-teal-300/20 bg-teal-400/10 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-teal-300">
           <Icon size={14} />
@@ -104,13 +104,13 @@ function ChapterCard({ chapter, index }) {
 
   return (
     <article className="group relative overflow-hidden rounded-3xl border border-cyan-100/[0.08] bg-[#071521] p-6 shadow-[0_22px_70px_rgba(0,0,0,0.25)] transition-all duration-300 hover:-translate-y-1 hover:border-teal-300/30 hover:shadow-[0_26px_80px_rgba(20,184,166,0.12)]">
-      <div className="absolute -right-14 -top-16 h-40 w-40 rounded-full bg-cyan-400/10 blur-3xl transition-opacity duration-300 group-hover:opacity-100" />
-      <div className="absolute -bottom-14 left-8 h-28 w-28 rounded-full bg-emerald-400/8 blur-3xl" />
+      <div className="absolute w-40 h-40 transition-opacity duration-300 rounded-full -right-14 -top-16 bg-cyan-400/10 blur-3xl group-hover:opacity-100" />
+      <div className="absolute rounded-full -bottom-14 left-8 h-28 w-28 bg-emerald-400/8 blur-3xl" />
 
-      <div className="relative flex h-full flex-col">
-        <div className="mb-6 flex items-start justify-between gap-5">
+      <div className="relative flex flex-col h-full">
+        <div className="flex items-start justify-between gap-5 mb-6">
           <div className="flex items-start gap-4">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-teal-300/20 bg-teal-400/10 text-teal-300">
+            <div className="flex items-center justify-center text-teal-300 border h-14 w-14 shrink-0 rounded-2xl border-teal-300/20 bg-teal-400/10">
               <Icon size={24} />
             </div>
             <div>
@@ -127,7 +127,7 @@ function ChapterCard({ chapter, index }) {
           এই অধ্যায়ে {totalParts}টি পর্বে {totalWords}টি গুরুত্বপূর্ণ ML শব্দ সহজ ভাষা, গল্প আর ল্যাবের মাধ্যমে শেখানো হয়েছে।
         </p>
 
-        <div className="mb-6 flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 mb-6">
           {featuredWords.map((word) => (
             <span key={word.id} className="rounded-full border border-cyan-100/[0.08] bg-[#06111d] px-3 py-1.5 text-xs font-semibold text-slate-300">
               {word.title}
@@ -157,13 +157,13 @@ export default function Home() {
 
   return (
     <div className="h-screen flex-1 overflow-y-auto bg-[#050b12] p-4 font-sans text-slate-200 selection:bg-teal-400/30 custom-scrollbar sm:p-6 md:p-8 lg:p-10">
-      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute left-[12%] top-[-16%] h-[520px] w-[520px] rounded-full bg-teal-500/[0.08] blur-[120px]" />
         <div className="absolute right-[-12%] top-[24%] h-[500px] w-[500px] rounded-full bg-cyan-500/[0.06] blur-[120px]" />
         <div className="absolute bottom-[2%] left-[28%] h-[420px] w-[420px] rounded-full bg-emerald-500/[0.04] blur-[120px]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl space-y-10">
+      <div className="relative z-10 mx-auto space-y-10 max-w-7xl">
         <section className="grid grid-cols-1 gap-6 xl:grid-cols-[1.35fr_0.65fr]">
           <div className="relative min-h-[460px] overflow-hidden rounded-[2rem] border border-cyan-100/[0.08] bg-[#061421] p-6 shadow-[0_30px_100px_rgba(0,0,0,0.35)] sm:p-8 lg:p-10">
             <div className="absolute inset-0 opacity-80 bg-[radial-gradient(circle_at_18%_32%,rgba(20,184,166,0.34),transparent_28%),radial-gradient(circle_at_86%_12%,rgba(34,211,238,0.16),transparent_30%),linear-gradient(135deg,rgba(6,20,33,0.35),rgba(5,15,27,0.96)_64%)]" />
@@ -172,12 +172,12 @@ export default function Home() {
             <div className="absolute -right-20 top-16 hidden h-80 w-80 rounded-full border border-teal-300/10 bg-teal-300/[0.03] blur-sm lg:block" />
             <div className="absolute bottom-10 right-12 hidden h-28 w-64 -skew-x-12 rounded-xl border border-cyan-100/10 bg-gradient-to-br from-cyan-50/10 via-slate-900/60 to-black shadow-[0_28px_80px_rgba(0,0,0,0.35)] lg:block" />
 
-            <div className="relative flex h-full items-center">
+            <div className="relative flex items-center h-full">
               <div className="max-w-4xl">
                 <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-teal-300/25 bg-teal-400/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-teal-300">
-                  <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-300 opacity-75" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-300" />
+                  <span className="relative flex w-2 h-2">
+                    <span className="absolute inline-flex w-full h-full bg-teal-300 rounded-full opacity-75 animate-ping" />
+                    <span className="relative inline-flex w-2 h-2 bg-teal-300 rounded-full" />
                   </span>
                   ইন্টারেক্টিভ AI লার্নিং বুক
                 </div>
@@ -187,11 +187,11 @@ export default function Home() {
                   <span className="block text-teal-300">মেশিন লার্নিং</span>
                 </h1>
 
-                <p className="mt-6 max-w-2xl text-base font-semibold leading-8 text-slate-300 md:text-lg">
+                <p className="max-w-2xl mt-6 text-base font-semibold leading-8 text-slate-300 md:text-lg">
                   কঠিন অ্যালগরিদম, ডেটা আর মডেলের ভাষাকে গল্পের মতো সহজ করে শেখার জায়গা। পড়ুন, বুঝুন, তারপর একই জায়গায় ল্যাবে পরীক্ষা করুন।
                 </p>
 
-                <div className="mt-7 grid max-w-2xl grid-cols-1 gap-3 sm:grid-cols-3">
+                <div className="grid max-w-2xl grid-cols-1 gap-3 mt-7 sm:grid-cols-3">
                   {[
                     { icon: BrainCircuit, label: 'সহজ ব্যাখ্যা' },
                     { icon: TerminalSquare, label: 'লাইভ ল্যাব' },
@@ -207,13 +207,13 @@ export default function Home() {
                   })}
                 </div>
 
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <div className="flex flex-col gap-3 mt-8 sm:flex-row">
                   <Link to={firstWordPath ? `/word/${firstWordPath}` : '/start'} className="inline-flex items-center justify-center gap-3 rounded-xl bg-teal-300 px-7 py-4 text-base font-black text-[#06111d] transition-all duration-300 hover:bg-teal-200 hover:shadow-[0_0_32px_rgba(45,212,191,0.28)]">
                     <Play size={19} className="fill-[#06111d]" />
                     শেখা শুরু করুন
                     <ArrowRight size={19} />
                   </Link>
-                  <Link to="/books" className="inline-flex items-center justify-center gap-3 rounded-xl border border-white/20 px-7 py-4 text-base font-bold text-white transition-all duration-300 hover:border-teal-300/40 hover:bg-white/[0.05]">
+                  <Link to="#" className="inline-flex items-center justify-center gap-3 rounded-xl border border-white/20 px-7 py-4 text-base font-bold text-white transition-all duration-300 hover:border-teal-300/40 hover:bg-white/[0.05]">
                     <BookOpen size={19} />
                     বই সম্পর্কে দেখুন
                   </Link>
@@ -231,12 +231,12 @@ export default function Home() {
 
         <section className="grid grid-cols-1 gap-6 lg:grid-cols-[0.85fr_1.15fr]">
           <div className="rounded-3xl border border-cyan-100/[0.08] bg-[#06111d] p-6 shadow-[0_24px_70px_rgba(0,0,0,0.24)] md:p-8">
-            <div className="mb-7 flex items-center justify-between gap-4">
+            <div className="flex items-center justify-between gap-4 mb-7">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-teal-300">আপনার পথ</p>
                 <h2 className="mt-2 text-2xl font-black text-white">শেখার রোডম্যাপ</h2>
               </div>
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-teal-300/20 bg-teal-400/10 text-teal-300">
+              <div className="flex items-center justify-center w-12 h-12 text-teal-300 border rounded-2xl border-teal-300/20 bg-teal-400/10">
                 <Compass size={23} />
               </div>
             </div>
@@ -325,7 +325,7 @@ export default function Home() {
               <h2 className="max-w-2xl text-3xl font-black leading-tight text-white md:text-4xl">
                 বই নয়, এটা আপনার ছোট্ট AI learning cockpit
               </h2>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300 md:text-base">
+              <p className="max-w-2xl mt-4 text-sm leading-7 text-slate-300 md:text-base">
                 প্রতিটি শব্দকে আপনি শুধু পড়বেন না, হাতে ধরে দেখবেন। একেকটা chapter শেষ হলে পুরো machine learning vocabulary অনেক বেশি পরিচিত লাগবে।
               </p>
               <Link to={firstWordPath ? `/word/${firstWordPath}` : '/start'} className="mt-7 inline-flex items-center justify-center gap-3 rounded-xl bg-teal-300 px-7 py-4 text-base font-black text-[#06111d] transition-all duration-300 hover:bg-teal-200">
@@ -336,7 +336,7 @@ export default function Home() {
           </div>
 
           <div className="rounded-3xl border border-cyan-100/[0.08] bg-[#06111d] p-8 shadow-[0_24px_70px_rgba(0,0,0,0.24)]">
-            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-400/10 text-cyan-300">
+            <div className="flex items-center justify-center w-12 h-12 mb-5 border rounded-2xl border-cyan-300/20 bg-cyan-400/10 text-cyan-300">
               <Quote size={23} />
             </div>
             <p className="text-lg font-semibold leading-8 text-slate-200">

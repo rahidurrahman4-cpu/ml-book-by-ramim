@@ -8,6 +8,7 @@ import StoryDialogue from '../../UI/StoryDialogue';
 import ComparisonTable from '../../UI/ComparisonTable';
 import LogbookContainer from '../../UI/LogbookContainer';
 import LogbookItem from '../../UI/LogbookItem';
+import WordNavigation from '../../UI/WordNavigation';
 
 export default function FeatureDetailsPage() {
   const [activeTab, setActiveTab] = useState('reading'); 
@@ -114,6 +115,10 @@ export default function FeatureDetailsPage() {
               <button onClick={() => { setActiveTab('lab'); document.querySelector("[data-reader-scroll]")?.scrollTo?.({ top: 0, behavior: 'smooth' }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#00daf3] px-4 py-2.5 text-[13px] font-bold text-[#001f24] shadow-[0_0_12px_rgba(0,227,253,0.3)] transition-all hover:bg-[#9cf0ff] sm:w-auto sm:px-5 sm:text-sm">
                 ল্যাব সিমুলেটরে ফেস আইডি টেস্ট করুন <ChevronRight size={14}/>
               </button>
+            </motion.div>
+
+            <motion.div variants={itemVariants}>
+              <WordNavigation fallbackPath="feature" />
             </motion.div>
 
           </motion.div>

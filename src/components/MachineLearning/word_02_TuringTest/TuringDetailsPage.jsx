@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Brain, Sparkles, BookOpen, ChevronRight, CheckCircle, XCircle, FlaskConical, HelpCircle, Target, MessageSquare, ShieldAlert, Heart, Terminal } from 'lucide-react';
-import { Link, useParams } from 'react-router-dom';
 
 import turingData from './Turing_Test.json';
 import SimulationLab from './SimulationLab';
@@ -9,30 +8,26 @@ import StoryDialogue from '../../UI/StoryDialogue';
 import ComparisonTable from '../../UI/ComparisonTable';
 import LogbookContainer from '../../UI/LogbookContainer';
 import LogbookItem from '../../UI/LogbookItem';
+import WordNavigation from '../../UI/WordNavigation';
+
+const SIM_DIALOGUES = [
+  { sender: 'judge', text: 'Are you a human?' },
+  { sender: 'roomX', text: 'Of course! Why would you doubt that? 😊' },
+  { sender: 'roomY', text: 'I process language patterns to simulate human responses.' },
+  { sender: 'system', text: 'JUDGE DECISION: ROOM X IS HUMAN (SUCCESS!)' }
+];
 
 export default function TuringDetailsPage() {
-  const { bookSlug: urlBookSlug } = useParams();
-  const bookSlug = urlBookSlug || 'ml-by-ramim';
-  
   const [activeTab, setActiveTab] = useState('reading');
   const [pollSelected, setPollSelected] = useState(null);
   const [imitationStage, setImitationStage] = useState(0);
-  const [isRunningSim, setIsRunningSim] = useState(true);
-
-  const simDialogues = [
-    { sender: "judge", text: "Are you a human?" },
-    { sender: "roomX", text: "Of course! Why would you doubt that? 😊" },
-    { sender: "roomY", text: "I process language patterns to simulate human responses." },
-    { sender: "system", text: "JUDGE DECISION: ROOM X IS HUMAN (SUCCESS!)" }
-  ];
 
   useEffect(() => {
-    if (!isRunningSim) return;
     const interval = setInterval(() => {
-      setImitationStage((prev) => (prev + 1) % simDialogues.length);
+      setImitationStage((prev) => (prev + 1) % SIM_DIALOGUES.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, [isRunningSim]);
+  }, []);
 
   const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.08 } } };
   const itemVariants = { hidden: { opacity: 0, y: 15 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
@@ -82,7 +77,7 @@ export default function TuringDetailsPage() {
                     <div className="flex gap-1"><span className="w-2 h-2 bg-red-500 rounded-full"/><span className="w-2 h-2 bg-yellow-500 rounded-full"/><span className="w-2 h-2 bg-green-500 rounded-full"/></div>
                   </div>
                   <div className="bg-black/40 border border-white/5 p-2.5 sm:p-3 min-h-[150px] sm:min-h-[160px] flex flex-col gap-2 rounded-lg relative">
-                    {simDialogues.slice(0, imitationStage + 1).map((msg, i) => (
+                    {SIM_DIALOGUES.slice(0, imitationStage + 1).map((msg, i) => (
                       <div key={i} className={`flex flex-col ${msg.sender === 'judge' ? 'items-end' : msg.sender === 'system' ? 'items-center border-t border-purple-500/20 pt-1 mt-1' : 'items-start'}`}>
                         {msg.sender !== 'system' && <span className={`text-[9px] sm:text-[10px] font-mono ${msg.sender === 'judge' ? 'text-purple-400' : msg.sender === 'roomX' ? 'text-emerald-400' : 'text-sky-400'}`}>{msg.sender.toUpperCase()}:</span>}
                         <span className={`text-[11px] sm:text-xs px-2.5 py-1.5 rounded-lg border ${msg.sender === 'judge' ? 'bg-purple-950/40 border-purple-800/30 text-purple-200 rounded-tr-none' : msg.sender === 'system' ? 'border-none text-[10px] font-black text-purple-400 animate-pulse' : 'bg-emerald-950/40 border-emerald-800/30 text-emerald-200 rounded-tl-none'}`}>{msg.text}</span>
@@ -133,6 +128,10 @@ export default function TuringDetailsPage() {
             <motion.div variants={itemVariants} className="p-4 sm:p-6 rounded-xl border border-[#d846ef]/20 bg-[#1c0c35]">
               <p className="text-[13px] sm:text-base text-[#c6c5d4] leading-relaxed">উপরে থাকা <strong>"🔬 ল্যাব সিমুলেটর"</strong> ট্যাবে ক্লিক করে নিজে টুরিং টেস্টের বিচারক হোন!</p>
               <button onClick={() => { setActiveTab('lab'); document.querySelector("[data-reader-scroll]")?.scrollTo?.({ top: 0, behavior: 'smooth' }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="mt-3 px-4 sm:px-5 py-2 bg-[#d846ef] text-white rounded-lg text-[13px] sm:text-sm font-bold flex gap-2 items-center">লাইভ ল্যাব সিমুলেটর খুলুন <ChevronRight size={14}/></button>
+            </motion.div>
+
+            <motion.div variants={itemVariants}>
+              <WordNavigation fallbackPath="turing-test" />
             </motion.div>
 
           </motion.div>

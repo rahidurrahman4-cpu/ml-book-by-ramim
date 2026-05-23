@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Brain, Sparkles, BookOpen, ChevronRight, CheckCircle, XCircle, FlaskConical, HelpCircle, Target, MessageSquare, ShieldAlert, Heart } from 'lucide-react';
-import { Link, useParams } from 'react-router-dom';
 
 import expertData from './expert_system.json';
 import SimulationLab from './SimulationLab';
@@ -9,11 +8,9 @@ import StoryDialogue from '../../UI/StoryDialogue';
 import ComparisonTable from '../../UI/ComparisonTable';
 import LogbookContainer from '../../UI/LogbookContainer';
 import LogbookItem from '../../UI/LogbookItem';
+import WordNavigation from '../../UI/WordNavigation';
 
 export default function ExpertDetailsPage() {
-  const { bookSlug: urlBookSlug } = useParams();
-  const bookSlug = urlBookSlug || 'ml-by-ramim';
-  
   const [activeTab, setActiveTab] = useState('reading');
   const [pollSelected, setPollSelected] = useState(null);
 
@@ -100,6 +97,10 @@ export default function ExpertDetailsPage() {
             <motion.div variants={itemVariants} className="p-4 sm:p-6 rounded-xl border border-[#d846ef]/20 bg-[#1c0c35]">
               <p className="text-[13px] sm:text-base text-[#c6c5d4] leading-relaxed">উপরে থাকা <strong>"🔬 ল্যাব সিমুলেটর"</strong> ট্যাবে ক্লিক করে নিজে দেখুন কীভাবে এক্সপার্ট সিস্টেম কাজ করে!</p>
               <button onClick={() => { setActiveTab('lab'); document.querySelector("[data-reader-scroll]")?.scrollTo?.({ top: 0, behavior: 'smooth' }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="mt-3 px-4 sm:px-5 py-2 bg-[#d846ef] text-white rounded-lg text-[13px] sm:text-sm font-bold inline-flex items-center gap-2">লাইভ ল্যাব সিমুলেটর খুলুন <ChevronRight size={14}/></button>
+            </motion.div>
+
+            <motion.div variants={itemVariants}>
+              <WordNavigation fallbackPath="expert-system" />
             </motion.div>
 
           </motion.div>

@@ -19,7 +19,7 @@ export default function BookReader() {
   const WordComponent = currentWord.Component;
 
   return (
-    <div data-reader-scroll className="flex-1 bg-[#0b0f19] h-screen overflow-y-auto scroll-smooth overscroll-contain custom-scrollbar">
+    <div data-reader-scroll className="flex-1 min-h-full bg-[#0b0f19] scroll-smooth overscroll-contain">
       
       {/* এসইও এবং মেটা ট্যাগ ম্যানেজার */}
       <Helmet>

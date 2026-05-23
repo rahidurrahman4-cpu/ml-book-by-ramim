@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Cog, Sparkles, Sliders, BookOpen, ChevronRight, CheckCircle, XCircle, FlaskConical, Target, Layers, Activity, Heart, Compass } from 'lucide-react';
-import { Link, useParams } from 'react-router-dom';
 
 import automationData from './Automation.json';
 import SimulationLab from './SimulationLab';
@@ -9,11 +8,9 @@ import StoryDialogue from '../../UI/StoryDialogue';
 import ComparisonTable from '../../UI/ComparisonTable';
 import LogbookContainer from '../../UI/LogbookContainer';
 import LogbookItem from '../../UI/LogbookItem';
+import WordNavigation from '../../UI/WordNavigation';
 
 export default function AutomationDetailsPage() {
-  const { bookSlug: urlBookSlug } = useParams();
-  const bookSlug = urlBookSlug || 'ml-by-ramim';
-  
   const [activeTab, setActiveTab] = useState('reading');
   const [pollSelected, setPollSelected] = useState(null);
   const [isSmartMode, setIsSmartMode] = useState(false);
@@ -132,6 +129,10 @@ export default function AutomationDetailsPage() {
               <button onClick={() => { setActiveTab('lab'); document.querySelector("[data-reader-scroll]")?.scrollTo?.({ top: 0, behavior: 'smooth' }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 bg-[#00daf3] text-[#001f24] rounded-lg text-[13px] sm:text-sm font-bold shadow-[0_0_12px_rgba(0,227,253,0.3)] hover:bg-[#9cf0ff]">
                 ল্যাব সিমুলেটরে পাম্প টেস্ট করুন <ChevronRight size={14}/>
               </button>
+            </motion.div>
+
+            <motion.div variants={itemVariants}>
+              <WordNavigation fallbackPath="automation" />
             </motion.div>
 
           </motion.div>

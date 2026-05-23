@@ -33,7 +33,7 @@ function App() {
   }, [location.pathname, showSidebar]);
 
   return (
-    <div className={`flex flex-col bg-[#0b0f19] font-sans antialiased text-slate-200 ${showSidebar ? 'h-screen overflow-hidden' : 'min-h-screen overflow-x-hidden'}`}>
+    <div className={`flex flex-col bg-[#0b0f19] font-sans antialiased text-slate-200 ${showSidebar ? 'h-[100dvh] overflow-hidden' : 'min-h-screen overflow-x-hidden'}`}>
       
       {/* গ্লোবাল ন্যাভবার সবসময় উপরে থাকবে */}
       <Navbar onMenuClick={() => setIsMobileMenuOpen(true)} />

@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Database, Sparkles, BookOpen, ChevronRight, CheckCircle, XCircle, FlaskConical, Trash2, Layers, FileText, Heart, Compass } from 'lucide-react';
-import { Link, useParams } from 'react-router-dom';
 
 import datasetData from './Dataset.json';
 import SimulationLab from './SimulationLab';
@@ -9,11 +8,9 @@ import StoryDialogue from '../../UI/StoryDialogue';
 import ComparisonTable from '../../UI/ComparisonTable';
 import LogbookContainer from '../../UI/LogbookContainer';
 import LogbookItem from '../../UI/LogbookItem';
+import WordNavigation from '../../UI/WordNavigation';
 
 export default function DatasetDetailsPage() {
-  const { bookSlug: urlBookSlug } = useParams();
-  const bookSlug = urlBookSlug || 'ml-by-ramim';
-  
   const [activeTab, setActiveTab] = useState('reading');
   const [pollSelected, setPollSelected] = useState(null);
   const [gigoMode, setGigoMode] = useState(false);
@@ -130,6 +127,10 @@ export default function DatasetDetailsPage() {
               <button onClick={() => { setActiveTab('lab'); document.querySelector("[data-reader-scroll]")?.scrollTo?.({ top: 0, behavior: 'smooth' }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 bg-[#00daf3] text-[#001f24] rounded-lg text-[13px] sm:text-sm font-bold shadow-[0_0_12px_rgba(0,227,253,0.3)] hover:bg-[#9cf0ff] transition-all">
                 শার্লকের ক্রাইম সিন ল্যাবে প্রবেশ করুন <ChevronRight size={14}/>
               </button>
+            </motion.div>
+
+            <motion.div variants={itemVariants}>
+              <WordNavigation fallbackPath="dataset" />
             </motion.div>
 
           </motion.div>

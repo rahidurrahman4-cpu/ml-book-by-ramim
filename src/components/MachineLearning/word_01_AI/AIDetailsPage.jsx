@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Brain, Sparkles, User, BookOpen, ChevronRight, CheckCircle, 
-  XCircle, FlaskConical, HelpCircle, Layers, Target, Globe, Eye, Cpu, Heart 
+  XCircle, FlaskConical, HelpCircle, Layers, Globe, Eye, Cpu, Heart 
 } from 'lucide-react';
-import { Link, useParams } from 'react-router-dom';
 
 // ডেটা এবং সিমুলেশন ইমপোর্ট
 import aiData from './AI.json';
@@ -15,11 +14,9 @@ import StoryDialogue from '../../UI/StoryDialogue';
 import ComparisonTable from '../../UI/ComparisonTable';
 import LogbookContainer from '../../UI/LogbookContainer';
 import LogbookItem from '../../UI/LogbookItem';
+import WordNavigation from '../../UI/WordNavigation';
 
 export default function AIDetailsPage() {
-  const { bookSlug: urlBookSlug } = useParams();
-  const bookSlug = urlBookSlug || 'ml-by-ramim';
-  
   const [activeTab, setActiveTab] = useState('reading'); // 'reading' | 'lab'
   const [pollSelected, setPollSelected] = useState(null); // 'A' | 'B'
   const [faceScanning, setFaceScanning] = useState(true);
@@ -225,6 +222,10 @@ export default function AIDetailsPage() {
                   </button>
                 </div>
               </div>
+            </motion.div>
+
+            <motion.div variants={itemVariants}>
+              <WordNavigation fallbackPath="artificial-intelligence" />
             </motion.div>
 
           </motion.div>
