@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Sidebar from './layout/Sidebar';
 import Navbar from './layout/Navbar';
@@ -18,6 +18,7 @@ import Books from './pages/Books/Books';
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const contentScrollRef = useRef(null);
 
   // কন্ডিশনাল চেক: কোন কোন পেইজে সাইডবার লাগবে?
   // সাধারণত ড্যাশবোর্ড এবং বই পড়ার সময় (word path) সাইডবার দরকার হয়।
@@ -27,10 +28,9 @@ function App() {
   const showFooter = !showSidebar && !location.pathname.startsWith('/word/');
 
   useEffect(() => {
-    if (!showSidebar) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }, [location.pathname, showSidebar]);
+    contentScrollRef.current?.scrollTo({ top: 0, behavior: 'auto' });
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, [location.pathname]);
 
   return (
     <div className={`flex flex-col bg-[#0b0f19] font-sans antialiased text-slate-200 ${showSidebar ? 'h-[100dvh] overflow-hidden' : 'min-h-screen overflow-x-hidden'}`}>
@@ -49,7 +49,7 @@ function App() {
         )}
         
         {/* কন্টেন্ট এরিয়া: সাইডবার না থাকলে ফুল উইডথ (w-full) হবে */}
-        <div className={`flex-1 flex flex-col bg-[#0b0f19] ${showSidebar ? 'min-h-0 overflow-y-auto custom-scrollbar' : 'w-full'}`}>
+        <div ref={contentScrollRef} className={`flex-1 flex flex-col bg-[#0b0f19] ${showSidebar ? 'min-h-0 overflow-y-auto custom-scrollbar' : 'w-full'}`}>
           
           <main className="flex-1">
             <Routes>

@@ -1,29 +1,36 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 
 export default function ComparisonTable({ tableData, itemVariants }) {
   return (
     <motion.div variants={itemVariants} className="space-y-4">
-      <h2 className="flex items-center gap-2 pb-2 font-sans text-xl font-bold text-white border-b border-white/5">
-        <span className="text-[#00daf3] text-lg">■</span>
+      <h2 className="flex items-center gap-2 pb-2 font-sans text-xl font-bold text-slate-100 border-b border-white/10">
+        <span className="text-lg text-slate-500">■</span>
         {tableData.title}
       </h2>
 
-      <div className="overflow-x-auto rounded-lg border border-white/10 bg-white/[0.01] shadow-md font-sans custom-scrollbar">
+      <div className="overflow-x-auto rounded-lg border border-white/10 bg-transparent font-sans custom-scrollbar">
         <table className="w-full min-w-[640px] text-left border-collapse">
           <thead>
-            <tr className="border-b border-white/10 bg-white/[0.03]">
+            <tr className="border-b border-white/10 bg-white/[0.04]">
               {tableData.headers.map((h, i) => (
-                <th key={i} className="p-3 text-sm font-extrabold text-[#dfe0ff] md:text-base">{h}</th>
+                <th key={i} className="p-3 text-sm font-bold text-slate-200 md:text-base">
+                  {h}
+                </th>
               ))}
             </tr>
           </thead>
           <tbody>
             {tableData.rows.map((row, idx) => (
-              <tr key={idx} className="border-b border-white/5 hover:bg-white/[0.01] transition-colors">
-                <td className="p-3 font-extrabold text-[#00daf3] text-sm md:text-base">{row.feature}</td>
-                <td className="p-3 text-[#c6c5d4] text-sm md:text-base leading-relaxed">{row.computer}</td>
-                <td className="p-3 text-[#dfe0ff] text-sm md:text-base leading-relaxed font-semibold">{row.ai}</td>
+              <tr key={idx} className="border-b border-white/10">
+                <td className="p-3 text-sm font-bold text-slate-200 md:text-base">
+                  {row.feature}
+                </td>
+                <td className="p-3 text-sm leading-relaxed text-slate-300 md:text-base">
+                  {row.computer}
+                </td>
+                <td className="p-3 text-sm leading-relaxed text-slate-300 md:text-base">
+                  {row.ai}
+                </td>
               </tr>
             ))}
           </tbody>
