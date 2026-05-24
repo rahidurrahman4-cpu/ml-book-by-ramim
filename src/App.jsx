@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Sidebar from './layout/Sidebar';
 import Navbar from './layout/Navbar';
 import Footer from './layout/Footer';
+import ReadModeWidget from './components/UI/ReadModeWidget';
 
 // পেজগুলো ইমপোর্ট
 import Home from './pages/Home/Home';
@@ -81,6 +82,9 @@ function App() {
           
         </div>
       </div>
+
+      {/* গ্লোবাল রিডিং মোড ফ্লোটিং বাটন */}
+      <ReadModeWidget />
     </div>
   );
 }

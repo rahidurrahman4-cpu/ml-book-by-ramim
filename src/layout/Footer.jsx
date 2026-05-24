@@ -97,11 +97,11 @@ export default function Footer() {
             </h3>
             <div className="space-y-3 text-sm font-semibold text-slate-400">
               <a
-                href="mailto:contact@mlbookramim.com"
+                href="mailto:ahramu584@gmail.com"
                 className="flex items-center gap-3 transition-colors hover:text-teal-300"
               >
                 <Mail size={16} className="text-teal-300" />
-                contact@mlbookramim.com
+                ahramu584@gmail.com
               </a>
               <div className="flex items-center gap-3">
                 <MapPin size={16} className="text-cyan-300" />

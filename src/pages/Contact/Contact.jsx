@@ -22,8 +22,8 @@ const contactItems = [
   {
     icon: Mail,
     label: 'ইমেইল',
-    value: 'contact@mlbookramim.com',
-    href: 'mailto:contact@mlbookramim.com',
+    value: 'ahramu584@gmail.com',
+    href: 'mailto:ahramu584@gmail.com',
   },
   {
     icon: Clock,

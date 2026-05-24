@@ -26,3 +26,133 @@
 .custom-scrollbar:hover::-webkit-scrollbar-thumb {
   background-color: #334155;
 }
+
+/* ==========================================
+   Custom Read Mode (রিডিং মোড) Theme Styles
+   ========================================== */
+
+/* 1. Body & main page background when active */
+body.reading-mode-active {
+  background-color: #f4ecd8 !important;
+  font-family: 'Kalpurush', Georgia, Cambria, "Times New Roman", Times, serif !important;
+  --reading-font-size: 20px;
+}
+
+body.reading-mode-active main,
+body.reading-mode-active main div.max-w-\[1440px\],
+body.reading-mode-active [data-reader-scroll],
+body.reading-mode-active .flex-1.flex.flex-col.bg-\[\#0b0f19\] {
+  background-color: #f4ecd8 !important;
+  color: #1a1a1a !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 2. Typography overrides for readable serif style inside the main content area */
+body.reading-mode-active main p,
+body.reading-mode-active main span:not(.font-mono):not(.sr-only):not(.bg-\[\#1f3a46\]):not(.bg-emerald-400\/10):not(.bg-rose-400\/10):not(.text-rose-400):not(.text-emerald-400):not(.bg-white\/5):not(.border-white\/10),
+body.reading-mode-active main h1,
+body.reading-mode-active main h2:not(.font-mono),
+body.reading-mode-active main h3:not(.font-mono),
+body.reading-mode-active main h4:not(.font-mono),
+body.reading-mode-active main li,
+body.reading-mode-active main blockquote,
+body.reading-mode-active main div.indent-6 {
+  color: #1a1a1a !important;
+  font-family: 'Kalpurush', Georgia, Cambria, "Times New Roman", Times, serif !important;
+  line-height: 1.85 !important;
+}
+
+/* 3. Dynamic font size control via CSS variables */
+body.reading-mode-active main p,
+body.reading-mode-active main div.indent-6,
+body.reading-mode-active main li,
+body.reading-mode-active main blockquote {
+  font-size: var(--reading-font-size) !important;
+}
+
+/* Header sizes relative to scale */
+body.reading-mode-active main h1 {
+  font-size: calc(var(--reading-font-size) * 1.5) !important;
+  font-weight: 800 !important;
+}
+body.reading-mode-active main h2:not(.font-mono) {
+  font-size: calc(var(--reading-font-size) * 1.25) !important;
+  font-weight: 700 !important;
+}
+body.reading-mode-active main h3:not(.font-mono) {
+  font-size: calc(var(--reading-font-size) * 1.15) !important;
+  font-weight: 600 !important;
+}
+
+/* Make section headers (like "বাস্তব দুনিয়ার ঝলক") scale with font size */
+body.reading-mode-active main span.tracking-wider.uppercase {
+  font-size: calc(var(--reading-font-size) * 1.15) !important;
+  font-weight: 800 !important;
+  color: #000000 !important;
+}
+
+/* 4. Elegant card layouts (darker sepia to provide subtle depth) */
+body.reading-mode-active main .bg-\[\#0b111b\],
+body.reading-mode-active main .bg-\[\#070b12\],
+body.reading-mode-active main .bg-white\/\[0\.02\],
+body.reading-mode-active main .bg-white\/\[0\.03\] {
+  background-color: #eae1c9 !important;
+  border-color: rgba(26, 26, 26, 0.15) !important;
+  color: #2a2a2a !important;
+}
+
+body.reading-mode-active main .border-white\/10,
+body.reading-mode-active main .border-white\/5,
+body.reading-mode-active main .border-white\/\[0\.08\],
+body.reading-mode-active main .border-white\/\[0\.07\] {
+  border-color: rgba(26, 26, 26, 0.15) !important;
+}
+
+/* 5. Details elements adjustment (text color classes override) */
+body.reading-mode-active main .text-slate-500 {
+  color: #666666 !important;
+}
+body.reading-mode-active main .text-slate-400 {
+  color: #444444 !important;
+}
+body.reading-mode-active main .text-slate-300 {
+  color: #222222 !important;
+}
+body.reading-mode-active main .text-slate-200 {
+  color: #1a1a1a !important;
+}
+body.reading-mode-active main .text-slate-100 {
+  color: #1a1a1a !important;
+}
+body.reading-mode-active main .text-white {
+  color: #000000 !important;
+}
+
+/* Fix Active Tab underline and text in the Lesson/Lab switch */
+body.reading-mode-active main .bg-slate-500 {
+  background-color: #1a1a1a !important;
+}
+
+/* Interactive elements in reflection poll and questions (green/red background and text) */
+body.reading-mode-active main .bg-green-500\/10 {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+  color: #065f46 !important;
+}
+body.reading-mode-active main .border-green-500\/35 {
+  border-color: rgba(16, 185, 129, 0.4) !important;
+}
+body.reading-mode-active main .text-green-400 {
+  color: #047857 !important;
+}
+
+body.reading-mode-active main .bg-red-500\/10 {
+  background-color: rgba(239, 68, 68, 0.15) !important;
+  color: #991b1b !important;
+}
+body.reading-mode-active main .border-red-500\/35 {
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+body.reading-mode-active main .text-red-400 {
+  color: #b91c1c !important;
+}
+
