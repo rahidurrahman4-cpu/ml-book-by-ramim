@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { BrainCircuit, ChevronDown, Menu, Search, X } from 'lucide-react';
+import { BrainCircuit, Menu, Search, X, PanelLeft } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { getAllWords } from '../data/wordsIndex';
 
@@ -59,26 +59,26 @@ export default function Navbar({ onMenuClick }) {
   };
 
   return (
-    <header className="sticky top-0 z-50 shrink-0 border-b border-cyan-100/[0.08] bg-[#050b12]/95 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 w-full max-w-7xl items-center gap-3 px-4 sm:h-18 sm:px-6 lg:h-20">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-cyan-100/[0.08] bg-[#050b12]/95 backdrop-blur-xl">
+      <div className="mx-auto flex h-14 w-full max-w-7xl items-center gap-2 px-3 sm:h-18 sm:gap-3 sm:px-6 lg:h-20">
         {showSidebarButton && (
           <button
             type="button"
             onClick={onMenuClick}
             aria-label="Open lesson sidebar"
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-cyan-100/[0.08] bg-[#071521] text-slate-300 transition hover:border-teal-300/30 hover:text-teal-200 md:hidden"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md text-slate-400 transition hover:bg-white/[0.05] hover:text-teal-300 sm:h-10 sm:w-10 md:hidden"
           >
-            <Menu size={20} />
+            <PanelLeft size={18} />
           </button>
         )}
 
-        <Link to="/" className="flex min-w-0 shrink items-center gap-3 transition hover:opacity-90">
-          <span className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-md bg-teal-300 text-[#06111d] shadow-[0_0_24px_rgba(45,212,191,0.2)] sm:h-11 sm:w-11">
+        <Link to="/" className="flex min-w-0 shrink items-center gap-2.5 transition hover:opacity-90 sm:gap-3">
+          <span className="relative flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-md bg-teal-300 text-[#06111d] shadow-[0_0_24px_rgba(45,212,191,0.2)] sm:h-10 sm:w-10">
             <span className="absolute inset-0 bg-white/20 blur-[2px]" />
-            <BrainCircuit size={22} className="relative z-10" />
+            <BrainCircuit size={18} className="relative z-10 sm:h-5 sm:w-5" />
           </span>
           <span className="min-w-0">
-            <span className="block truncate text-sm font-black leading-tight text-white sm:text-base lg:text-lg">
+            <span className="block truncate text-[13px] font-black leading-tight text-white sm:text-base lg:text-lg">
               শব্দে শব্দে মেশিন লার্নিং
             </span>
             <span className="mt-0.5 hidden truncate text-[11px] font-semibold text-slate-500 sm:block">
@@ -103,7 +103,7 @@ export default function Navbar({ onMenuClick }) {
           ))}
         </nav>
 
-        <div className="ml-auto flex shrink-0 items-center gap-2 xl:ml-3">
+        <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2 xl:ml-3">
           <div className="relative hidden md:block">
             <SearchBox
               value={searchQuery}
@@ -121,7 +121,7 @@ export default function Navbar({ onMenuClick }) {
               setShowMenu(false);
             }}
             aria-label="Search"
-            className="flex h-10 w-10 items-center justify-center rounded-md border border-cyan-100/[0.08] bg-[#071521] text-slate-300 transition hover:border-teal-300/30 hover:text-teal-200 md:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-md text-slate-400 transition hover:bg-white/[0.05] hover:text-teal-300 sm:h-10 sm:w-10 md:hidden"
           >
             <Search size={18} />
           </button>
@@ -134,10 +134,9 @@ export default function Navbar({ onMenuClick }) {
             }}
             aria-expanded={showMenu}
             aria-label="Toggle navigation menu"
-            className="inline-flex h-10 items-center gap-2 rounded-md border border-cyan-100/[0.08] bg-[#071521] px-3 text-sm font-bold text-slate-300 transition hover:border-teal-300/30 hover:text-teal-200 xl:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-md text-slate-400 transition hover:bg-white/[0.05] hover:text-teal-300 sm:h-10 sm:w-10 xl:hidden"
           >
-            <span className="hidden sm:inline">মেনু</span>
-            {showMenu ? <X size={17} /> : <ChevronDown size={17} />}
+            {showMenu ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>

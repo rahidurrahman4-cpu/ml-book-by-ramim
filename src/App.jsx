@@ -38,7 +38,7 @@ function App() {
       {/* গ্লোবাল ন্যাভবার সবসময় উপরে থাকবে */}
       <Navbar onMenuClick={() => setIsMobileMenuOpen(true)} />
       
-      <div className={`relative flex flex-1 ${showSidebar ? 'min-h-0 overflow-hidden' : ''}`}>
+      <div className={`relative flex flex-1 pt-16 sm:pt-18 lg:pt-20 ${showSidebar ? 'min-h-0 overflow-hidden' : ''}`}>
         
         {/* কন্ডিশন অনুযায়ী সাইডবার রেন্ডার করা হচ্ছে */}
         {showSidebar && (
