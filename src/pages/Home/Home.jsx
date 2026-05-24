@@ -1,152 +1,65 @@
 import { Link } from 'react-router-dom';
-import {
-  ArrowRight,
-  BarChart3,
-  BookOpen,
-  BrainCircuit,
-  CheckCircle2,
-  Code2,
-  Compass,
-  Database,
-  GraduationCap,
-  Layers,
-  Lightbulb,
-  Network,
-  Play,
-  Quote,
-  Rocket,
-  Search,
-  TerminalSquare,
-  Timer,
-  Trophy,
-  Users,
-} from 'lucide-react';
+import { ArrowRight, BookOpen, CheckCircle2, Database, Layers, Play } from 'lucide-react';
 import { getAllWords, bookStructure } from '../../data/wordsIndex';
 
-const chapterIcons = [BrainCircuit, Database, Network, Code2, Layers, BarChart3];
-
-const learningSteps = [
-  {
-    icon: Quote,
-    title: 'গল্প দিয়ে শুরু',
-    desc: 'প্রতিটি কঠিন শব্দ আগে পরিচিত বাস্তব দৃশ্য দিয়ে ধরা হয়।',
-  },
-  {
-    icon: Lightbulb,
-    title: 'ধারণা পরিষ্কার',
-    desc: 'তারপর সহজ বাংলায় মূল ধারণা, সূত্র আর ব্যবহার বুঝানো হয়।',
-  },
-  {
-    icon: TerminalSquare,
-    title: 'লাইভ ল্যাব',
-    desc: 'শেষে নিজে ক্লিক করে সিমুলেশনে ফলাফল দেখে নেওয়ার সুযোগ।',
-  },
-  {
-    icon: Trophy,
-    title: 'আত্মবিশ্বাস',
-    desc: 'শব্দ শেখা শেষ হলে পুরো AI আলোচনাই কম ভয়ংকর লাগে।',
-  },
-];
-
-const featureList = [
-  'প্রতিটি কনসেপ্ট গল্প, ছবি ও বাস্তব উদাহরণ দিয়ে সাজানো',
-  'বাংলায় লেখা, কিন্তু টেকনিক্যাল গভীরতা রাখা হয়েছে',
-  'প্রতিটি অধ্যায়ের সাথে শব্দভিত্তিক ল্যাব ও অনুশীলন',
-  'শুরুয়াতি শিক্ষার্থী থেকে কৌতূহলী প্রফেশনাল সবার জন্য',
-];
-
-const audienceList = [
-  { icon: GraduationCap, text: 'স্কুল-কলেজের AI কৌতূহলী শিক্ষার্থী' },
-  { icon: Code2, text: 'ডেটা সায়েন্স শুরু করতে চাওয়া নতুনরা' },
-  { icon: Users, text: 'শিক্ষক, গবেষক ও বাংলা কনটেন্ট নির্মাতা' },
-  { icon: BrainCircuit, text: 'যারা কঠিন textbook পড়ে আটকে গেছেন' },
-];
-
-function StatTile({ icon: Icon, label, value, note }) {
+function StatBox({ label, value }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-cyan-100/[0.08] bg-[#071521] p-5 shadow-[0_18px_50px_rgba(0,0,0,0.22)]">
-      <div className="absolute top-0 right-0 w-24 h-24 rounded-full bg-teal-400/10 blur-3xl" />
-      <div className="relative flex items-start justify-between gap-4">
+    <div className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
+      <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">{label}</p>
+      <p className="mt-2 text-2xl font-bold text-slate-100">{value}</p>
+    </div>
+  );
+}
+
+function ChapterPanel({ chapter }) {
+  const words = chapter.parts.flatMap((part) => part.words);
+  const firstWordPath = words[0]?.path;
+
+  return (
+    <section className="rounded-xl border border-white/10 bg-[#0b111b] p-5">
+      <div className="flex flex-col gap-3 border-b border-white/10 pb-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500">{label}</p>
-          <h3 className="mt-2 text-4xl font-black leading-none text-white">{value}</h3>
-          <p className="mt-2 text-xs font-semibold text-slate-400">{note}</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">
+            অধ্যায় {chapter.chapterNo}
+          </p>
+          <h2 className="mt-1 text-xl font-bold leading-snug text-slate-100">
+            {chapter.chapterTitle}
+          </h2>
+          <p className="mt-2 text-sm text-slate-400">
+            {chapter.parts.length} পর্ব · {words.length} শব্দ
+          </p>
         </div>
-        <div className="flex items-center justify-center text-teal-300 border h-11 w-11 shrink-0 rounded-xl border-teal-300/20 bg-teal-400/10">
-          <Icon size={21} />
-        </div>
+
+        <Link
+          to={firstWordPath ? `/word/${firstWordPath}` : '/start'}
+          className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-slate-200 transition-colors hover:bg-white/[0.07]"
+        >
+          শুরু করুন
+          <ArrowRight size={15} />
+        </Link>
       </div>
-    </div>
-  );
-}
 
-function SectionHeader({ eyebrow, title, desc, icon: Icon }) {
-  return (
-    <div className="flex flex-col gap-4 mb-8 md:flex-row md:items-end md:justify-between">
-      <div className="max-w-2xl">
-        <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-teal-300/20 bg-teal-400/10 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-teal-300">
-          <Icon size={14} />
-          {eyebrow}
-        </div>
-        <h2 className="text-2xl font-black leading-tight text-white md:text-4xl">{title}</h2>
-        {desc && <p className="mt-3 text-sm leading-7 text-slate-400 md:text-base">{desc}</p>}
-      </div>
-    </div>
-  );
-}
-
-function ChapterCard({ chapter, index }) {
-  const totalParts = chapter.parts.length;
-  const totalWords = chapter.parts.reduce((count, part) => count + part.words.length, 0);
-  const firstWordPath = chapter.parts[0]?.words[0]?.path;
-  const Icon = chapterIcons[index % chapterIcons.length];
-  const featuredWords = chapter.parts.flatMap((part) => part.words).slice(0, 3);
-
-  return (
-    <article className="group relative overflow-hidden rounded-3xl border border-cyan-100/[0.08] bg-[#071521] p-6 shadow-[0_22px_70px_rgba(0,0,0,0.25)] transition-all duration-300 hover:-translate-y-1 hover:border-teal-300/30 hover:shadow-[0_26px_80px_rgba(20,184,166,0.12)]">
-      <div className="absolute w-40 h-40 transition-opacity duration-300 rounded-full -right-14 -top-16 bg-cyan-400/10 blur-3xl group-hover:opacity-100" />
-      <div className="absolute rounded-full -bottom-14 left-8 h-28 w-28 bg-emerald-400/8 blur-3xl" />
-
-      <div className="relative flex flex-col h-full">
-        <div className="flex items-start justify-between gap-5 mb-6">
-          <div className="flex items-start gap-4">
-            <div className="flex items-center justify-center text-teal-300 border h-14 w-14 shrink-0 rounded-2xl border-teal-300/20 bg-teal-400/10">
-              <Icon size={24} />
-            </div>
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-cyan-300/75">অধ্যায় {chapter.chapterNo}</p>
-              <h3 className="mt-2 text-xl font-black leading-snug text-white">{chapter.chapterTitle}</h3>
+      <div className="mt-4 space-y-4">
+        {chapter.parts.map((part) => (
+          <div key={part.partId}>
+            <h3 className="mb-2 text-sm font-bold text-slate-300">
+              পর্ব {part.partNo}: {part.partTitle}
+            </h3>
+            <div className="grid gap-2 sm:grid-cols-2">
+              {part.words.map((word) => (
+                <Link
+                  key={word.id}
+                  to={`/word/${word.path}`}
+                  className="rounded-lg border border-white/10 bg-[#070b12] px-4 py-3 text-sm font-medium leading-relaxed text-slate-300 transition-colors hover:border-white/20 hover:bg-white/[0.04] hover:text-slate-100"
+                >
+                  {word.title}
+                </Link>
+              ))}
             </div>
           </div>
-          <span className="rounded-full border border-cyan-100/[0.08] bg-white/[0.03] px-3 py-1 text-xs font-bold text-slate-400">
-            {totalWords} শব্দ
-          </span>
-        </div>
-
-        <p className="mb-5 text-sm leading-7 text-slate-400">
-          এই অধ্যায়ে {totalParts}টি পর্বে {totalWords}টি গুরুত্বপূর্ণ ML শব্দ সহজ ভাষা, গল্প আর ল্যাবের মাধ্যমে শেখানো হয়েছে।
-        </p>
-
-        <div className="flex flex-wrap gap-2 mb-6">
-          {featuredWords.map((word) => (
-            <span key={word.id} className="rounded-full border border-cyan-100/[0.08] bg-[#06111d] px-3 py-1.5 text-xs font-semibold text-slate-300">
-              {word.title}
-            </span>
-          ))}
-        </div>
-
-        <div className="mt-auto flex flex-col gap-3 border-t border-cyan-100/[0.06] pt-5 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-500">
-            <Timer size={14} className="text-teal-300" />
-            গল্প + ল্যাব + অনুশীলন
-          </div>
-          <Link to={firstWordPath ? `/word/${firstWordPath}` : '/start'} className="inline-flex items-center justify-center gap-2 rounded-xl bg-teal-300 px-5 py-2.5 text-sm font-black text-[#06111d] transition-all duration-300 hover:bg-teal-200">
-            শুরু করি
-            <ArrowRight size={16} />
-          </Link>
-        </div>
+        ))}
       </div>
-    </article>
+    </section>
   );
 }
 
@@ -156,193 +69,84 @@ export default function Home() {
   const firstWordPath = bookStructure[0]?.parts[0]?.words[0]?.path;
 
   return (
-    <div className="h-screen flex-1 overflow-y-auto bg-[#050b12] p-4 font-sans text-slate-200 selection:bg-teal-400/30 custom-scrollbar sm:p-6 md:p-8 lg:p-10">
-      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute left-[12%] top-[-16%] h-[520px] w-[520px] rounded-full bg-teal-500/[0.08] blur-[120px]" />
-        <div className="absolute right-[-12%] top-[24%] h-[500px] w-[500px] rounded-full bg-cyan-500/[0.06] blur-[120px]" />
-        <div className="absolute bottom-[2%] left-[28%] h-[420px] w-[420px] rounded-full bg-emerald-500/[0.04] blur-[120px]" />
-      </div>
-
-      <div className="relative z-10 mx-auto space-y-10 max-w-7xl">
-        <section className="grid grid-cols-1 gap-6 xl:grid-cols-[1.35fr_0.65fr]">
-          <div className="relative min-h-[460px] overflow-hidden rounded-[2rem] border border-cyan-100/[0.08] bg-[#061421] p-6 shadow-[0_30px_100px_rgba(0,0,0,0.35)] sm:p-8 lg:p-10">
-            <div className="absolute inset-0 opacity-80 bg-[radial-gradient(circle_at_18%_32%,rgba(20,184,166,0.34),transparent_28%),radial-gradient(circle_at_86%_12%,rgba(34,211,238,0.16),transparent_30%),linear-gradient(135deg,rgba(6,20,33,0.35),rgba(5,15,27,0.96)_64%)]" />
-            <div className="absolute inset-0 opacity-25 bg-[linear-gradient(115deg,transparent_0_16%,rgba(45,212,191,0.22)_16.2%,transparent_16.5%_34%,rgba(34,211,238,0.16)_34.2%,transparent_34.5%_100%)]" />
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#061421] to-transparent" />
-            <div className="absolute -right-20 top-16 hidden h-80 w-80 rounded-full border border-teal-300/10 bg-teal-300/[0.03] blur-sm lg:block" />
-            <div className="absolute bottom-10 right-12 hidden h-28 w-64 -skew-x-12 rounded-xl border border-cyan-100/10 bg-gradient-to-br from-cyan-50/10 via-slate-900/60 to-black shadow-[0_28px_80px_rgba(0,0,0,0.35)] lg:block" />
-
-            <div className="relative flex items-center h-full">
-              <div className="max-w-4xl">
-                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-teal-300/25 bg-teal-400/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-teal-300">
-                  <span className="relative flex w-2 h-2">
-                    <span className="absolute inline-flex w-full h-full bg-teal-300 rounded-full opacity-75 animate-ping" />
-                    <span className="relative inline-flex w-2 h-2 bg-teal-300 rounded-full" />
-                  </span>
-                  ইন্টারেক্টিভ AI লার্নিং বুক
-                </div>
-
-                <h1 className="max-w-3xl text-4xl font-black leading-[1.05] text-white sm:text-5xl lg:text-7xl">
-                  শব্দে শব্দে
-                  <span className="block text-teal-300">মেশিন লার্নিং</span>
-                </h1>
-
-                <p className="max-w-2xl mt-6 text-base font-semibold leading-8 text-slate-300 md:text-lg">
-                  কঠিন অ্যালগরিদম, ডেটা আর মডেলের ভাষাকে গল্পের মতো সহজ করে শেখার জায়গা। পড়ুন, বুঝুন, তারপর একই জায়গায় ল্যাবে পরীক্ষা করুন।
-                </p>
-
-                <div className="grid max-w-2xl grid-cols-1 gap-3 mt-7 sm:grid-cols-3">
-                  {[
-                    { icon: BrainCircuit, label: 'সহজ ব্যাখ্যা' },
-                    { icon: TerminalSquare, label: 'লাইভ ল্যাব' },
-                    { icon: Database, label: 'শব্দভাণ্ডার' },
-                  ].map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <div key={item.label} className="flex items-center gap-3 rounded-2xl border border-cyan-100/[0.08] bg-white/[0.035] px-4 py-3 text-sm font-bold text-slate-200">
-                        <Icon size={18} className="text-teal-300" />
-                        {item.label}
-                      </div>
-                    );
-                  })}
-                </div>
-
-                <div className="flex flex-col gap-3 mt-8 sm:flex-row">
-                  <Link to={firstWordPath ? `/word/${firstWordPath}` : '/start'} className="inline-flex items-center justify-center gap-3 rounded-xl bg-teal-300 px-7 py-4 text-base font-black text-[#06111d] transition-all duration-300 hover:bg-teal-200 hover:shadow-[0_0_32px_rgba(45,212,191,0.28)]">
-                    <Play size={19} className="fill-[#06111d]" />
-                    শেখা শুরু করুন
-                    <ArrowRight size={19} />
-                  </Link>
-                  <Link to="#" className="inline-flex items-center justify-center gap-3 rounded-xl border border-white/20 px-7 py-4 text-base font-bold text-white transition-all duration-300 hover:border-teal-300/40 hover:bg-white/[0.05]">
-                    <BookOpen size={19} />
-                    বই সম্পর্কে দেখুন
-                  </Link>
-                </div>
+    <div className="h-screen flex-1 overflow-y-auto bg-[#070b12] p-4 font-sans text-slate-200 custom-scrollbar sm:p-6 md:p-8">
+      <div className="mx-auto max-w-6xl space-y-6">
+        <section className="rounded-xl border border-white/10 bg-[#0b111b] p-5 sm:p-7">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-3xl">
+              <div className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-slate-500">
+                <BookOpen size={15} />
+                বইয়ের ড্যাশবোর্ড
               </div>
-            </div>
-          </div>
-
-          <aside className="grid gap-4 sm:grid-cols-3 xl:grid-cols-1">
-            <StatTile icon={Layers} label="অধ্যায়" value={bookStructure.length} note="গাইডেড লেসন" />
-            <StatTile icon={BookOpen} label="পর্ব" value={totalParts} note="ধাপে ধাপে শেখা" />
-            <StatTile icon={Database} label="শব্দ" value={allWords.length} note="AI/ML কনসেপ্ট" />
-          </aside>
-        </section>
-
-        <section className="grid grid-cols-1 gap-6 lg:grid-cols-[0.85fr_1.15fr]">
-          <div className="rounded-3xl border border-cyan-100/[0.08] bg-[#06111d] p-6 shadow-[0_24px_70px_rgba(0,0,0,0.24)] md:p-8">
-            <div className="flex items-center justify-between gap-4 mb-7">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-teal-300">আপনার পথ</p>
-                <h2 className="mt-2 text-2xl font-black text-white">শেখার রোডম্যাপ</h2>
-              </div>
-              <div className="flex items-center justify-center w-12 h-12 text-teal-300 border rounded-2xl border-teal-300/20 bg-teal-400/10">
-                <Compass size={23} />
-              </div>
+              <h1 className="text-3xl font-bold leading-tight text-slate-100 sm:text-4xl">
+                শব্দে শব্দে মেশিন লার্নিং
+              </h1>
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-400 sm:text-base">
+                এখানে বইয়ের অধ্যায়, পর্ব এবং শব্দগুলো এক জায়গায় সাজানো আছে। শান্তভাবে পড়ুন,
+                প্রয়োজন হলে পাশের সাইডবার থেকে অন্য lesson খুলুন।
+              </p>
             </div>
 
-            <div className="space-y-5">
-              {learningSteps.map((step, index) => {
-                const Icon = step.icon;
-                return (
-                  <div key={step.title} className="relative flex gap-4">
-                    {index < learningSteps.length - 1 && <div className="absolute left-5 top-11 h-[calc(100%-14px)] w-px bg-cyan-100/[0.08]" />}
-                    <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-teal-300/20 bg-[#071521] text-teal-300">
-                      <Icon size={18} />
-                    </div>
-                    <div className="pb-2">
-                      <h3 className="font-black text-white">{step.title}</h3>
-                      <p className="mt-1 text-sm leading-6 text-slate-400">{step.desc}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="rounded-3xl border border-cyan-100/[0.08] bg-[#06111d] p-6 shadow-[0_24px_70px_rgba(0,0,0,0.24)] md:p-8">
-            <div className="grid gap-4 md:grid-cols-2">
-              <div>
-                <h2 className="flex items-center gap-3 text-2xl font-black text-white">
-                  <Rocket size={24} className="text-teal-300" />
-                  কেন আলাদা?
-                </h2>
-                <ul className="mt-6 space-y-4">
-                  {featureList.map((text) => (
-                    <li key={text} className="flex items-start gap-3 text-sm font-semibold leading-7 text-slate-300">
-                      <CheckCircle2 size={18} className="mt-1 shrink-0 text-emerald-300" />
-                      {text}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="border-t border-cyan-100/[0.06] pt-6 md:border-l md:border-t-0 md:pl-6 md:pt-0">
-                <h2 className="flex items-center gap-3 text-2xl font-black text-white">
-                  <Users size={24} className="text-cyan-300" />
-                  কার জন্য?
-                </h2>
-                <ul className="mt-6 space-y-4">
-                  {audienceList.map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <li key={item.text} className="flex items-center gap-3 text-sm font-semibold text-slate-300">
-                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-cyan-100/[0.08] bg-[#071521] text-cyan-300">
-                          <Icon size={17} />
-                        </span>
-                        {item.text}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            </div>
+            <Link
+              to={firstWordPath ? `/word/${firstWordPath}` : '/start'}
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#1f3a46] px-5 py-3 text-sm font-bold text-slate-100 transition-colors hover:bg-[#294957]"
+            >
+              <Play size={16} className="fill-current" />
+              পড়া শুরু করুন
+            </Link>
           </div>
         </section>
 
-        <section>
-          <SectionHeader
-            eyebrow="সূচিপত্র"
-            title="যেখান থেকে ইচ্ছা শুরু করুন"
-            desc="অধ্যায়গুলো এমনভাবে সাজানো, যেন আপনি প্রথম দিন থেকেই AI/ML শব্দগুলোকে ভয় না পেয়ে ব্যবহার করতে শুরু করতে পারেন।"
-            icon={Search}
-          />
+        <section className="space-y-4">
+          <div className="flex items-end justify-between gap-4 border-b border-white/10 pb-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">সূচিপত্র</p>
+              <h2 className="mt-1 text-2xl font-bold text-slate-100">অধ্যায়গুলো</h2>
+            </div>
+          </div>
 
-          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-            {bookStructure.map((chapter, index) => (
-              <ChapterCard key={chapter.chapterId} chapter={chapter} index={index} />
+          <div className="space-y-5">
+            {bookStructure.map((chapter) => (
+              <ChapterPanel key={chapter.chapterId} chapter={chapter} />
             ))}
           </div>
         </section>
 
-        <section className="grid grid-cols-1 gap-6 pb-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="relative overflow-hidden rounded-3xl border border-teal-300/20 bg-gradient-to-br from-teal-400/16 via-cyan-400/10 to-emerald-400/10 p-8 shadow-[0_24px_90px_rgba(0,0,0,0.28)] md:p-10">
-            <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-teal-300/10 blur-[80px]" />
-            <div className="relative">
-              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-300 text-[#06111d]">
-                <Network size={24} />
-              </div>
-              <h2 className="max-w-2xl text-3xl font-black leading-tight text-white md:text-4xl">
-                বই নয়, এটা আপনার ছোট্ট AI learning cockpit
-              </h2>
-              <p className="max-w-2xl mt-4 text-sm leading-7 text-slate-300 md:text-base">
-                প্রতিটি শব্দকে আপনি শুধু পড়বেন না, হাতে ধরে দেখবেন। একেকটা chapter শেষ হলে পুরো machine learning vocabulary অনেক বেশি পরিচিত লাগবে।
-              </p>
-              <Link to={firstWordPath ? `/word/${firstWordPath}` : '/start'} className="mt-7 inline-flex items-center justify-center gap-3 rounded-xl bg-teal-300 px-7 py-4 text-base font-black text-[#06111d] transition-all duration-300 hover:bg-teal-200">
-                প্রথম lesson খুলুন
-                <ArrowRight size={18} />
-              </Link>
+        <section className="grid gap-3 sm:grid-cols-3">
+          <StatBox label="অধ্যায়" value={bookStructure.length} />
+          <StatBox label="পর্ব" value={totalParts} />
+          <StatBox label="শব্দ" value={allWords.length} />
+        </section>
+
+        <section className="grid gap-4 pb-8 lg:grid-cols-[1fr_1fr]">
+          <div className="rounded-xl border border-white/10 bg-[#0b111b] p-5">
+            <div className="flex items-center gap-2 text-sm font-bold text-slate-100">
+              <Layers size={17} className="text-slate-400" />
+              পড়ার সহজ নিয়ম
             </div>
+            <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-400">
+              {[
+                'প্রথমে গল্প/ব্যাখ্যা পড়ুন',
+                'তারপর লগবুকের পয়েন্টগুলো দেখুন',
+                'শেষে ল্যাব থাকলে নিজে পরীক্ষা করুন',
+              ].map((item) => (
+                <li key={item} className="flex gap-3">
+                  <CheckCircle2 size={17} className="mt-0.5 shrink-0 text-slate-500" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div className="rounded-3xl border border-cyan-100/[0.08] bg-[#06111d] p-8 shadow-[0_24px_70px_rgba(0,0,0,0.24)]">
-            <div className="flex items-center justify-center w-12 h-12 mb-5 border rounded-2xl border-cyan-300/20 bg-cyan-400/10 text-cyan-300">
-              <Quote size={23} />
+          <div className="rounded-xl border border-white/10 bg-[#0b111b] p-5">
+            <div className="flex items-center gap-2 text-sm font-bold text-slate-100">
+              <Database size={17} className="text-slate-400" />
+              বর্তমান বইয়ের ফোকাস
             </div>
-            <p className="text-lg font-semibold leading-8 text-slate-200">
-              “মেশিন লার্নিং কোনো ম্যাজিক নয়। ঠিকভাবে গল্পে ভাঙলে, এটা যুক্তি আর প্যাটার্ন দেখার এক সুন্দর অভ্যাস।”
+            <p className="mt-4 text-sm leading-7 text-slate-400">
+              AI/ML-এর গুরুত্বপূর্ণ শব্দগুলো বাংলায় পরিষ্কার করা। এই dashboard শুধু পথ দেখাবে,
+              মূল শেখা হবে প্রতিটি lesson-এর ভিতরে।
             </p>
-            <p className="mt-5 text-sm font-bold text-teal-300">চলুন, সহজভাবে AI শেখা শুরু করি।</p>
           </div>
         </section>
       </div>

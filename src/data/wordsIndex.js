@@ -1,4 +1,9 @@
 import { lazy } from 'react';
+import OutputLabelDetailsPage from '../components/MachineLearning/word_11_OutputLabel/OutputLabelDetailsPage';
+import PatternDetailsPage from '../components/MachineLearning/word_12_Pattern/PatternDetailsPage';
+import ModelDetailsPage from '../components/MachineLearning/word_13_Model/ModelDetailsPage';
+import DecisionProcessDetailsPage from '../components/MachineLearning/word_14_DecisionProcess/DecisionProcessDetailsPage';
+import TypesMLDetailsPage from '../components/MachineLearning/word_15_TypesML/TypesMLDetailsPage';
 
 const AIDetailsPage = lazy(() => import('../components/MachineLearning/word_01_AI/AIDetailsPage'));
 const TuringDetailsPage = lazy(() => import('../components/MachineLearning/word_02_TuringTest/TuringDetailsPage'));
@@ -10,7 +15,6 @@ const AlgorithmDetailsPage = lazy(() => import('../components/MachineLearning/wo
 const DatasetDetailsPage = lazy(() => import('../components/MachineLearning/word_08_Dataset/DatasetDetailsPage'));
 const InputDataDetailsPage = lazy(() => import('../components/MachineLearning/word_09_InputData/InputDataDetailsPage'));
 const FeatureDetailsPage = lazy(() => import('../components/MachineLearning/word_10_Feature/FeatureDetailsPage'));
-
 
 
 export const bookStructure = [
@@ -100,9 +104,53 @@ export const bookStructure = [
             title: "ফিচার (Feature)",
             Component: FeatureDetailsPage, 
             summary: "আস্ত ইনপুট ডেটা থেকে ছেঁকে বের করা সুনির্দিষ্ট, পরিমাপযোগ্য এবং সিদ্ধান্ত নেওয়ার জন্য প্রয়োজনীয় বৈশিষ্ট্য।"
+          },
+          {
+            id: "word_11_OutputLabel",
+            path: "output-label",
+            title: "আউটপুট লেবেল (Output Label)",
+            Component: OutputLabelDetailsPage, 
+            summary: "মডেলকে প্রথমবার শেখানোর জন্য ইনপুট ডেটার গায়ে লাগিয়ে দেওয়া ট্যাগ বা সঠিক উত্তরপত্র (Answer Key)।"
+          },
+           {
+            id: "word_12_Pattern",
+            path: "pattern",
+            title: "প্যাটার্ন (Pattern)",
+            Component: PatternDetailsPage, 
+            summary: "তথ্যের বিশাল সাগরে লুকিয়ে থাকা একটি নির্দিষ্ট ছাঁচ, ছন্দ বা পুনরাবৃত্তিই হলো প্যাটার্ন।"
+          },
+          {
+            id: "word_13_Model",
+            path: "model",
+            title: "মডেল (Model)",
+            Component: ModelDetailsPage, 
+            summary: "অ্যালগরিদম (রেসিপি) যখন ডেটাসেট (উপকরণ) ব্যবহার করে জ্ঞান অর্জন করে, তখন সেই অর্জিত অভিজ্ঞতার চূড়ান্ত রূপটিই হলো মডেল।"
+          },
+           {
+            id: "word_14_DecisionProcess",
+            path: "decision-process",
+            title: "ডিসিশন প্রসেস (Decision Process)",
+            Component: DecisionProcessDetailsPage, 
+            summary: "মেশিন লার্নিং মডেল ডেটা এবং প্যাটার্নের ওপর ভিত্তি করে গাণিতিক যুক্তি প্রয়োগ করে যেভাবে সিদ্ধান্তে পৌঁছায়।"
           }
         ]
+      },
+      {
+        partId: "part_03",
+        partNo: "০৩",
+        partTitle: "মেশিন লার্নিংয়ের ১৫টি ধরন",
+        words: [
+          {
+            id: "word_15_TypesML",
+            path: "types-ml",
+            title: "মেশিন লার্নিংয়ের ধরন (Types of ML)",
+            Component: TypesMLDetailsPage,
+            summary: "মেশিন লার্নিংয়ের বিভিন্ন শাখা, যেমন সুপারভাইজড, আনসুপারভাইজড, রিইনফোর্সমেন্ট লার্নিং ইত্যাদি, যা মেশিনকে শেখানোর বিভিন্ন পদ্ধতি ও প্রয়োগের ধরন নির্দেশ করে।"
+          }
+        ]
+        
       }
+
     ]
   },
   

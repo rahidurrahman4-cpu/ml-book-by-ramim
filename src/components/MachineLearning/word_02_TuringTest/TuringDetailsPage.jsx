@@ -121,14 +121,14 @@ export default function TuringDetailsPage() {
             </LogbookContainer>
 
             {/* Inline Reflection Poll */}
-            <motion.div variants={itemVariants} className="p-4 md:p-6 rounded-xl border border-white/10 bg-[#0b111b] shadow-md space-y-4 font-sans">
-              <h3 className="flex items-start gap-2 text-base font-bold text-slate-100 md:text-lg">
-                <Sparkles className="mt-1 text-slate-400 shrink-0" size={16}/>
-                <span className="leading-snug">{turingData.readers_reflection.title}</span>
-              </h3>
-              <p className="font-serif text-sm leading-relaxed text-justify md:text-base text-slate-300">{turingData.readers_reflection.question}</p>
+            <motion.div variants={itemVariants} className="p-4 md:p-6 rounded-xl border border-white/10 bg-[#0b111b] font-sans">
+              <div className="space-y-3">
+                <span className="text-[9px] md:text-[10px] font-mono font-bold tracking-widest text-slate-400 uppercase flex items-center gap-1 mb-2">
+                  <Sparkles size={12} className="shrink-0 text-slate-400" /> পাঠকের চিন্তার খোরাকঃ
+                </span>
+                <p className="text-xs leading-relaxed md:text-sm text-slate-300">{turingData.readers_reflection.question}</p>
               
-              <div className="grid grid-cols-1 gap-3 pt-2 md:gap-4 sm:grid-cols-2">
+                <div className="grid grid-cols-1 gap-3 pt-2 md:gap-4 sm:grid-cols-2">
                 <button onClick={() => setPollSelected('A')} className={`p-3 md:p-4 rounded-xl border text-left transition-all flex items-start gap-2.5 text-xs md:text-sm ${pollSelected === 'A' ? 'bg-green-500/10 border-green-500/35 text-slate-100' : 'bg-white/5 border-white/10 hover:bg-white/10 text-slate-400'}`}>
                   <div className="mt-0.5 shrink-0">{pollSelected === 'A' ? <CheckCircle className="text-green-500" size={16}/> : <div className="w-4 h-4 rounded-full border border-white/30 flex items-center justify-center font-bold text-[10px]">১</div>}</div>
                   <div><span className="font-bold block text-slate-100 mb-0.5">অপশন ১ (সঠিক)</span>হ্যাঁ, টুরিং টেস্ট পাস করেছে।</div>
@@ -137,13 +137,14 @@ export default function TuringDetailsPage() {
                   <div className="mt-0.5 shrink-0">{pollSelected === 'B' ? <XCircle className="text-red-500" size={16}/> : <div className="w-4 h-4 rounded-full border border-white/30 flex items-center justify-center font-bold text-[10px]">২</div>}</div>
                   <div><span className="font-bold block text-slate-100 mb-0.5">অপশন ২</span>এক্সপার্ট সিস্টেম টেস্ট পাস করেছে।</div>
                 </button>
+                </div>
               </div>
             </motion.div>
 
             {/* Visualizer Teaser */}
             <motion.div variants={itemVariants} className="p-4 md:p-6 rounded-xl border border-white/10 bg-[#0b111b] font-sans">
               <div className="space-y-3">
-                <span className="text-[9px] md:text-[10px] font-mono font-bold tracking-widest text-slate-400 uppercase flex items-center gap-1">
+                <span className="text-[9px] md:text-[10px] font-mono font-bold tracking-widest text-slate-400 uppercase flex items-center gap-1 mb-2">
                   <FlaskConical size={12} /> interactive sandbox simulator
                 </span>
                 <p className="text-xs leading-relaxed md:text-sm text-slate-300">উপরে থাকা <strong>"🔬 ল্যাব সিমুলেটর"</strong> ট্যাবে ক্লিক করে নিজে টুরিং টেস্টের বিচারক হোন!</p>
