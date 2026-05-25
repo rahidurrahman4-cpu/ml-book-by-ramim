@@ -124,25 +124,61 @@ export default function SimulationLab() {
       {/* Header Area */}
       <div className="pb-3 space-y-3 text-center sm:pb-4">
         <h2 className="flex flex-wrap items-center justify-center gap-2 text-xl font-bold text-white sm:text-2xl md:gap-3 md:text-3xl">
-          <span className="bg-indigo-600 text-white text-[10px] px-2.5 py-1 rounded-full shadow-[0_0_10px_rgba(79,70,229,0.5)] sm:px-3 sm:text-xs">ল্যাব-০৭</span>
+          <span className="bg-indigo-600 text-white text-xs px-2.5 py-1 rounded-full shadow-[0_0_10px_rgba(79,70,229,0.5)] sm:px-3 sm:text-sm">ল্যাব-০৭</span>
           অ্যালগরিদম (Algorithm)
         </h2>
-        <p className="max-w-2xl mx-auto mt-2 px-2 text-[13px] text-gray-400 sm:px-0 sm:text-sm md:text-base">
+        <p className="max-w-2xl mx-auto mt-2 px-2 text-sm sm:text-base md:text-lg text-gray-400 sm:px-0">
           কোনো নির্দিষ্ট কাজ বা সমস্যা সমাধান করার জন্য ধাপে ধাপে সাজানো নির্দেশিকা (Step-by-step instructions)।
         </p>
+      </div>
+
+      {/* Simulation Guide Card */}
+      <div className="rounded-2xl border border-indigo-500/20 bg-indigo-500/5 p-5 md:p-6 shadow-md font-sans">
+        <h3 className="flex items-center gap-2 text-base font-bold text-slate-100 sm:text-lg mb-3">
+          <span className="text-indigo-400 animate-pulse">💡</span> ল্যাব সিমুলেটর গাইড
+        </h3>
+        <p className="text-sm sm:text-base leading-relaxed text-slate-300 mb-4">
+          এই সিমুলেটরের মাধ্যমে আপনি বাস্তব জীবনের সাধারণ উদাহরণ এবং গাণিতিক সূত্র ব্যবহার করে অ্যালগরিদম কীভাবে কাজ করে তা নিজে হাতে চালিয়ে বুঝতে পারবেন।
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+          <div className="bg-[#0b0f19]/60 border border-white/5 p-4 rounded-xl space-y-2">
+            <span className="font-bold text-indigo-300 flex items-center gap-1.5">
+              <span className="text-base">🍜</span> ১. নুডলস রান্নার অ্যালগরিদম
+            </span>
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
+              একটি সঠিক নুডলস রান্না করার জন্য উপলব্ধ ধাপগুলো ক্রমানুসারে সাজান এবং রান করুন। ভুল ক্রমানুসারে সাজালে কী ধরনের জটিলতা তৈরি হতে পারে তা স্বচক্ষে দেখুন।
+            </p>
+          </div>
+          <div className="bg-[#0b0f19]/60 border border-white/5 p-4 rounded-xl space-y-2">
+            <span className="font-bold text-[#d8b4fe] flex items-center gap-1.5">
+              <span className="text-base">🧩</span> ২. রুবিক্স কিউবের সূত্র
+            </span>
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
+              কোটি কোটি কালার কম্বিনেশনের মধ্য থেকে মাত্র ৪টি সুনির্দিষ্ট ধাপের (U → R → U' → R') অ্যালগরিদম লুপ চালিয়ে কীভাবে ওলটপালট কিউব সমাধান করা যায় তা পর্যবেক্ষণ করুন।
+            </p>
+          </div>
+          <div className="bg-[#0b0f19]/60 border border-white/5 p-4 rounded-xl space-y-2">
+            <span className="font-bold text-[#fbcfe8] flex items-center gap-1.5">
+              <span className="text-base">🤖</span> ৩. প্রচলিত বনাম এমএল অ্যালগরিদম
+            </span>
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
+              প্রচলিত অ্যালগরিদম (যা হার্ডকোডেড নিয়মে চলে) এবং মেশিন লার্নিং অ্যালগরিদম (যা ডেটা দেখে নিজের নিয়ম নিজে বানিয়ে নেয়) এর মধ্যকার মূল দার্শনিক পার্থক্যটি ডান পাশের প্যানেল থেকে বুঝুন।
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Selector Sub-menu */}
       <div className="flex justify-center bg-[#1e2430] p-1.5 rounded-xl border border-gray-700 max-w-md mx-auto w-full gap-2 shadow-lg">
         <button 
           onClick={() => setAlgoMode('noodle')}
-          className={`flex-1 py-2.5 px-3 rounded-lg text-[11px] sm:text-xs md:text-sm font-bold transition-all ${algoMode === 'noodle' ? 'bg-indigo-600 text-white shadow-md' : 'text-gray-400 hover:text-white'}`}
+          className={`flex-1 py-2.5 px-3 rounded-lg text-xs sm:text-sm md:text-base font-bold transition-all ${algoMode === 'noodle' ? 'bg-indigo-600 text-white shadow-md' : 'text-gray-400 hover:text-white'}`}
         >
           🍜 নুডলস রান্নার অ্যালগরিদম
         </button>
         <button 
           onClick={() => setAlgoMode('rubik')}
-          className={`flex-1 py-2.5 px-3 rounded-lg text-[11px] sm:text-xs md:text-sm font-bold transition-all ${algoMode === 'rubik' ? 'bg-indigo-600 text-white shadow-md' : 'text-gray-400 hover:text-white'}`}
+          className={`flex-1 py-2.5 px-3 rounded-lg text-xs sm:text-sm md:text-base font-bold transition-all ${algoMode === 'rubik' ? 'bg-indigo-600 text-white shadow-md' : 'text-gray-400 hover:text-white'}`}
         >
           🧩 রুবিক্স কিউবের সূত্র
         </button>
@@ -155,10 +191,10 @@ export default function SimulationLab() {
           {/* Left: Drag / Click Steps List */}
           <div className="lg:col-span-5 bg-[#1e2430] p-4 sm:p-5 rounded-2xl border border-gray-700 flex flex-col justify-between shadow-xl">
             <div>
-              <h3 className="flex items-center gap-2 pb-2 mb-3 text-sm sm:text-base font-bold text-indigo-400 border-b border-gray-700">
+              <h3 className="flex items-center gap-2 pb-2 mb-3 text-base sm:text-lg font-bold text-indigo-400 border-b border-gray-700">
                 <span>📋</span> উপলব্ধ ধাপসমূহ
               </h3>
-              <p className="mb-4 text-[11px] leading-relaxed text-gray-400 sm:text-xs">
+              <p className="mb-4 text-xs sm:text-sm leading-relaxed text-gray-400">
                 সঠিক অ্যালগরিদম তৈরি করতে নিচের ধাপগুলোতে ক্রমানুসারে ক্লিক করুন:
               </p>
 
@@ -170,7 +206,7 @@ export default function SimulationLab() {
                       key={step.id}
                       disabled={isSelected || noodleExecutionStatus === 'running'}
                       onClick={() => handleSelectStep(step)}
-                      className={`w-full text-left p-3 rounded-xl border text-[13px] sm:text-sm font-bold transition-all flex items-center gap-3 ${
+                      className={`w-full text-left p-3 rounded-xl border text-sm sm:text-base font-bold transition-all flex items-center gap-3 ${
                         isSelected 
                           ? 'bg-gray-800/40 border-gray-800 text-gray-600 cursor-not-allowed' 
                           : 'bg-[#12161f] border-gray-700 hover:border-indigo-500 text-gray-200 shadow-sm'
@@ -188,13 +224,13 @@ export default function SimulationLab() {
               <button 
                 onClick={runNoodleAlgorithm}
                 disabled={selectedNoodleSequence.length === 0 || noodleExecutionStatus === 'running'}
-                className="flex-[2] py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-[11px] sm:text-xs font-bold text-white shadow-lg transition-transform hover:scale-[1.02] disabled:opacity-50"
+                className="flex-[2] py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-xs sm:text-sm font-bold text-white shadow-lg transition-transform hover:scale-[1.02] disabled:opacity-50"
               >
                 🚀 অ্যালগরিদম চালান (Run)
               </button>
               <button 
                 onClick={resetNoodleGame}
-                className="flex-1 px-4 py-3 text-[11px] sm:text-xs font-bold text-gray-300 transition-colors bg-gray-800 border border-gray-700 rounded-xl hover:bg-gray-700"
+                className="flex-1 px-4 py-3 text-xs sm:text-sm font-bold text-gray-300 transition-colors bg-gray-800 border border-gray-700 rounded-xl hover:bg-gray-700"
               >
                 রিসেট
               </button>
@@ -204,16 +240,16 @@ export default function SimulationLab() {
           {/* Right: Selected Sequence & Animation Cooking Area */}
           <div className="lg:col-span-7 bg-[#1e2430] p-4 sm:p-6 rounded-2xl border border-gray-700 flex flex-col justify-between gap-6 shadow-xl">
             <div>
-              <h3 className="flex items-center gap-2 pb-2 mb-4 text-sm sm:text-base font-bold text-white border-b border-gray-700">
+              <h3 className="flex items-center gap-2 pb-2 mb-4 text-base sm:text-lg font-bold text-white border-b border-gray-700">
                 <span className="text-indigo-400">🛠️</span> আপনার সাজানো অ্যালগরিদম
               </h3>
 
               <div className="min-h-[80px] bg-[#12161f] p-3 sm:p-4 rounded-xl border border-gray-800 flex flex-wrap gap-2 items-center shadow-inner">
                 {selectedNoodleSequence.length === 0 ? (
-                  <p className="w-full text-[11px] italic text-center text-gray-500">বাম পাশের প্যানেল থেকে ধাপগুলো সাজান...</p>
+                  <p className="w-full text-xs sm:text-sm italic text-center text-gray-500">বাম পাশের প্যানেল থেকে ধাপগুলো সাজান...</p>
                 ) : (
                   selectedNoodleSequence.map((step, idx) => (
-                    <div key={step.id} className="bg-indigo-900/30 border border-indigo-500/50 pl-3 pr-2 py-1.5 rounded-lg flex items-center gap-2 text-[11px] sm:text-xs font-bold text-indigo-200 animate-fade-in shadow-sm">
+                    <div key={step.id} className="bg-indigo-900/30 border border-indigo-500/50 pl-3 pr-2 py-1.5 rounded-lg flex items-center gap-2 text-xs sm:text-sm font-bold text-indigo-200 animate-fade-in shadow-sm">
                       <span>{idx + 1}. {step.icon}</span>
                       <button 
                         onClick={() => handleRemoveStep(step.id)}
@@ -228,18 +264,18 @@ export default function SimulationLab() {
             </div>
 
             {/* Animated Kitchen Simulator */}
-            <div className="bg-[#12161f] p-4 sm:p-6 rounded-2xl border border-gray-800 text-center relative overflow-hidden flex-1 flex flex-col justify-center items-center shadow-inner">
+            <div className="bg-[#12161f] p-4 sm:p-6 rounded-2xl border border-gray-800 text-center relative overflow-hidden flex-1 flex flex-col justify-center items-center shadow-inner text-sm sm:text-base">
               {noodleExecutionStatus === 'idle' && (
                 <div className="space-y-3 text-gray-500">
                   <div className="text-5xl sm:text-6xl opacity-50">🍳</div>
-                  <p className="text-sm font-bold text-gray-400">রান্নাঘর প্রস্তুত। অ্যালগরিদম সাজিয়ে রান করুন!</p>
+                  <p className="text-sm sm:text-base font-bold text-gray-400">রান্নাঘর প্রস্তুত। অ্যালগরিদম সাজিয়ে রান করুন!</p>
                 </div>
               )}
 
               {noodleExecutionStatus === 'running' && (
                 <div className="space-y-4 text-indigo-400">
                   <div className="text-5xl sm:text-6xl animate-bounce">🍲</div>
-                  <p className="px-4 py-2 font-mono text-[11px] sm:text-xs font-bold border rounded-lg animate-pulse bg-indigo-900/20 border-indigo-500/30">
+                  <p className="px-4 py-2 font-mono text-xs sm:text-sm font-bold border rounded-lg animate-pulse bg-indigo-900/20 border-indigo-500/30">
                     নির্দেশিকা অনুসরণ করে পানি ও নুডলস রান্না হচ্ছে...
                   </p>
                 </div>
@@ -248,23 +284,23 @@ export default function SimulationLab() {
               {noodleExecutionStatus === 'success' && (
                 <div className="space-y-3 text-emerald-400 animate-fade-in">
                   <div className="text-6xl sm:text-7xl animate-bounce">🍜✨</div>
-                  <p className="text-sm sm:text-base font-bold text-emerald-300">অ্যালগরিদম সফল! সুস্বাদু নুডলস তৈরি হয়েছে!</p>
-                  <p className="text-[11px] sm:text-xs text-emerald-400/70">কারণ প্রতিটি ধাপ সঠিক ক্রমানুসারে (১, ২, ৩, ৪, ৫) কাজ করেছে।</p>
+                  <p className="text-base sm:text-lg font-bold text-emerald-300">অ্যালগরিদম সফল! সুস্বাদু নুডলস তৈরি হয়েছে!</p>
+                  <p className="text-xs sm:text-sm text-emerald-400/70">কারণ প্রতিটি ধাপ সঠিক ক্রমানুসারে (১, ২, ৩, ৪, ৫) কাজ করেছে।</p>
                 </div>
               )}
 
               {noodleExecutionStatus === 'failed' && (
                 <div className="space-y-4 text-rose-400 animate-fade-in">
                   <div className="text-6xl sm:text-7xl">💨🌋</div>
-                  <p className="text-sm sm:text-base font-bold text-rose-300">রান্না ব্যর্থ হয়েছে!</p>
-                  <p className="max-w-sm p-3 mx-auto text-[11px] sm:text-xs leading-relaxed border shadow-sm text-rose-200 bg-rose-900/30 border-rose-500/50 rounded-xl">
+                  <p className="text-base sm:text-lg font-bold text-rose-300">রান্না ব্যর্থ হয়েছে!</p>
+                  <p className="max-w-sm p-3 mx-auto text-xs sm:text-sm leading-relaxed border shadow-sm text-rose-200 bg-rose-900/30 border-rose-500/50 rounded-xl">
                     {noodleErrorMessage}
                   </p>
                 </div>
               )}
             </div>
 
-            <div className="bg-[#12161f] p-4 rounded-xl text-[11px] text-gray-400 leading-relaxed border border-gray-800">
+            <div className="bg-[#12161f] p-4 rounded-xl text-xs sm:text-sm text-gray-400 leading-relaxed border border-gray-800">
               <strong className="text-indigo-400">💡 অ্যালগরিদম কী?</strong> ম্যাগি নুডলস রান্নার জন্য আমরা যে ধাপে ধাপে নিয়মগুলো মেনে চললাম—এটাই অ্যালগরিদম। পানির আগে খালি চুলায় মশলা দিলে কিংবা সেদ্ধ হওয়ার আগে পরিবেশন করলে পুরো সিস্টেম ক্র্যাশ করে!
             </div>
           </div>
@@ -278,10 +314,10 @@ export default function SimulationLab() {
           {/* Left: 2D Cube representation & State display */}
           <div className="lg:col-span-5 bg-[#1e2430] p-4 sm:p-6 rounded-2xl border border-gray-700 flex flex-col justify-between shadow-xl">
             <div>
-              <h3 className="flex items-center gap-2 pb-2 mb-2 text-sm sm:text-base font-bold text-indigo-400 border-b border-gray-700">
+              <h3 className="flex items-center gap-2 pb-2 mb-2 text-base sm:text-lg font-bold text-indigo-400 border-b border-gray-700">
                 <span>🧩</span> ওলটপালট রুবিক্স কিউব
               </h3>
-              <p className="text-[11px] text-gray-400 mb-6 leading-relaxed">
+              <p className="text-xs sm:text-sm text-gray-400 mb-6 leading-relaxed">
                 অ্যালগরিদম ছাড়া এই কোটি কোটি কালারের কম্বিনেশন মেলানো অসম্ভব!
               </p>
 
@@ -306,14 +342,14 @@ export default function SimulationLab() {
                 ].map((step) => (
                   <div 
                     key={step.id} 
-                    className={`p-2.5 rounded-lg text-[11px] sm:text-xs font-mono font-bold flex justify-between items-center transition-colors ${
+                    className={`p-2.5 rounded-lg text-xs sm:text-sm font-mono font-bold flex justify-between items-center transition-colors ${
                       cubeStep >= step.id 
                         ? 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-400' 
                         : 'bg-black/20 text-gray-500 border border-gray-800'
                     }`}
                   >
                     <span>{step.label}</span>
-                    {cubeStep >= step.id && <span className="text-[10px] uppercase tracking-wider">✓ সম্পন্ন</span>}
+                    {cubeStep >= step.id && <span className="text-xs uppercase tracking-wider">✓ সম্পন্ন</span>}
                   </div>
                 ))}
               </div>
@@ -323,13 +359,13 @@ export default function SimulationLab() {
               <button 
                 onClick={playRubikAlgorithm}
                 disabled={isSolvingCube || cubeStep === 4}
-                className="flex-[2] py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-[11px] sm:text-xs font-bold text-white shadow-lg transition-transform hover:scale-[1.02] disabled:opacity-50"
+                className="flex-[2] py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-xs sm:text-sm font-bold text-white shadow-lg transition-transform hover:scale-[1.02] disabled:opacity-50"
               >
                 {"🚀 অ্যালগরিদম চালান (U → R → U' → R')"}
               </button>
               <button 
                 onClick={scrambleCube}
-                className="flex-1 py-3 text-[11px] sm:text-xs font-bold text-gray-300 transition-colors bg-gray-800 border border-gray-700 rounded-xl hover:bg-gray-700"
+                className="flex-1 py-3 text-xs sm:text-sm font-bold text-gray-300 transition-colors bg-gray-800 border border-gray-700 rounded-xl hover:bg-gray-700"
               >
                 ওলটপালট (Scramble)
               </button>
@@ -339,18 +375,18 @@ export default function SimulationLab() {
           {/* Right: Explanation of Rubik's and traditional vs ML algorithms */}
           <div className="lg:col-span-7 bg-[#1e2430] p-4 sm:p-6 rounded-2xl border border-gray-700 flex flex-col justify-between gap-6 shadow-xl">
             <div>
-              <h3 className="flex items-center gap-2 pb-2 mb-4 text-sm sm:text-base font-bold text-white border-b border-gray-700">
+              <h3 className="flex items-center gap-2 pb-2 mb-4 text-base sm:text-lg font-bold text-white border-b border-gray-700">
                 <span className="text-indigo-400">🔮</span> অ্যালগরিদমের শক্তি
               </h3>
 
               <div className="space-y-4">
-                <p className="text-[13px] sm:text-sm text-gray-300 leading-relaxed bg-[#12161f] p-4 rounded-xl border border-gray-800">
+                <p className="text-sm sm:text-base text-gray-300 leading-relaxed bg-[#12161f] p-4 rounded-xl border border-gray-800">
                   রুবিক্স কিউবের কোটি কোটি কম্বিনেশন থাকলেও, সুনির্দিষ্ট গাণিতিক <strong>অ্যালগরিদম (যেমন: U R U' R')</strong> ব্যবহার করলে যে কেউ মাত্র কয়েক মিনিটে এটি মেলাতে পারবে। 
                 </p>
                 
                 <div className="bg-[#12161f] p-4 sm:p-5 rounded-xl border border-gray-800 space-y-4 shadow-inner mt-4">
-                  <h4 className="pb-2 text-[10px] sm:text-xs font-bold tracking-widest text-indigo-400 uppercase border-b border-gray-700">প্রচলিত অ্যালগরিদম বনাম এমএল অ্যালগরিদম:</h4>
-                  <ul className="space-y-4 text-[11px] sm:text-xs text-gray-400">
+                  <h4 className="pb-2 text-xs sm:text-sm font-bold tracking-widest text-indigo-400 uppercase border-b border-gray-700">প্রচলিত অ্যালগরিদম বনাম এমএল অ্যালগরিদম:</h4>
+                  <ul className="space-y-4 text-xs sm:text-sm text-gray-400">
                     <li className="flex items-start gap-3">
                       <span className="text-lg">🤖</span>
                       <div>
@@ -370,7 +406,7 @@ export default function SimulationLab() {
               </div>
             </div>
 
-            <div className="p-4 text-[11px] leading-relaxed text-indigo-200 border bg-indigo-900/10 rounded-xl border-indigo-500/20">
+            <div className="p-4 text-xs sm:text-sm leading-relaxed text-indigo-200 border bg-indigo-900/10 rounded-xl border-indigo-500/20">
               <strong>রিমিশার টেক-ইনসাইট:</strong> অ্যালগরিদম কোনো জাদুর কাঠি নয়, এটি স্রেফ নিখুঁত যুক্তির এক সুন্দর মালা। একটি ভালো অ্যালগরিদম একটি সাধারণ কম্পিউটারকে জিনিয়াসে রূপান্তর করতে পারে, আর একটি ভুল অ্যালগরিদম সুপারকম্পিউটারকেও বোকা বানিয়ে দিতে পারে!
             </div>
           </div>

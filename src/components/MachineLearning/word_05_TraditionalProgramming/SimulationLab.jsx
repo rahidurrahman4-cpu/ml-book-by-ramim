@@ -124,19 +124,55 @@ export default function SimulationLab() {
       {/* Header Area */}
       <div className="pb-3 space-y-3 text-center sm:pb-4">
         <h2 className="flex flex-wrap items-center justify-center gap-2 text-xl font-bold text-white sm:text-2xl md:gap-3 md:text-3xl">
-          <span className="px-2.5 py-1 text-[10px] border rounded-full bg-amber-500/20 text-amber-400 border-amber-500/30 sm:px-3 sm:text-xs">ল্যাব-০৫</span>
+          <span className="px-2.5 py-1 text-xs border rounded-full bg-amber-500/20 text-amber-400 border-amber-500/30 sm:px-3 sm:text-sm">ল্যাব-০৫</span>
           প্রচলিত প্রোগ্রামিং (Traditional)
         </h2>
-        <p className="max-w-2xl mx-auto px-2 text-[13px] text-slate-400 sm:px-0 sm:text-sm md:text-base">
+        <p className="max-w-2xl mx-auto px-2 text-sm sm:text-base md:text-lg text-slate-400 sm:px-0">
           এখানে মানুষ নিয়ম বানায় আর কম্পিউটার অন্ধের মতো হুকুম তামিল করে। নিয়মের বাইরে এক চুলও নড়ার শক্তি তার নেই!
         </p>
+      </div>
+
+      {/* Simulation Guide Card */}
+      <div className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-5 md:p-6 shadow-md font-sans">
+        <h3 className="flex items-center gap-2 text-base font-bold text-slate-100 sm:text-lg mb-3">
+          <span className="text-amber-400 animate-pulse">💡</span> ল্যাব সিমুলেটর গাইড
+        </h3>
+        <p className="text-sm sm:text-base leading-relaxed text-slate-300 mb-4">
+          এই সিমুলেটরের সাহায্যে আপনি প্রচলিত প্রোগ্রামিংয়ের কঠোর নিয়মাবলী এবং বাস্তব জীবনে এর সীমাবদ্ধতা হাতে-কলমে দেখতে পাবেন। নিচে ২টি ল্যাব এক্সপেরিমেন্ট রয়েছে:
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+          <div className="bg-[#0b0f19]/60 border border-white/5 p-4 rounded-xl space-y-2">
+            <span className="font-bold text-amber-300 flex items-center gap-1.5">
+              <span className="text-base">🔢</span> ১. ৫ আঁকার চ্যালেঞ্জ
+            </span>
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
+              গ্রিডে ক্লিক করে একটি "৫" আঁকার চেষ্টা করুন। নিচে থাকা প্রিসেটগুলো ব্যবহার করে দেখুন কীভাবে প্রচলিত রুল-বেজড সিস্টেমে ১টি পিক্সেল পরিবর্তন হলেই সে আর চিনতে পারে না, কিন্তু মেশিন লার্নিং সঠিক সম্ভাবনার পার্সেন্টেজ স্কোর দেখায়।
+            </p>
+          </div>
+          <div className="bg-[#0b0f19]/60 border border-white/5 p-4 rounded-xl space-y-2">
+            <span className="font-bold text-[#d8b4fe] flex items-center gap-1.5">
+              <span className="text-base">💳</span> ২. এটিএম বুথ সিমুলেটর
+            </span>
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
+              একটি এটিএম বুথ কীভাবে ডিটারমিনিস্টিক (১০০% নিখুঁত) `if-else` লজিক ব্যবহার করে কাজ করে তা দেখুন। সঠিক পিন (1234) দিয়ে সাবমিট করার মাধ্যমে ক্যাশ সংগ্রহ করার ট্রাই করুন।
+            </p>
+          </div>
+          <div className="bg-[#0b0f19]/60 border border-white/5 p-4 rounded-xl space-y-2">
+            <span className="font-bold text-[#fbcfe8] flex items-center gap-1.5">
+              <span className="text-base">💻</span> ৩. কোড ও এক্সিকিউশন লগ
+            </span>
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
+              এটিএম বুথে কোডটি রান হওয়ার পর পেছনের সোর্স কোডের কোন লাইনগুলো কাজ করছে এবং এক্সিকিউশন লগে কোন কোন ডাটা প্রসেস হচ্ছে তা লাইভ দেখুন।
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Simulator Selector Sub-menu */}
       <div className="bg-white/[0.02] p-1.5 mx-auto flex w-full max-w-md justify-center gap-2 rounded-xl border border-white/5 text-center shadow-lg">
         <button
           onClick={() => setSandboxMode('five')}
-          className={`flex-1 rounded-lg px-3 py-2 text-[11px] font-bold transition-all sm:text-xs md:text-sm ${
+          className={`flex-1 rounded-lg px-3 py-2 text-xs font-bold transition-all sm:text-sm md:text-base ${
             sandboxMode === 'five' ? 'bg-amber-600 text-white shadow-md' : 'text-slate-400 hover:text-white'
           }`}
         >
@@ -144,7 +180,7 @@ export default function SimulationLab() {
         </button>
         <button
           onClick={() => setSandboxMode('atm')}
-          className={`flex-1 rounded-lg px-3 py-2 text-[11px] font-bold transition-all sm:text-xs md:text-sm ${
+          className={`flex-1 rounded-lg px-3 py-2 text-xs font-bold transition-all sm:text-sm md:text-base ${
             sandboxMode === 'atm' ? 'bg-amber-600 text-white shadow-md' : 'text-slate-400 hover:text-white'
           }`}
         >
@@ -159,10 +195,10 @@ export default function SimulationLab() {
           {/* Left: Pixel Drawer */}
           <div className="bg-white/[0.02] p-4 sm:p-5 flex flex-col justify-between rounded-2xl border border-white/5 lg:col-span-4 shadow-lg">
             <div>
-              <h3 className="flex items-center gap-2 pb-2 mb-3 text-sm sm:text-base font-bold border-b text-amber-400 border-white/5">
+              <h3 className="flex items-center gap-2 pb-2 mb-3 text-base sm:text-lg font-bold border-b text-amber-400 border-white/5">
                 <span>✏️</span> গ্রিডে ৫ আঁকুন
               </h3>
-              <p className="mb-4 text-[11px] leading-relaxed text-slate-400 sm:text-xs">
+              <p className="mb-4 text-xs sm:text-sm leading-relaxed text-slate-400">
                 পিক্সেলগুলোতে ক্লিক করে আপনার নিজস্ব ভঙ্গিতে '৫' আঁকার চেষ্টা করুন।
               </p>
 
@@ -185,11 +221,11 @@ export default function SimulationLab() {
             {/* Presets and Controls */}
             <div className="pt-4 space-y-3 border-t border-white/5">
               <div className="flex flex-wrap justify-center gap-2">
-                <button onClick={() => loadPreset('perfect')} className="bg-white/5 border border-white/10 px-2 py-1.5 text-[10px] font-bold text-slate-300 rounded hover:bg-white/10 transition-colors">নিখুঁত ৫</button>
-                <button onClick={() => loadPreset('shifted')} className="bg-white/5 border border-white/10 px-2 py-1.5 text-[10px] font-bold text-slate-300 rounded hover:bg-white/10 transition-colors">স্থানান্তরিত ৫</button>
-                <button onClick={() => loadPreset('tilted')} className="bg-white/5 border border-white/10 px-2 py-1.5 text-[10px] font-bold text-slate-300 rounded hover:bg-white/10 transition-colors">একটু বাঁকা ৫</button>
+                <button onClick={() => loadPreset('perfect')} className="bg-white/5 border border-white/10 px-2 py-1.5 text-xs sm:text-sm font-bold text-slate-300 rounded hover:bg-white/10 transition-colors">নিখুঁত ৫</button>
+                <button onClick={() => loadPreset('shifted')} className="bg-white/5 border border-white/10 px-2 py-1.5 text-xs sm:text-sm font-bold text-slate-300 rounded hover:bg-white/10 transition-colors">স্থানান্তরিত ৫</button>
+                <button onClick={() => loadPreset('tilted')} className="bg-white/5 border border-white/10 px-2 py-1.5 text-xs sm:text-sm font-bold text-slate-300 rounded hover:bg-white/10 transition-colors">একটু বাঁকা ৫</button>
               </div>
-              <button onClick={clearGrid} className="w-full py-2 text-xs font-bold transition-colors border rounded-lg bg-rose-500/10 border-rose-500/20 text-rose-400 hover:bg-rose-500/20">
+              <button onClick={clearGrid} className="w-full py-2 text-xs sm:text-sm font-bold transition-colors border rounded-lg bg-rose-500/10 border-rose-500/20 text-rose-400 hover:bg-rose-500/20">
                 মুছে ফেলুন (Reset)
               </button>
             </div>
@@ -199,7 +235,7 @@ export default function SimulationLab() {
           <div className="bg-gradient-to-br from-white/[0.03] to-transparent p-4 sm:p-5 flex flex-col justify-between rounded-2xl border border-white/5 lg:col-span-5 shadow-lg relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-500 to-sky-500"></div>
             <div>
-              <h3 className="flex items-center gap-2 pb-2 mb-4 text-sm sm:text-base font-bold text-white border-b border-white/5">
+              <h3 className="flex items-center gap-2 pb-2 mb-4 text-base sm:text-lg font-bold text-white border-b border-white/5">
                 ⚙️ রিয়েল-টাইম সিদ্ধান্ত
               </h3>
 
@@ -207,15 +243,15 @@ export default function SimulationLab() {
                 {/* Traditional Engine Card */}
                 <div className={`rounded-xl border p-4 transition-all ${traditionalPassed ? 'border-emerald-500/30 bg-emerald-500/10' : 'border-rose-500/20 bg-rose-500/10'}`}>
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">১. প্রচলিত প্রোগ্রামিং (রুল-বেজড)</span>
-                    <span className={`rounded px-2 py-0.5 text-[10px] font-bold ${traditionalPassed ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400'}`}>
+                    <span className="text-xs font-bold uppercase tracking-widest text-slate-400">১. প্রচলিত প্রোগ্রামিং (রুল-বেজড)</span>
+                    <span className={`rounded px-2 py-0.5 text-xs font-bold ${traditionalPassed ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400'}`}>
                       {traditionalPassed ? 'শনাক্ত হয়েছে' : 'ব্যর্থ'}
                     </span>
                   </div>
-                  <p className={`mb-1 text-sm font-bold ${traditionalPassed ? 'text-emerald-300' : 'text-rose-300'}`}>
+                  <p className={`mb-1 text-sm sm:text-base font-bold ${traditionalPassed ? 'text-emerald-300' : 'text-rose-300'}`}>
                     সিদ্ধান্ত: {traditionalPassed ? 'এটি নিখুঁত ৫!' : 'এটি ৫ নয়!'}
                   </p>
-                  <p className="text-[10px] leading-relaxed text-slate-400 mt-2">
+                  <p className="text-xs sm:text-sm leading-relaxed text-slate-400 mt-2">
                     লজিক: <span className="bg-black/30 text-white rounded px-1.5 py-0.5 font-mono border border-white/5">IF (pixels !== ideal) THEN Error</span>
                   </p>
                 </div>
@@ -223,15 +259,15 @@ export default function SimulationLab() {
                 {/* Machine Learning Engine Card */}
                 <div className={`rounded-xl border p-4 transition-all ${mlScore > 70 ? 'border-emerald-500/30 bg-emerald-500/10' : mlScore > 30 ? 'border-amber-500/20 bg-amber-500/10' : 'border-rose-500/20 bg-rose-500/10'}`}>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-sky-400">২. মেশিন লার্নিং (প্যাটার্ন-বেজড)</span>
-                    <span className={`rounded px-2 py-0.5 text-[10px] font-bold ${mlScore > 70 ? 'bg-emerald-500/20 text-emerald-400' : 'bg-amber-500/20 text-amber-400'}`}>
+                    <span className="text-xs font-bold uppercase tracking-widest text-sky-400">২. মেশিন লার্নিং (প্যাটার্ন-বেজড)</span>
+                    <span className={`rounded px-2 py-0.5 text-xs font-bold ${mlScore > 70 ? 'bg-emerald-500/20 text-emerald-400' : 'bg-amber-500/20 text-amber-400'}`}>
                       ম্যাচ স্কোর: {mlScore}%
                     </span>
                   </div>
-                  <p className={`mb-1 text-sm font-bold ${mlScore > 50 ? 'text-emerald-300' : 'text-rose-300'}`}>
+                  <p className={`mb-1 text-sm sm:text-base font-bold ${mlScore > 50 ? 'text-emerald-300' : 'text-rose-300'}`}>
                     সিদ্ধান্ত: {mlScore > 50 ? 'এটি খুব সম্ভবত একটি ৫!' : 'এটি ৫ হওয়ার সম্ভাবনা কম!'}
                   </p>
-                  <p className="text-[10px] leading-relaxed text-slate-400 mt-2">
+                  <p className="text-xs sm:text-sm leading-relaxed text-slate-400 mt-2">
                     লজিক: <span className="bg-black/30 text-white rounded px-1.5 py-0.5 font-mono border border-white/5">Prob(৫ | Pattern) = {mlScore}%</span>
                   </p>
                 </div>
@@ -240,7 +276,7 @@ export default function SimulationLab() {
 
             {/* Instant feedback message */}
             {showFiveExplanation && (
-              <div className="bg-amber-500/10 mt-4 rounded-lg border border-amber-500/20 p-3 text-[11px] leading-relaxed text-amber-200">
+              <div className="bg-amber-500/10 mt-4 rounded-lg border border-amber-500/20 p-3 text-xs sm:text-sm leading-relaxed text-amber-200">
                 💡 <strong>রায়ান সাহেবের রিয়েলাইজেশন:</strong> দেখুন, আপনি যখন নিখুঁত ৫-কে একটু <strong>স্থানান্তরিত</strong> বা <strong>বাঁকা</strong> করে আঁকেন, প্রচলিত প্রোগ্রামিংয়ের কঠোর নিয়ম ধসে পড়ে। কারণ তার কাছে কোনো 'বাঁকা ৫' এর IF-ELSE কোড লেখা নেই।
               </div>
             )}
@@ -249,30 +285,30 @@ export default function SimulationLab() {
           {/* Right: Difference Panel */}
           <div className="bg-white/[0.02] p-4 sm:p-5 flex flex-col justify-between rounded-2xl border border-white/5 lg:col-span-3 shadow-lg">
             <div>
-              <h3 className="flex items-center gap-2 pb-2 mb-4 text-sm sm:text-base font-bold text-white border-b border-white/5">
+              <h3 className="flex items-center gap-2 pb-2 mb-4 text-base sm:text-lg font-bold text-white border-b border-white/5">
                 <span>⚖️</span> সমীকরণের তফাৎ
               </h3>
 
-              <div className="space-y-4 text-xs">
+              <div className="space-y-4 text-xs sm:text-sm">
                 <div className="p-3 border rounded-lg bg-black/20 border-white/5">
                   <p className="mb-1 font-bold text-amber-500">প্রচলিত প্রোগ্রামিং:</p>
-                  <p className="mb-1 font-mono text-white text-[10px]">Data + Rules = Output</p>
-                  <p className="text-slate-400 text-[10px] leading-relaxed">
+                  <p className="mb-1 font-mono text-white text-xs sm:text-sm">Data + Rules = Output</p>
+                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
                     প্রোগ্রামার লজিক বা নিয়মটি তৈরি করেন, কম্পিউটার তা দিয়ে আউটপুট জেনারেট করে।
                   </p>
                 </div>
 
                 <div className="p-3 border rounded-lg bg-black/20 border-white/5">
                   <p className="mb-1 font-bold text-sky-400">মেশিন লার্নিং:</p>
-                  <p className="mb-1 font-mono text-white text-[10px]">Data + Output = Rules</p>
-                  <p className="text-slate-400 text-[10px] leading-relaxed">
+                  <p className="mb-1 font-mono text-white text-xs sm:text-sm">Data + Output = Rules</p>
+                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
                     কম্পিউটারকে ডেটা এবং সঠিক উত্তর দিলে সে নিজেই ঘেঁটে নিয়ম বা লজিক তৈরি করে নেয়।
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-rose-500/10 border-rose-500/20 mt-4 rounded-xl border p-3 text-[10px] text-rose-200 leading-relaxed">
+            <div className="bg-rose-500/10 border-rose-500/20 mt-4 rounded-xl border p-3 text-xs sm:text-sm text-rose-200 leading-relaxed">
               <strong>পরীক্ষা:</strong> নিখুঁত ৫ এর বাটন চেপে গ্রিড লোড করুন, এরপর একটি মাত্র পিক্সেল মুছে দিন। দেখবেন প্রচলিত সিস্টেমের সিদ্ধান্ত মুহূর্তে ব্যর্থ হয়ে গেছে!
             </div>
           </div>
@@ -286,7 +322,7 @@ export default function SimulationLab() {
           {/* Left: ATM Device UI */}
           <div className="bg-white/[0.02] p-6 flex flex-col justify-between rounded-2xl border border-white/5 shadow-lg">
             <div>
-              <h3 className="flex items-center gap-2 pb-2 mb-4 text-base font-bold text-white border-b border-white/5">
+              <h3 className="flex items-center gap-2 pb-2 mb-4 text-base sm:text-lg font-bold text-white border-b border-white/5">
                 <span>🏧</span> ক্যাশ ডিসপেন্সার
               </h3>
 
@@ -297,25 +333,25 @@ export default function SimulationLab() {
 
                 {atmStatus === 'idle' && (
                   <div className="relative z-10 text-emerald-400">
-                    <p className="mb-1 font-mono text-[10px] uppercase tracking-wider opacity-70">Secure Portal</p>
-                    <p className="text-sm font-bold">৪ ডিজিটের পিন কোড দিন</p>
-                    <p className="text-slate-500 mt-2 text-[10px] italic">(সঠিক পিন: 1234)</p>
+                    <p className="mb-1 font-mono text-xs uppercase tracking-wider opacity-70">Secure Portal</p>
+                    <p className="text-sm sm:text-base font-bold">৪ ডিজিটের পিন কোড দিন</p>
+                    <p className="text-slate-500 mt-2 text-xs sm:text-sm italic">(সঠিক পিন: 1234)</p>
                   </div>
                 )}
 
                 {atmStatus === 'success' && (
                   <div className="relative z-10 space-y-1 animate-pulse text-emerald-400">
                     <p className="text-2xl">💰</p>
-                    <p className="font-mono text-[10px] font-bold uppercase tracking-widest">Transaction Approved</p>
-                    <p className="text-xs text-white">টাকা বের হচ্ছে...</p>
+                    <p className="font-mono text-xs font-bold uppercase tracking-widest">Transaction Approved</p>
+                    <p className="text-xs sm:text-sm text-white">টাকা বের হচ্ছে...</p>
                   </div>
                 )}
 
                 {atmStatus === 'fail' && (
                   <div className="relative z-10 space-y-1 text-rose-400">
                     <p className="text-2xl">🚨</p>
-                    <p className="font-mono text-[10px] font-bold uppercase tracking-widest">Access Denied</p>
-                    <p className="text-xs text-white">ভুল পিন কোড!</p>
+                    <p className="font-mono text-xs font-bold uppercase tracking-widest">Access Denied</p>
+                    <p className="text-xs sm:text-sm text-white">ভুল পিন কোড!</p>
                   </div>
                 )}
               </div>
@@ -349,7 +385,7 @@ export default function SimulationLab() {
               </div>
             </div>
 
-            <button onClick={resetAtm} className="w-full py-2 mt-6 text-xs font-bold transition-colors border rounded-lg bg-white/5 border-white/10 text-slate-400 hover:bg-white/10 hover:text-white">
+            <button onClick={resetAtm} className="w-full py-2 mt-6 text-xs sm:text-sm font-bold transition-colors border rounded-lg bg-white/5 border-white/10 text-slate-400 hover:bg-white/10 hover:text-white">
               মেশিন রিস্টার্ট করুন
             </button>
           </div>
@@ -357,14 +393,14 @@ export default function SimulationLab() {
           {/* Middle: Code Logic */}
           <div className="bg-white/[0.02] p-6 flex flex-col justify-between rounded-2xl border border-white/5 shadow-lg">
             <div>
-              <h3 className="flex items-center gap-2 pb-2 mb-4 text-base font-bold border-b text-amber-400 border-white/5">
+              <h3 className="flex items-center gap-2 pb-2 mb-4 text-base sm:text-lg font-bold border-b text-amber-400 border-white/5">
                 <span>💻</span> ইফ-এলস (If-Else) লজিক
               </h3>
-              <p className="mb-4 text-[11px] leading-relaxed text-slate-400">
-                প্রথাগত এটিএম বুথ কীভাবে আপনার পিন চেক করছে তা ব্যাকএন্ডের সোর্স কোড আকারে দেখুন:
+              <p className="mb-4 text-xs sm:text-sm leading-relaxed text-slate-400">
+                `DB_PIN` এর সাথে ব্যবহারকারীর টাইপ করা পিন চেক করার ব্যাকএন্ড সোর্স কোড:
               </p>
 
-              <div className="bg-[#0f172a] shadow-inner border-white/5 p-4 space-y-3 rounded-xl border font-mono text-[11px] leading-relaxed">
+              <div className="bg-[#0f172a] shadow-inner border-white/5 p-4 space-y-3 rounded-xl border font-mono text-xs sm:text-sm leading-relaxed">
                 <div className={`rounded p-1.5 transition-all ${pin.length >= 4 ? 'bg-amber-500/10 text-amber-300' : 'text-slate-500'}`}>
                   const DB_PIN = "1234";
                 </div>
@@ -391,7 +427,7 @@ export default function SimulationLab() {
               </div>
             </div>
 
-            <div className="bg-sky-500/10 border-sky-500/20 mt-4 rounded-xl border p-4 text-[11px] leading-relaxed text-sky-200">
+            <div className="bg-sky-500/10 border-sky-500/20 mt-4 rounded-xl border p-4 text-xs sm:text-sm leading-relaxed text-sky-200">
               <strong>ডিটারমিনিস্টিক (Deterministic):</strong> এটিএম বুথে কোনো "আন্দাজ" বা সম্ভাবনার স্থান নেই। পিন ১০০% মিললেই কেবল কাজ সম্পন্ন হবে।
             </div>
           </div>
@@ -399,17 +435,17 @@ export default function SimulationLab() {
           {/* Right: Execution logs */}
           <div className="bg-white/[0.02] p-6 flex flex-col justify-between rounded-2xl border border-white/5 shadow-lg">
             <div>
-              <h3 className="flex items-center gap-2 pb-2 mb-4 text-base font-bold text-white border-b border-white/5">
+              <h3 className="flex items-center gap-2 pb-2 mb-4 text-base sm:text-lg font-bold text-white border-b border-white/5">
                 <span>📋</span> এক্সিকিউশন লগ
               </h3>
               <div className="space-y-3">
                 {atmLogs.length === 0 ? (
-                  <p className="mt-16 text-center text-[11px] italic text-slate-500">
+                  <p className="mt-16 text-center text-xs sm:text-sm italic text-slate-500">
                     কিবোর্ডে পিন টাইপ করে টিক (✓) চাপলে এখানে লগ দেখা যাবে...
                   </p>
                 ) : (
                   atmLogs.map((log, idx) => (
-                    <div key={idx} className="bg-black/20 border-white/5 rounded-lg border p-3 font-mono text-[10px] text-slate-300 shadow-sm">
+                    <div key={idx} className="bg-black/20 border-white/5 rounded-lg border p-3 font-mono text-xs text-slate-300 shadow-sm">
                       <span className="mr-2 text-amber-500">❯</span>{log}
                     </div>
                   ))

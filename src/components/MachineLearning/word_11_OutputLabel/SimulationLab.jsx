@@ -65,24 +65,62 @@ export default function SimulationLab() {
 
   return (
     <div className="w-full space-y-8 font-sans text-slate-200">
+      
+      {/* Header Area */}
       <div className="pb-4 space-y-3 text-center">
-        <h2 className="flex items-center justify-center gap-3 text-2xl font-bold text-white md:text-3xl">
+        <h2 className="flex items-center justify-center gap-3 text-xl font-bold text-white sm:text-2xl md:text-3xl">
           <span className="px-3 py-1 text-xs text-white bg-indigo-600 rounded-full shadow-lg">ল্যাব-১১</span>
           আউটপুট লেবেল (Output Label)
         </h2>
-        <p className="max-w-2xl mx-auto text-sm text-slate-400 md:text-base">
+        <p className="max-w-2xl mx-auto text-sm sm:text-base md:text-lg text-slate-400">
           ইনপুট ডেটার গায়ে লাগিয়ে দেওয়া ট্যাগ বা সঠিক উত্তরপত্র হলো আউটপুট লেবেল (y)।
         </p>
+      </div>
+
+      {/* Simulation Guide Card */}
+      <div className="rounded-2xl border border-indigo-500/20 bg-indigo-500/5 p-5 md:p-6 shadow-md font-sans">
+        <h3 className="flex items-center gap-2 text-base font-bold text-slate-100 sm:text-lg mb-3">
+          <span className="text-indigo-400 animate-pulse">💡</span> ল্যাব সিমুলেটর গাইড
+        </h3>
+        <p className="text-sm sm:text-base leading-relaxed text-slate-300 mb-4">
+          এই সিমুলেটরের মাধ্যমে আপনি মেশিন লার্নিংয়ের টার্গেট ভ্যালু তথা আউটপুট লেবেল (Output Label) ম্যানুয়ালি ট্যাগ করার প্রক্রিয়া এবং লেবেলের প্রকারভেদ সম্পর্কে জানবেন।
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+          <div className="bg-[#0b0f19]/60 border border-white/5 p-4 rounded-xl space-y-2">
+            <span className="font-bold text-indigo-300 flex items-center gap-1.5">
+              <span className="text-base">🏷️</span> ১. ডেটা অ্যানোটেশন ল্যাব
+            </span>
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
+              ৩টি ভিন্ন সিনারিও (জবা ফুল, লটারি জেতার মেইল এবং ধানমন্ডি ফ্ল্যাট) নির্বাচন করুন। প্রতিটি র ডেটা (Input X) দেখে সঠিক লেবেল (y) অপশনটি নির্বাচন করুন। সঠিক/ভুল লেবেল দেওয়ার বিস্তারিত যুক্তি লগের মাধ্যমে শিখুন।
+            </p>
+          </div>
+          <div className="bg-[#0b0f19]/60 border border-white/5 p-4 rounded-xl space-y-2">
+            <span className="font-bold text-[#d8b4fe] flex items-center gap-1.5">
+              <span className="text-base">📊</span> ২. লেবেলের গাণিতিক প্রকারভেদ
+            </span>
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
+              ডান পাশের প্যানেলে দেখুন। ক্যাটগোরিক্যাল ক্লাসিফিকেশন (যেমন: জবা ফুল, স্প্যাম মেইল) এবং নিউমেরিক রিগ্রেশন টার্গেট (যেমন: ফ্ল্যাটের দাম বা আবহাওয়া তাপমাত্রা) এর মধ্যকার পার্থক্য বুঝতে পারবেন।
+            </p>
+          </div>
+          <div className="bg-[#0b0f19]/60 border border-white/5 p-4 rounded-xl space-y-2">
+            <span className="font-bold text-[#fbcfe8] flex items-center gap-1.5">
+              <span className="text-base">🧠</span> ৩. রিমিশার টেক-ইনসাইট
+            </span>
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
+              ইনপুট ডেটা $x$ যতই ভালো হোক না কেন, যদি আউটপুট লেবেল $y$-এ ভুল ট্যাগ দেওয়া হয় (যেমন: জবা ফুলকে গোলাপ ট্যাগ দেওয়া), তবে পুরো মডেলটিই ভুল শিখবে। লেবেলিংয়ের নির্ভুলতাই আসল চাবিকাঠি!
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="grid items-stretch grid-cols-1 gap-8 lg:grid-cols-12">
         
         {/* Left: Annotation Panel */}
-        <div className="lg:col-span-7 bg-[#1e2430] p-6 rounded-2xl border border-gray-700 flex flex-col justify-between gap-6 shadow-xl">
+        <div className="lg:col-span-7 bg-[#1e2430] p-4 sm:p-6 rounded-2xl border border-gray-700 flex flex-col justify-between gap-6 shadow-xl">
           <div>
-            <h3 className="flex items-center justify-between pb-3 mb-6 text-lg font-bold text-indigo-400 border-b border-gray-700">
+            <h3 className="flex items-center justify-between pb-3 mb-6 text-base sm:text-lg font-bold text-indigo-400 border-b border-gray-700">
               <span>🏷️ ডেটা অ্যানোটেশন ল্যাব</span>
-              <span className="text-[10px] uppercase font-mono tracking-widest text-slate-500">Manual Tagging</span>
+              <span className="text-xs uppercase font-mono tracking-widest text-slate-500">Manual Tagging</span>
             </h3>
 
             <div className="grid grid-cols-1 gap-2 mb-8 sm:grid-cols-3">
@@ -90,7 +128,7 @@ export default function SimulationLab() {
                 <button
                   key={item.id}
                   onClick={() => setActiveScenario(item.id)}
-                  className={`p-2.5 rounded-xl text-xs font-bold border transition-all ${
+                  className={`p-2.5 rounded-xl text-xs sm:text-sm md:text-base font-bold border transition-all ${
                     activeScenario === item.id ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300 shadow-md' : 'bg-[#12161f] border-gray-700 text-gray-400 hover:bg-gray-800'
                   }`}
                 >
@@ -100,15 +138,15 @@ export default function SimulationLab() {
             </div>
 
             <div className="flex flex-col md:flex-row items-center gap-6 bg-[#12161f] p-5 rounded-2xl border border-gray-700 mb-8 shadow-inner">
-              <div className="bg-[#1e2430] p-4 rounded-xl border border-gray-700">{scenario.svg}</div>
+              <div className="bg-[#1e2430] p-4 rounded-xl border border-gray-700 shrink-0">{scenario.svg}</div>
               <div className="flex-1 space-y-2">
-                <span className="text-[10px] font-black uppercase text-slate-500 tracking-widest">র ডেটা (Input X):</span>
-                <p className="text-sm italic leading-relaxed text-slate-300">"{scenario.description}"</p>
+                <span className="text-xs font-black uppercase text-slate-500 tracking-widest">র ডেটা (Input X):</span>
+                <p className="text-sm sm:text-base italic leading-relaxed text-slate-300">"{scenario.description}"</p>
               </div>
             </div>
 
             <div className="space-y-4">
-              <label className="block ml-1 text-xs font-bold text-slate-400">🎯 এই ডেটার সঠিক আউটপুট লেবেল (y) কোনটি?</label>
+              <label className="block ml-1 text-xs sm:text-sm font-bold text-slate-400">🎯 এই ডেটার সঠিক আউটপুট লেবেল (y) কোনটি?</label>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                 {scenario.options.map((option) => {
                   const isSelected = annotatedStatus[activeScenario]?.id === option.id;
@@ -116,14 +154,14 @@ export default function SimulationLab() {
                     <button
                       key={option.id}
                       onClick={() => setAnnotatedStatus(prev => ({ ...prev, [activeScenario]: option }))}
-                      className={`p-4 rounded-2xl border text-xs font-bold transition-all flex flex-col items-center gap-2 ${
+                      className={`p-4 rounded-2xl border text-xs sm:text-sm font-bold transition-all flex flex-col items-center gap-2 ${
                         isSelected 
                           ? option.isCorrect ? 'bg-emerald-500/10 border-emerald-500 text-emerald-400 shadow-lg' : 'bg-rose-500/10 border-rose-500 text-rose-400'
                           : 'bg-[#12161f] border-gray-700 text-slate-400 hover:bg-gray-800'
                       }`}
                     >
                       <span>{option.label}</span>
-                      {isSelected && <span className="text-[9px] font-black uppercase">{option.isCorrect ? '✓ Correct' : '× Wrong'}</span>}
+                      {isSelected && <span className="text-xs font-black uppercase">{option.isCorrect ? '✓ Correct' : '× Wrong'}</span>}
                     </button>
                   );
                 })}
@@ -133,15 +171,15 @@ export default function SimulationLab() {
 
           {annotatedStatus[activeScenario] && (
             <div className={`p-4 rounded-xl border animate-fade-in ${annotatedStatus[activeScenario].isCorrect ? 'bg-emerald-950/20 border-emerald-500/30' : 'bg-rose-950/20 border-rose-500/30'}`}>
-              <p className="text-xs leading-relaxed text-slate-200"><span className="font-bold">ব্যাখ্যা:</span> {annotatedStatus[activeScenario].reason}</p>
+              <p className="text-xs sm:text-sm leading-relaxed text-slate-200"><span className="font-bold">ব্যাখ্যা:</span> {annotatedStatus[activeScenario].reason}</p>
             </div>
           )}
         </div>
 
         {/* Right: Info Display */}
-        <div className="lg:col-span-5 bg-[#161b22] p-6 rounded-2xl border border-gray-700 shadow-xl flex flex-col justify-between">
+        <div className="lg:col-span-5 bg-[#161b22] p-4 sm:p-6 rounded-2xl border border-gray-700 shadow-xl flex flex-col justify-between">
            <div>
-             <h3 className="pb-3 mb-6 text-lg font-bold text-white border-b border-gray-700">📊 লেবেলের ধরণ (Types)</h3>
+             <h3 className="pb-3 mb-6 text-base sm:text-lg font-bold text-white border-b border-gray-700">📊 লেবেলের ধরণ (Types)</h3>
              <div className="space-y-4">
                 {[
                   { tag: 'মেডিকেল', type: 'Classification', x: 'এক্স-রে ছবি', y: 'টিউমার আছে/নেই', color: 'text-sky-400', bg: 'bg-sky-500/10 border-sky-500/20' },
@@ -150,19 +188,19 @@ export default function SimulationLab() {
                 ].map((row, i) => (
                   <div key={i} className="bg-[#1e2430] p-4 rounded-xl border border-gray-700 shadow-sm group hover:border-gray-500 transition-all">
                     <div className="flex items-center justify-between mb-3">
-                      <span className={`text-[10px] font-black uppercase ${row.color}`}>{row.tag}</span>
-                      <span className="text-[10px] bg-slate-800 px-2 py-0.5 rounded font-mono text-slate-400">{row.type}</span>
+                      <span className={`text-xs font-black uppercase ${row.color}`}>{row.tag}</span>
+                      <span className="text-xs bg-slate-800 px-2 py-0.5 rounded font-mono text-slate-400">{row.type}</span>
                     </div>
-                    <div className="flex items-end justify-between">
-                       <div className="text-[11px]"><span className="block mb-1 text-slate-500">ফিচার (x)</span><span className="font-bold text-white">{row.x}</span></div>
-                       <div className="w-8 h-[1px] bg-slate-700 mb-2"></div>
-                       <div className="text-[11px] text-right"><span className="block mb-1 text-slate-500">লেবেল (y)</span><span className={`${row.color} font-black`}>{row.y}</span></div>
+                    <div className="flex items-end justify-between gap-2">
+                       <div className="text-xs sm:text-sm"><span className="block mb-1 text-xs text-slate-500">ফিচার (x)</span><span className="font-bold text-white">{row.x}</span></div>
+                       <div className="flex-1 h-[1px] bg-slate-700 mb-2"></div>
+                       <div className="text-xs sm:text-sm text-right"><span className="block mb-1 text-xs text-slate-500">লেবেল (y)</span><span className={`${row.color} font-black`}>{row.y}</span></div>
                     </div>
                   </div>
                 ))}
              </div>
            </div>
-           <button onClick={() => setAnnotatedStatus({flower:null, email:null, house:null})} className="w-full py-3 mt-8 text-xs font-bold text-gray-400 transition-all bg-gray-800 border border-gray-700 hover:bg-gray-700 rounded-xl">রিসেট ল্যাব</button>
+           <button onClick={() => setAnnotatedStatus({flower:null, email:null, house:null})} className="w-full py-3 mt-8 text-xs sm:text-sm font-bold text-gray-400 transition-all bg-gray-800 border border-gray-700 hover:bg-gray-700 rounded-xl">রিসেট ল্যাব</button>
         </div>
       </div>
     </div>

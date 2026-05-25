@@ -34,7 +34,7 @@ export default function TraditionalProgrammingDetails() {
           </button>
         </div>
         <div className="hidden sm:block text-[10px] md:text-xs font-mono tracking-widest text-slate-500">
-          ML WORD BY WORD • CHAPTER 1
+          ML WORD BY WORD • WORD 5
         </div>
       </div>
 

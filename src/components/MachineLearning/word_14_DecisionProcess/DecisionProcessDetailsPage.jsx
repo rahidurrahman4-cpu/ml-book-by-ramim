@@ -68,13 +68,16 @@ export default function DecisionProcessDetailsPage() {
               {/* Maze Preview Simplified */}
               <div className="lg:col-span-5 p-4 md:p-6 rounded-xl border border-white/10 bg-[#0b111b] shadow-md flex flex-col justify-center text-center font-sans">
                 <div className="mb-3 text-4xl">🌀</div>
-                <p className="mb-4 text-xs font-bold tracking-widest uppercase text-slate-500">Decision Maze Preview</p>
+                <p className="mb-2 text-xs sm:text-sm font-bold tracking-widest uppercase text-slate-500">Decision Maze Preview (ডিসিশন পাথ)</p>
+                <p className="text-xs text-slate-400 mb-4 leading-relaxed">
+                  এখানে শর্তভিত্তিক সিদ্ধান্তের একটি সরল রূপ বা ছাঁকনি দেখা যাচ্ছে। কিভাবে বাজেট ও ক্যামেরার মানের ওপর ভিত্তি করে ফোনের সিদ্ধান্ত নেওয়া হয়, তার ট্রায়াল এটি।
+                </p>
                 <div className="w-full bg-white/[0.03] p-4 rounded-lg border border-white/5 font-mono text-xs md:text-sm text-[#5b5dfa] text-left space-y-1.5 mb-5">
                   <p>IF (Budget &lt; ৳60,000)</p>
                   <p>AND (Camera &gt; 48MP)</p>
                   <p>THEN (Result = "BUY")</p>
                 </div>
-                <button onClick={() => { setActiveTab('lab'); document.querySelector("[data-reader-scroll]")?.scrollTo?.({ top: 0, behavior: 'smooth' }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="w-full py-2.5 text-xs font-bold text-[#5b5dfa] transition-all border bg-[#5b5dfa]/10 hover:bg-[#5b5dfa]/20 border-[#5b5dfa]/30 rounded-lg">
+                <button onClick={() => { setActiveTab('lab'); document.querySelector("[data-reader-scroll]")?.scrollTo?.({ top: 0, behavior: 'smooth' }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="w-full py-2.5 text-xs sm:text-sm font-bold text-[#5b5dfa] transition-all border bg-[#5b5dfa]/10 hover:bg-[#5b5dfa]/20 border-[#5b5dfa]/30 rounded-lg">
                   চেক-বক্স লজিক টেস্ট করুন
                 </button>
               </div>

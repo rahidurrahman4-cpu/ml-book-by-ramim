@@ -66,24 +66,28 @@ export default function ModelDetailsPage() {
               </div>
 
               {/* Compact Model Compiler Simulator */}
-              <div className="flex justify-center pt-2 lg:col-span-5">
-                <div className="relative mx-auto flex w-full max-w-[280px] flex-col items-center justify-center rounded-2xl border border-white/10 bg-[#0b111b] p-5 text-center shadow-xl">
-                  <span className="mb-3 block font-mono text-[9px] uppercase tracking-widest text-slate-300 sm:text-[10px]">
-                    MODEL COMPILER
+              <div className="flex justify-center pt-2 lg:col-span-5 w-full">
+                <div className="relative mx-auto flex w-full max-w-[320px] flex-col items-center justify-center rounded-2xl border border-white/10 bg-[#0b111b] p-5 text-center shadow-xl font-sans">
+                  <span className="mb-3 block font-mono text-xs uppercase tracking-widest text-slate-300">
+                    MODEL COMPILER (মডেল কম্পাইলার)
                   </span>
+
+                  <p className="text-xs text-slate-400 mb-4 leading-relaxed">
+                    এখানে আপনি অ্যালগরিদম রেসিপি ব্যবহার করে কীভাবে একটি প্রোটোটাইপ মডেল ফাইল বেক (Compile) করতে হয় তার প্রতীকী প্রদর্শন দেখতে পাচ্ছেন।
+                  </p>
 
                   <div className="relative mb-4 flex h-24 w-24 flex-col items-center justify-center rounded-xl border border-dashed border-[#00daf3]/30 bg-white/[0.02] mx-auto">
                     {isCompiled ? <Package size={40} className="text-emerald-400 animate-bounce" /> : <Cpu size={40} className="text-[#00daf3] animate-pulse" />}
-                    <span className="mt-2 text-[9px] font-black uppercase tracking-widest text-slate-300">{isCompiled ? "Final Model" : "Algorithm"}</span>
+                    <span className="mt-2 text-xs font-black uppercase tracking-widest text-slate-300">{isCompiled ? "Final Model" : "Algorithm"}</span>
                   </div>
 
-                  <p className="mb-4 h-8 whitespace-pre-line font-mono text-[10px] leading-tight text-[#00daf3] sm:text-xs">
+                  <p className="mb-4 h-10 whitespace-pre-line font-mono text-xs leading-tight text-[#00daf3]">
                     {isCompiled ? "STATE: BRAIN READY\nDeployment Active" : "STATE: RAW RECIPE\nProcessing Data..."}
                   </p>
 
                   <button
                     onClick={() => setIsCompiled(!isCompiled)}
-                    className="w-full rounded-md border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-semibold text-slate-300 transition-colors hover:bg-white/10 hover:text-white active:scale-95"
+                    className="w-full rounded-md border border-white/10 bg-white/5 px-4 py-2 text-xs sm:text-sm font-semibold text-slate-300 transition-colors hover:bg-white/10 hover:text-white active:scale-95"
                   >
                     {isCompiled ? 'Reset to Engine' : 'Compile Model (Bake)'}
                   </button>

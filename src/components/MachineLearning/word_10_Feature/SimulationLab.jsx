@@ -111,12 +111,48 @@ export default function SimulationLab() {
       {/* Header Area */}
       <div className="pb-3 space-y-3 text-center sm:pb-4">
         <h2 className="flex flex-col items-center justify-center gap-2 text-xl font-bold text-white sm:flex-row sm:flex-wrap sm:gap-2 sm:text-2xl md:gap-3 md:text-3xl">
-          <span className="px-2.5 py-1 text-[10px] text-indigo-400 border rounded-full bg-indigo-500/20 border-indigo-500/30 sm:px-3 sm:text-xs">ল্যাব-১০</span>
+          <span className="px-2.5 py-1 text-xs text-indigo-400 border rounded-full bg-indigo-500/20 border-indigo-500/30 sm:px-3">ল্যাব-১০</span>
           ফিচার (Feature Engineering)
         </h2>
-        <p className="max-w-2xl mx-auto px-2 text-[13px] text-slate-400 sm:px-0 sm:text-sm md:text-base">
+        <p className="max-w-2xl mx-auto px-2 text-sm sm:text-base md:text-lg text-slate-400 sm:px-0">
           আস্ত ইনপুট ডেটা থেকে ছাঁকনি দিয়ে ছেঁকে বের করা সুনির্দিষ্ট, পরিমাপযোগ্য এবং সিদ্ধান্ত নেওয়ার জন্য সবচেয়ে প্রয়োজনীয় বৈশিষ্ট্যই হলো ফিচার।
         </p>
+      </div>
+
+      {/* Simulation Guide Card */}
+      <div className="rounded-2xl border border-indigo-500/20 bg-indigo-500/5 p-5 md:p-6 shadow-md font-sans">
+        <h3 className="flex items-center gap-2 text-base font-bold text-slate-100 sm:text-lg mb-3">
+          <span className="text-indigo-400 animate-pulse">💡</span> ল্যাব সিমুলেটর গাইড
+        </h3>
+        <p className="text-sm sm:text-base leading-relaxed text-slate-300 mb-4">
+          এই সিমুলেটরের মাধ্যমে আপনি ফিচার ইঞ্জিনিয়ারিং (Feature Engineering) এর ধারণা, অপ্রয়োজনীয় নয়েজ ফিচারের ক্ষতিকর প্রভাব এবং ফেস আইডি (Face ID)-এর কাজ সরাসরি বুঝতে পারবেন।
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+          <div className="bg-[#0b0f19]/60 border border-white/5 p-4 rounded-xl space-y-2">
+            <span className="font-bold text-indigo-300 flex items-center gap-1.5">
+              <span className="text-base">🌪️</span> ১. ফিচার ছাঁকনি টেস্ট
+            </span>
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
+              📩 স্প্যাম ফিল্টার, 🏠 বাড়ির দাম এবং 🫀 হার্টের ঝুঁকির সিনারিও সিলেক্ট করুন। ছাঁকনিতে কেবল সঠিক ও কাজের ফিচারগুলো (যেমন: মেইলে \'Free\' শব্দ থাকা বা রোগীর রক্তচাপ) টিক চিহ্ন দিয়ে অ্যাকুরেসি চেক করুন।
+            </p>
+          </div>
+          <div className="bg-[#0b0f19]/60 border border-white/5 p-4 rounded-xl space-y-2">
+            <span className="font-bold text-[#d8b4fe] flex items-center gap-1.5">
+              <span className="text-base">📉</span> ২. অ্যাকুরেসি স্ক্যানার
+            </span>
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
+              ছাঁকনিতে ভুল বা অপ্রাসঙ্গিক নয়েজ ফিচার (যেমন: রোগীর জুতার মাপ বা দেয়ালের রঙ) যুক্ত করে দেখুন। অপ্রাসঙ্গিক ফিচার ডাটা বাড়ালেও এআই-এর অ্যাকুরেসি কীভাবে কমিয়ে দেয় তা লক্ষ্য করুন।
+            </p>
+          </div>
+          <div className="bg-[#0b0f19]/60 border border-white/5 p-4 rounded-xl space-y-2">
+            <span className="font-bold text-[#fbcfe8] flex items-center gap-1.5">
+              <span className="text-base">📸</span> ৩. ফেস আইডি এক্সট্রাকশন
+            </span>
+            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
+              ডান পাশের ফেস আইডি মডিউলে স্লাইডারগুলো ড্র্যাগ করুন। এআই কীভাবে চোখের দূরত্ব, নাকের দৈর্ঘ্য ও চোয়ালের মাপকে সংখ্যায় পরিমাপ করে চেহারা চেনার ফিচার তৈরি করে, তা লাইভ স্ক্যানার গ্রাফে দেখুন।
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="grid items-stretch grid-cols-1 gap-5 md:gap-6 lg:grid-cols-12">
@@ -125,10 +161,10 @@ export default function SimulationLab() {
         <div className="lg:col-span-7 bg-white/[0.02] p-4 sm:p-6 rounded-2xl border border-white/5 flex flex-col justify-between gap-5 sm:gap-6 shadow-lg">
           <div>
             <div className="flex flex-wrap items-center justify-between gap-3 pb-3 mb-4 border-b border-white/5">
-              <h3 className="flex items-center gap-2 text-sm font-bold text-indigo-400 sm:text-base">
+              <h3 className="flex items-center gap-2 text-base sm:text-lg font-bold text-indigo-400">
                 <span>🌪️</span> ফিচার ছাঁকনি সিমুলেটর
               </h3>
-              <span className="text-[10px] bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 px-2 py-0.5 rounded-full uppercase tracking-wider font-mono">
+              <span className="text-xs bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 px-2 py-0.5 rounded-full uppercase tracking-wider font-mono">
                 Feature Selector
               </span>
             </div>
@@ -142,7 +178,7 @@ export default function SimulationLab() {
                 <button
                   key={item.id}
                   onClick={() => { setActiveScenario(item.id); setSelectedFeatures([]); }}
-                  className={`p-2.5 rounded-xl text-[11px] sm:text-xs font-bold border transition-all ${
+                  className={`p-2.5 rounded-xl text-xs sm:text-sm md:text-base font-bold border transition-all ${
                     activeScenario === item.id
                       ? 'bg-indigo-500/15 border-indigo-500/50 text-indigo-300 shadow-md scale-[1.02]'
                       : 'bg-black/20 border-white/5 hover:border-white/10 text-slate-400'
@@ -153,13 +189,13 @@ export default function SimulationLab() {
               ))}
             </div>
 
-            <div className="p-4 mb-5 text-[11px] border bg-black/20 rounded-xl border-white/5">
-              <span className="block mb-1 font-bold tracking-wider uppercase text-slate-500">Raw Input Data (গোটা ডেটা):</span>
+            <div className="p-4 mb-5 text-xs sm:text-sm border bg-black/20 rounded-xl border-white/5">
+              <span className="block mb-1 font-bold tracking-wider uppercase text-slate-500 text-xs">Raw Input Data (গোটা ডেটা):</span>
               <p className="italic text-slate-300">{scenario.inputDesc}</p>
             </div>
 
             <div className="space-y-2.5">
-              <label className="block text-[11px] font-bold text-slate-400 mb-2 leading-relaxed">
+              <label className="block text-xs sm:text-sm font-bold text-slate-400 mb-2 leading-relaxed">
                 🛠️ মডেলকে ট্রেইন করার জন্য কোন কোন বৈশিষ্ট্য (Feature) ছাঁকনিতে নেবেন?
               </label>
               {scenario.features.map((feature) => {
@@ -168,7 +204,7 @@ export default function SimulationLab() {
                   <button
                     key={feature.id}
                     onClick={() => handleToggleFeature(feature.id)}
-                    className={`w-full p-3.5 rounded-xl border text-[11px] sm:text-xs text-left font-bold transition-all flex items-center justify-between gap-3 ${
+                    className={`w-full p-3.5 rounded-xl border text-xs sm:text-sm text-left font-bold transition-all flex items-center justify-between gap-3 ${
                       isChecked
                         ? 'bg-indigo-500/10 border-indigo-500/30 text-indigo-200 shadow-sm'
                         : 'bg-white/[0.02] border-white/5 hover:bg-white/5 text-slate-300'
@@ -180,7 +216,7 @@ export default function SimulationLab() {
                       </span>
                       <span>{feature.text}</span>
                     </span>
-                    <span className={`text-[10px] shrink-0 ${isChecked ? 'text-indigo-400' : 'text-slate-600'}`}>
+                    <span className={`text-xs shrink-0 ${isChecked ? 'text-indigo-400' : 'text-slate-600'}`}>
                       {isChecked ? 'সংগৃহীত' : 'বাদ দেওয়া'}
                     </span>
                   </button>
@@ -189,23 +225,23 @@ export default function SimulationLab() {
             </div>
           </div>
 
-          <div className="p-4 text-xs border bg-black/20 rounded-xl border-white/5">
+          <div className="p-4 text-xs sm:text-sm border bg-black/20 rounded-xl border-white/5">
             {selectedFeatures.length === 0 ? (
               <p className="py-2 leading-relaxed text-center text-slate-400">
                 💡 <strong>টিউটোরিয়াল:</strong> প্রথমে কাজের ফিচারগুলো সিলেক্ট করুন, তারপর কোনো অকেজো ফিচার (নয়েজ) যোগ করে দেখুন মডেলের নির্ভুলতা কীভাবে ধসে পড়ে।
               </p>
             ) : (
               <div className="space-y-3">
-                <p className="font-bold text-indigo-400">🔍 নির্বাচিত ফিচারের গাণিতিক প্রভাব বিশ্লেষণ:</p>
+                <p className="font-bold text-indigo-400 text-sm sm:text-base">🔍 নির্বাচিত ফিচারের গাণিতিক প্রভাব বিশ্লেষণ:</p>
                 <div className="grid grid-cols-1 gap-3 max-h-[140px] overflow-y-auto pr-1 md:grid-cols-2 scrollbar-thin">
                   {selectedFeatures.map((id) => {
                     const feature = scenario.features.find((item) => item.id === id);
                     return (
                       <div key={id} className={`p-3 rounded-lg border ${feature.isUseful ? 'bg-emerald-500/10 border-emerald-500/20' : 'bg-rose-500/10 border-rose-500/20'}`}>
                         <div className="flex items-center gap-1.5 mb-1.5">
-                          <span className="text-[10px] font-bold uppercase">{feature.isUseful ? '✅ কাজের ফিচার' : '🚨 অকেজো নয়েজ'}</span>
+                          <span className="text-xs font-bold uppercase">{feature.isUseful ? '✅ কাজের ফিচার' : '🚨 অকেজো নয়েজ'}</span>
                         </div>
-                        <p className="text-[11px] text-slate-300 leading-relaxed">{feature.reason}</p>
+                        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">{feature.reason}</p>
                       </div>
                     );
                   })}
@@ -218,18 +254,18 @@ export default function SimulationLab() {
         {/* Right Side: Analysis and Face ID Demo */}
         <div className="flex flex-col justify-between space-y-5 lg:col-span-5 sm:space-y-6">
           <div className="bg-white/[0.02] p-4 sm:p-6 rounded-2xl border border-white/5 shadow-lg space-y-4">
-            <h4 className="pb-2 text-[13px] sm:text-sm font-bold border-b text-slate-300 border-white/5">
+            <h4 className="pb-2 text-sm sm:text-base font-bold border-b text-slate-300 border-white/5">
               🔮 মডেলের ইন্টেলিজেন্স ও ছাঁকনি স্ক্যানার
             </h4>
 
             <div className="grid items-center grid-cols-1 gap-4 sm:grid-cols-2">
               {/* Sieve Visualizer */}
               <div className="relative flex flex-col items-center justify-center h-40 p-3 overflow-hidden text-center border shadow-inner rounded-xl border-white/5 bg-black/20 sm:h-44 sm:p-4">
-                <span className="text-[9px] uppercase font-bold text-slate-500 absolute top-3">ছাঁকনি (The Sieve)</span>
+                <span className="text-xs uppercase font-bold text-slate-500 absolute top-3">ছাঁকনি (The Sieve)</span>
                 {selectedFeatures.length === 0 ? (
                   <div className="mt-4 space-y-2 text-slate-500">
                     <div className="text-4xl opacity-50 animate-bounce">⏳</div>
-                    <p className="text-[10px] font-bold">ছাঁকনি সম্পূর্ণ খালি!</p>
+                    <p className="text-xs font-bold">ছাঁকনি সম্পূর্ণ খালি!</p>
                   </div>
                 ) : (
                   <div className="w-full mt-4 space-y-3">
@@ -237,7 +273,7 @@ export default function SimulationLab() {
                       {selectedFeatures.map((id) => {
                         const feature = scenario.features.find((item) => item.id === id);
                         return (
-                          <span key={id} className={`px-2 py-1 rounded-md text-[9px] font-bold border ${feature.isUseful ? 'bg-indigo-500/20 border-indigo-500/30 text-indigo-300' : 'bg-rose-500/20 border-rose-500/30 text-rose-300 animate-pulse'}`}>
+                          <span key={id} className={`px-2 py-1 rounded-md text-xs font-bold border ${feature.isUseful ? 'bg-indigo-500/20 border-indigo-500/30 text-indigo-300' : 'bg-rose-500/20 border-rose-500/30 text-rose-300 animate-pulse'}`}>
                             {feature.text.substring(0, 12)}...
                           </span>
                         );
@@ -249,9 +285,9 @@ export default function SimulationLab() {
 
               {/* Accuracy Scanner */}
               <div className="relative flex flex-col items-center justify-center h-40 p-3 text-center border shadow-inner rounded-xl border-white/5 bg-black/20 sm:h-44 sm:p-4">
-                <span className="text-[9px] uppercase font-bold text-slate-500 absolute top-3">অ্যাকুরেসি স্ক্যানার</span>
+                <span className="text-xs uppercase font-bold text-slate-500 absolute top-3">অ্যাকুরেসি স্ক্যানার</span>
                 <div className="w-full px-2 mt-4 space-y-3">
-                  <p className={`text-[10px] font-bold leading-tight ${metrics.statusColor}`}>{metrics.status}</p>
+                  <p className={`text-xs sm:text-sm font-bold leading-tight ${metrics.statusColor}`}>{metrics.status}</p>
                   <p className="font-mono text-3xl font-bold tracking-tighter text-white">{metrics.score}%</p>
                   <div className="w-full bg-white/10 rounded-full h-1.5 mx-auto">
                     <div className={`h-1.5 rounded-full transition-all duration-500 ${metrics.score > 80 ? 'bg-emerald-500' : metrics.score > 40 ? 'bg-amber-500' : 'bg-rose-500'}`} style={{ width: `${metrics.score}%` }} />
@@ -264,11 +300,11 @@ export default function SimulationLab() {
           {/* Interactive Face ID Feature Extraction */}
           <div className="bg-white/[0.02] p-4 sm:p-6 rounded-2xl border border-white/5 shadow-lg space-y-4 flex-1 flex flex-col justify-between">
             <div>
-              <h4 className="flex flex-wrap justify-between gap-2 pb-2 text-[13px] sm:text-sm font-bold border-b text-slate-300 border-white/5">
+              <h4 className="flex flex-wrap justify-between gap-2 pb-2 text-sm sm:text-base font-bold border-b text-slate-300 border-white/5">
                 <span>📸 ফেস আইডি এক্সট্রাকশন</span>
-                <span className="text-[10px] text-emerald-400 font-mono bg-emerald-500/10 px-2 py-0.5 rounded">Live Nodes</span>
+                <span className="text-xs text-emerald-400 font-mono bg-emerald-500/10 px-2 py-0.5 rounded">Live Nodes</span>
               </h4>
-              <p className="text-[11px] text-slate-400 mt-3 leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-400 mt-3 leading-relaxed">
                 স্থির মুখের ছবি থেকে এআই কীভাবে জ্যামিতিক বিন্দুর ফিচার পরিমাপ করে, তা স্লাইডার টেনে দেখুন।
               </p>
 
@@ -298,7 +334,7 @@ export default function SimulationLab() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-3 text-[10px] sm:grid-cols-3 sm:gap-4">
+            <div className="grid grid-cols-1 gap-3 text-xs sm:text-sm sm:grid-cols-3 sm:gap-4">
               <div>
                 <label className="block text-slate-400 font-bold mb-1.5">👀 চোখের দূরত্ব:</label>
                 <input type="range" min="30" max="80" value={faceFeatures.eyeDistance} onChange={(e) => handleFeatureChange('eyeDistance', e.target.value)} className="w-full accent-indigo-500 h-1.5 bg-white/10 rounded-lg appearance-none" />
