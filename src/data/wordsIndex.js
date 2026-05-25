@@ -15,6 +15,12 @@ const AlgorithmDetailsPage = lazy(() => import('../components/MachineLearning/wo
 const DatasetDetailsPage = lazy(() => import('../components/MachineLearning/word_08_Dataset/DatasetDetailsPage'));
 const InputDataDetailsPage = lazy(() => import('../components/MachineLearning/word_09_InputData/InputDataDetailsPage'));
 const FeatureDetailsPage = lazy(() => import('../components/MachineLearning/word_10_Feature/FeatureDetailsPage'));
+import SupervisedDetailsPage from '../components/MachineLearning/word_16_SupervisedML/SupervisedDetailsPage';
+import UnsupervisedDetailsPage from '../components/MachineLearning/word_17_Unsupervised/UnsupervisedDetailsPage';
+import SemiSupervisedLearningDetailsPage from '../components/MachineLearning/word_18_SemiSupervised/SemiSupervisedLearningDetailsPage';
+import ReinforcementDetailsPage from '../components/MachineLearning/word_19_ReinforcementLearning/ReinforcementDetailsPage';
+import GIGODetailsPage from '../components/MachineLearning/word_20_GIGO/GIGODetailsPage';
+import DataDependencyDetailsPage from '../components/MachineLearning/word_21_DataDependency/DataDependencyDetailsPage';
 
 
 export const bookStructure = [
@@ -146,9 +152,58 @@ export const bookStructure = [
             title: "মেশিন লার্নিংয়ের ধরন (Types of ML)",
             Component: TypesMLDetailsPage,
             summary: "মেশিন লার্নিংয়ের বিভিন্ন শাখা, যেমন সুপারভাইজড, আনসুপারভাইজড, রিইনফোর্সমেন্ট লার্নিং ইত্যাদি, যা মেশিনকে শেখানোর বিভিন্ন পদ্ধতি ও প্রয়োগের ধরন নির্দেশ করে।"
+          },
+          {
+            id: "word_16_SupervisedML",
+            path: "supervised-ml",
+            title: "সুপারভাইজড লার্নিং (Supervised Learning)",
+            Component: SupervisedDetailsPage,
+            summary: "মেশিন যখন মানুষের দেওয়া 'উত্তরপত্র' বা লেবেলের সাহায্যে গাইডেন্স নিয়ে শিখতে থাকে।"
+          },
+          {
+            id: "word_17_Unsupervised",
+            path: "unsupervised-ml",
+            title: "আনসুপারভাইজড লার্নিং (Unsupervised Learning)",
+            Component: UnsupervisedDetailsPage,
+            summary: "যেখানে কোনো শিক্ষক ছাড়াই মেশিন নিজে নিজেই কাঁচা তথ্যের গাণিতিক মিল বিশ্লেষণ করে ক্লাস্টার তৈরি করে।"
+          },
+          {
+            id: "word_18_SemiSupervised",
+            path: "semi-supervised-ml",
+            title: "সেমি-সুপারভাইজড লার্নিং (Semi-supervised Learning)",
+            Component: SemiSupervisedLearningDetailsPage,
+            summary: "অল্প লেবেলযুক্ত এবং বিশাল লেবেলবিহীন ডেটার মিশ্রণে শেখার এক জাদুকরী ও সাশ্রয়ী পদ্ধতি।"
+          },
+          {
+            id: "word_19_ReinforcementLearning",
+            path: "reinforcement-learning",
+            title: "রিইনফোর্সমেন্ট লার্নিং (Reinforcement Learning)",
+            Component: ReinforcementDetailsPage,
+            summary: "পরিবেশের সাথে ধাক্কা খেয়ে, ভুল থেকে শিক্ষা নেওয়া এবং সর্বোচ্চ পুরস্কার পাওয়ার মাধ্যমে নিজে নিজে শেখার পদ্ধতি।"
           }
         ]
 
+      },
+      {
+        partId: "part_04",
+        partNo: "০৪",
+        partTitle: "পর্ব ৪: মেশিন লার্নিংয়ের দর্শন ও ঝুঁকি",
+        words: [
+          {
+            id: "word_20_GIGO",
+            path: "gigo-ml",
+            title: "গার্বেজ ইন, গার্বেজ আউট (GIGO)",
+            Component: GIGODetailsPage,
+            summary: "মেশিনের আউটপুট সম্পূর্ণরূপে ইনপুট ডেটার ওপর নির্ভরশীল; ভুল ডেটা মানেই ভুল সিদ্ধান্ত।"
+          },
+          {
+            id: "word_21_DataDependency",
+            path: "data-dependency",
+            title: "ডেটা নির্ভরতা (Data Dependency)",
+            Component: DataDependencyDetailsPage,
+            summary: "মডেলের কাজের ক্ষমতা এবং তার প্রেডিকশন সম্পূর্ণরূপে তার ট্রেইনিং ডেটার গুণগত মানের ওপর নির্ভরশীল।"
+          }
+        ]
       }
 
     ]
