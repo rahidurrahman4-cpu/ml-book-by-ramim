@@ -101,6 +101,12 @@ body.reading-mode-active main .bg-white\/\[0\.03\] {
   color: #2a2a2a !important;
 }
 
+body.reading-mode-active main .bg-\[\#030712\] {
+  background-color: #f4ecd8 !important;
+  border-color: rgba(26, 26, 26, 0.15) !important;
+  color: #1a1a1a !important;
+}
+
 body.reading-mode-active main .border-white\/10,
 body.reading-mode-active main .border-white\/5,
 body.reading-mode-active main .border-white\/\[0\.08\],
@@ -131,6 +137,16 @@ body.reading-mode-active main .text-white {
 /* Fix Active Tab underline and text in the Lesson/Lab switch */
 body.reading-mode-active main .bg-slate-500 {
   background-color: #1a1a1a !important;
+}
+
+/* Fix buttons using bg-[#1f3a46] in read mode to be white with dark text */
+body.reading-mode-active main .bg-\[\#1f3a46\] {
+  background-color: #ffffff !important;
+  color: #1a1a1a !important;
+  border: 1px solid rgba(26, 26, 26, 0.15) !important;
+}
+body.reading-mode-active main .bg-\[\#1f3a46\]:hover {
+  background-color: #f3f4f6 !important;
 }
 
 /* Interactive elements in reflection poll and questions (green/red background and text) */

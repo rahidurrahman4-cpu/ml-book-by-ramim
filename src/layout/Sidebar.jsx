@@ -32,12 +32,12 @@ export default function Sidebar({ isMobileOpen, closeMobileMenu }) {
   return (
     <>
       {/* --- Mobile Overlay Backdrop --- */}
-      {isMobileOpen && (
-        <div 
-          onClick={closeMobileMenu}
-          className="fixed inset-0 z-40 transition-opacity md:hidden bg-black/70 backdrop-blur-md"
-        />
-      )}
+      <div 
+        onClick={closeMobileMenu}
+        className={`fixed inset-0 z-40 transition-all duration-300 md:hidden bg-black/70 backdrop-blur-md ${
+          isMobileOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+      />
 
       {/* --- Sidebar Container --- */}
       <aside 
@@ -148,8 +148,12 @@ export default function Sidebar({ isMobileOpen, closeMobileMenu }) {
                   </button>
 
                   {/* Parts & Words */}
-                  {openChapter === chapter.chapterId && !isCollapsed && (
-                    <div className="pl-3 mt-3 mb-6 ml-4 space-y-3 overflow-hidden border-l-2 border-white/[0.07]">
+                  <div className={`grid transition-all duration-300 ease-in-out ${
+                    openChapter === chapter.chapterId && !isCollapsed
+                      ? 'grid-rows-[1fr] opacity-100 mt-3 mb-6'
+                      : 'grid-rows-[0fr] opacity-0 pointer-events-none'
+                  }`}>
+                    <div className="overflow-hidden pl-3 ml-4 border-l-2 border-white/[0.07] space-y-3">
                       {chapter.parts.map((part) => (
                         <div key={part.partId} className="space-y-1">
                           <button 
@@ -168,36 +172,42 @@ export default function Sidebar({ isMobileOpen, closeMobileMenu }) {
                           </button>
                           
                           {/* Words inside the Part (If Part is open) */}
-                          {openPart === part.partId && (
-                            <div className="space-y-1.5 pl-3 py-2">
-                              {part.words.map((word) => {
-                                const wordPath = `/word/${word.path}`;
-                                const isWordActive = isActive(wordPath);
+                          <div className={`grid transition-all duration-300 ease-in-out ${
+                            openPart === part.partId
+                              ? 'grid-rows-[1fr] opacity-100'
+                              : 'grid-rows-[0fr] opacity-0 pointer-events-none'
+                          }`}>
+                            <div className="overflow-hidden">
+                              <div className="space-y-1.5 pl-3 py-2">
+                                {part.words.map((word) => {
+                                  const wordPath = `/word/${word.path}`;
+                                  const isWordActive = isActive(wordPath);
 
-                                return (
-                                  <Link
-                                    key={word.id}
-                                    to={wordPath}
-                                    onClick={handleLinkClick}
-                                    className={`block text-left py-2.5 px-4 rounded-xl text-[13px] md:text-[14px] transition-all relative ${
-                                      isWordActive 
-                                        ? 'bg-white/[0.07] text-slate-100 font-bold shadow-sm' 
-                                        : 'text-slate-400 hover:text-slate-200 hover:bg-white/[0.035] font-medium'
-                                    }`}
-                                  >
-                                    {isWordActive && (
-                                      <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-6 bg-slate-500 rounded-r-md"></span>
-                                    )}
-                                    <span className="leading-relaxed line-clamp-2">{word.title}</span>
-                                  </Link>
-                                );
-                              })}
+                                  return (
+                                    <Link
+                                      key={word.id}
+                                      to={wordPath}
+                                      onClick={handleLinkClick}
+                                      className={`block text-left py-2.5 px-4 rounded-xl text-[13px] md:text-[14px] transition-all relative ${
+                                        isWordActive 
+                                          ? 'bg-white/[0.07] text-slate-100 font-bold shadow-sm' 
+                                          : 'text-slate-400 hover:text-slate-200 hover:bg-white/[0.035] font-medium'
+                                      }`}
+                                    >
+                                      {isWordActive && (
+                                        <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-6 bg-slate-500 rounded-r-md"></span>
+                                      )}
+                                      <span className="leading-relaxed line-clamp-2">{word.title}</span>
+                                    </Link>
+                                  );
+                                })}
+                              </div>
                             </div>
-                          )}
+                          </div>
                         </div>
                       ))}
                     </div>
-                  )}
+                  </div>
                 </div>
               ))}
             </div>

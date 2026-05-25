@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Fingerprint, Sparkles, BookOpen, FlaskConical, Target, Layers, Heart, Compass, ArrowRight, CheckCircle, XCircle, HelpCircle } from 'lucide-react';
+import { Fingerprint, Sparkles, BookOpen, FlaskConical, Target, Layers, Heart, Compass, ArrowRight, CheckCircle, XCircle, HelpCircle, ChevronRight, Zap } from 'lucide-react';
 
 import patternData from './pattern.json';
 import SimulationLab from './SimulationLab';
@@ -122,61 +122,59 @@ export default function PatternDetailsPage() {
               ))}
             </LogbookContainer>
 
-            {/* --- Readers Reflection Poll (Premium Styled) --- */}
-            <motion.div variants={itemVariants} className="p-5 md:p-8 rounded-[2.5rem] border border-white/5 bg-[#0b111b] shadow-2xl space-y-6 font-sans relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-slate-500/10 blur-3xl" />
-              
-              <h3 className="relative z-10 flex items-start gap-3 text-base font-bold text-slate-100 md:text-xl">
-                <Sparkles className="mt-1 text-slate-400 shrink-0" size={20}/>
+            {/* --- Readers Reflection Poll --- */}
+            <motion.div variants={itemVariants} className="p-4 md:p-6 rounded-xl border border-white/10 bg-[#0b111b] shadow-md space-y-4 font-sans">
+              <h3 className="flex items-start gap-2 text-base font-bold text-slate-100 md:text-lg">
+                <Zap className="mt-1 text-slate-400 shrink-0" size={16}/> 
                 <span className="leading-snug">{patternData.readers_reflection.title}</span>
               </h3>
-              
-              <p className="relative z-10 font-serif text-base italic leading-relaxed text-justify md:text-lg text-slate-300">
+              <p className="font-serif text-sm leading-relaxed text-justify whitespace-pre-line md:text-base text-slate-300">
                 {patternData.readers_reflection.question}
               </p>
               
-              <div className="relative z-10 grid grid-cols-1 gap-4 pt-2 md:gap-5 sm:grid-cols-2">
-                {patternData.readers_reflection.options.map((option, idx) => {
-                  const displayId = idx === 0 ? '১' : '২';
-                  return (
-                    <button 
-                      key={idx} 
-                      onClick={() => setPollSelected(option.id)} 
-                      className={`group p-4 md:p-5 rounded-2xl border text-left transition-all flex items-start gap-4 ${
-                        pollSelected === option.id 
-                          ? (option.isCorrect ? 'bg-green-500/10 border-green-500/40 text-slate-100' : 'bg-red-500/10 border-red-500/40 text-slate-100') 
-                          : 'bg-white/[0.02] border-white/5 hover:border-white/10 hover:bg-white/[0.04] text-slate-400'
-                      }`}
-                    >
-                      <div className={`mt-0.5 shrink-0 w-6 h-6 rounded-full border flex items-center justify-center font-black text-xs transition-colors ${
-                        pollSelected === option.id 
-                          ? (option.isCorrect ? 'bg-green-500 border-green-400 text-white' : 'bg-red-500 border-red-400 text-white') 
-                          : 'border-white/20 group-hover:border-white/40'
-                      }`}>
-                        {pollSelected === option.id ? (option.isCorrect ? <CheckCircle size={14}/> : <XCircle size={14}/>) : displayId}
-                      </div>
-                      <div>
-                        <span className="block mb-1 text-sm font-black tracking-widest uppercase opacity-50">Option {displayId}</span>
-                        <span className="text-sm font-bold md:text-base">{option.text}</span>
-                      </div>
-                    </button>
-                  );
-                })}
+              <div className="grid grid-cols-1 gap-3 pt-2 md:gap-4 sm:grid-cols-2">
+                {patternData.readers_reflection.options.map((option, idx) => (
+                  <button 
+                    key={idx} 
+                    onClick={() => setPollSelected(option.id)} 
+                    className={`rounded-xl border p-3 text-left transition-all flex items-start gap-2.5 text-xs md:text-sm ${
+                      pollSelected === option.id 
+                        ? (option.isCorrect ? 'bg-green-500/10 border-green-500/35 text-slate-100' : 'bg-red-500/10 border-red-500/35 text-slate-100') 
+                        : 'bg-white/5 border-white/10 hover:bg-white/10 text-slate-400'
+                    }`}
+                  >
+                    <div className="mt-0.5 shrink-0">
+                      {pollSelected === option.id ? (
+                        option.isCorrect ? <CheckCircle className="text-green-500" size={16}/> : <XCircle className="text-red-500" size={16}/>
+                      ) : (
+                        <div className="w-4 h-4 rounded-full border border-white/30 flex items-center justify-center font-bold text-[10px]">
+                          {idx === 0 ? '১' : '২'}
+                        </div>
+                      )}
+                    </div>
+                    <div>
+                      <span className="block mb-0.5 font-bold text-slate-100">অপশন {idx === 0 ? '১' : '২'}</span>
+                      {option.text}
+                    </div>
+                  </button>
+                ))}
               </div>
               
               <AnimatePresence>
                 {pollSelected && (
                   <motion.div 
-                    initial={{ opacity: 0, y: -10 }} 
-                    animate={{ opacity: 1, y: 0 }} 
-                    className="p-4 md:p-5 rounded-2xl border bg-white/[0.02] border-white/10 text-slate-300 mt-4 shadow-inner relative z-10"
+                    initial={{ opacity: 0, height: 0 }} 
+                    animate={{ opacity: 1, height: 'auto' }} 
+                    exit={{ opacity: 0, height: 0 }} 
+                    className="p-3 md:p-4 rounded-lg border bg-white/[0.03] border-white/10 text-slate-300 mt-4 text-xs md:text-sm overflow-hidden"
                   >
                     {patternData.readers_reflection.options.map(option => pollSelected === option.id && (
-                      <div key={option.id} className="space-y-2">
-                        <div className={`flex items-center gap-2 font-black text-sm uppercase tracking-widest ${option.isCorrect ? 'text-green-400' : 'text-red-400'}`}>
-                          {option.isCorrect ? 'Excellent!' : 'Try Again!'}
-                        </div>
-                        <p className="text-sm leading-relaxed text-justify md:text-base">{option.explanation}</p>
+                      <div key={option.id} className="space-y-1.5">
+                        <span className={`flex items-center gap-1 font-bold ${option.isCorrect ? 'text-green-400' : 'text-red-400'}`}>
+                          {option.isCorrect ? <CheckCircle size={14}/> : <XCircle size={14}/>} 
+                          {option.isCorrect ? 'একদম সঠিক উত্তর!' : 'উত্তরটি সঠিক হয়নি!'}
+                        </span>
+                        <p className="leading-relaxed">{option.explanation}</p>
                       </div>
                     ))}
                   </motion.div>
@@ -184,24 +182,21 @@ export default function PatternDetailsPage() {
               </AnimatePresence>
             </motion.div>
 
-            {/* --- Next Chapter Teaser (Premium Styled) --- */}
-            <motion.div variants={itemVariants} className="p-6 md:p-10 rounded-[2.5rem] border border-white/5 bg-gradient-to-br from-[#0b111b] to-[#070b12] font-sans relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-slate-500/5 blur-[100px] rounded-full group-hover:bg-slate-500/10 transition-all duration-700" />
-              
-              <div className="relative z-10 space-y-4">
-                <span className="text-[10px] md:text-xs font-mono font-bold tracking-[0.3em] text-slate-500 uppercase flex items-center gap-2 mb-2">
-                  <Compass size={14} className="text-slate-400 animate-spin-slow" /> THE FINAL PRODUCT
+            {/* --- Next Chapter Teaser --- */}
+            <motion.div variants={itemVariants} className="p-4 md:p-6 rounded-xl border border-white/10 bg-[#0b111b] font-sans">
+              <div className="space-y-3">
+                <span className="text-[9px] md:text-[10px] font-mono font-bold tracking-widest text-slate-400 uppercase flex items-center gap-1 mb-2">
+                  <Compass size={12} className="text-slate-400" /> THE FINAL PRODUCT
                 </span>
-                <p className="max-w-3xl text-base italic leading-relaxed md:text-lg text-slate-400">
+                <p className="text-xs leading-relaxed md:text-sm text-slate-300">
                   {patternData.next_intro?.text || "ডেটা থেকে প্যাটার্ন শেখার পর মেশিন চূড়ান্তভাবে যে জিনিসটি তৈরি করে, সেটিই হলো পরের শব্দ: মডেল (Model)।"}
                 </p>
-                <div className="pt-4">
+                <div className="pt-2">
                   <button 
                     onClick={() => { setActiveTab('lab'); document.querySelector("[data-reader-scroll]")?.scrollTo?.({ top: 0, behavior: 'smooth' }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} 
-                    className="w-full sm:w-auto inline-flex justify-center items-center gap-3 px-8 py-4 rounded-2xl bg-white text-[#070b12] font-black text-sm hover:bg-slate-200 transition-all group active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                    className="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-5 py-2.5 rounded-lg bg-[#1f3a46] text-slate-100 font-bold text-sm hover:bg-[#294957] transition-all group active:scale-95"
                   >
-                    ল্যাব সিমুলেটরে প্যাটার্ন খুঁজুন 
-                    <ArrowRight size={18} className="transition-transform group-hover:translate-x-1"/>
+                    ল্যাব সিমুলেটরে প্যাটার্ন খুঁজুন <ChevronRight size={14} className="transition-transform group-hover:translate-x-1"/>
                   </button>
                 </div>
               </div>

@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, CheckCircle2, Database, Layers, Play } from 'lucide-react';
+import { ArrowRight, BookOpen, CheckCircle2, ChevronDown, ChevronUp, Database, Layers, Play } from 'lucide-react';
 import { getAllWords, bookStructure } from '../../data/wordsIndex';
 
 function StatBox({ label, value }) {
@@ -11,53 +12,99 @@ function StatBox({ label, value }) {
   );
 }
 
+function PartPanel({ part }) {
+  const [isOpen, setIsOpen] = useState(part.partNo === '০১');
+
+  return (
+    <div className="rounded-lg border border-white/5 bg-white/[0.01] p-3 transition-colors duration-200">
+      <div
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center justify-between cursor-pointer select-none"
+      >
+        <h3 className="text-sm font-bold text-slate-300 flex items-center gap-2">
+          <ChevronDown 
+            size={16} 
+            className={`transform transition-transform duration-300 text-slate-400 ${isOpen ? 'rotate-180' : ''}`} 
+          />
+          পর্ব {part.partNo}: {part.partTitle}
+        </h3>
+        <span className="text-xs text-slate-500 font-medium">
+          {part.words.length} শব্দ
+        </span>
+      </div>
+
+      <div className={`grid transition-all duration-300 ease-in-out ${
+        isOpen ? 'grid-rows-[1fr] opacity-100 mt-3' : 'grid-rows-[0fr] opacity-0 pointer-events-none'
+      }`}>
+        <div className="overflow-hidden">
+          <div className="grid gap-2 pt-3 sm:grid-cols-2">
+            {part.words.map((word) => (
+              <Link
+                key={word.id}
+                to={`/word/${word.path}`}
+                className="rounded-lg border border-white/10 bg-[#070b12] px-4 py-3 text-sm font-medium leading-relaxed text-slate-300 transition-colors hover:border-white/20 hover:bg-white/[0.04] hover:text-slate-100"
+              >
+                {word.title}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ChapterPanel({ chapter }) {
+  const [isOpen, setIsOpen] = useState(chapter.chapterNo === '০১');
   const words = chapter.parts.flatMap((part) => part.words);
   const firstWordPath = words[0]?.path;
 
   return (
     <section className="rounded-xl border border-white/10 bg-[#0b111b] p-5">
-      <div className="flex flex-col gap-3 border-b border-white/10 pb-4 sm:flex-row sm:items-start sm:justify-between">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">
-            অধ্যায় {chapter.chapterNo}
-          </p>
-          <h2 className="mt-1 text-xl font-bold leading-snug text-slate-100">
-            {chapter.chapterTitle}
-          </h2>
-          <p className="mt-2 text-sm text-slate-400">
-            {chapter.parts.length} পর্ব · {words.length} শব্দ
-          </p>
+      <div
+        onClick={() => setIsOpen(!isOpen)}
+        className={`flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between cursor-pointer select-none border-b transition-all duration-300 ${
+          isOpen ? 'border-white/10 pb-4' : 'border-transparent pb-0'
+        }`}
+      >
+        <div className="flex items-start gap-3">
+          <div className="mt-1 text-slate-400 shrink-0">
+            <ChevronDown 
+              size={20} 
+              className={`transform transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} 
+            />
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">
+              অধ্যায় {chapter.chapterNo}
+            </p>
+            <h2 className="mt-1 text-xl font-bold leading-snug text-slate-100">
+              {chapter.chapterTitle}
+            </h2>
+            <p className="mt-2 text-sm text-slate-400">
+              {chapter.parts.length} পর্ব · {words.length} শব্দ
+            </p>
+          </div>
         </div>
 
         <Link
           to={firstWordPath ? `/word/${firstWordPath}` : '/start'}
-          className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-slate-200 transition-colors hover:bg-white/[0.07]"
+          onClick={(e) => e.stopPropagation()}
+          className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-slate-200 transition-colors hover:bg-white/[0.07] self-start sm:self-auto"
         >
           শুরু করুন
           <ArrowRight size={15} />
         </Link>
       </div>
 
-      <div className="mt-4 space-y-4">
-        {chapter.parts.map((part) => (
-          <div key={part.partId}>
-            <h3 className="mb-2 text-sm font-bold text-slate-300">
-              পর্ব {part.partNo}: {part.partTitle}
-            </h3>
-            <div className="grid gap-2 sm:grid-cols-2">
-              {part.words.map((word) => (
-                <Link
-                  key={word.id}
-                  to={`/word/${word.path}`}
-                  className="rounded-lg border border-white/10 bg-[#070b12] px-4 py-3 text-sm font-medium leading-relaxed text-slate-300 transition-colors hover:border-white/20 hover:bg-white/[0.04] hover:text-slate-100"
-                >
-                  {word.title}
-                </Link>
-              ))}
-            </div>
-          </div>
-        ))}
+      <div className={`grid transition-all duration-300 ease-in-out ${
+        isOpen ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0 pointer-events-none'
+      }`}>
+        <div className="overflow-hidden space-y-4">
+          {chapter.parts.map((part) => (
+            <PartPanel key={part.partId} part={part} />
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -97,6 +144,12 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="grid gap-3 sm:grid-cols-3">
+          <StatBox label="অধ্যায়" value={bookStructure.length} />
+          <StatBox label="পর্ব" value={totalParts} />
+          <StatBox label="শব্দ" value={allWords.length} />
+        </section>
+
         <section className="space-y-4">
           <div className="flex items-end justify-between gap-4 border-b border-white/10 pb-3">
             <div>
@@ -110,12 +163,6 @@ export default function Home() {
               <ChapterPanel key={chapter.chapterId} chapter={chapter} />
             ))}
           </div>
-        </section>
-
-        <section className="grid gap-3 sm:grid-cols-3">
-          <StatBox label="অধ্যায়" value={bookStructure.length} />
-          <StatBox label="পর্ব" value={totalParts} />
-          <StatBox label="শব্দ" value={allWords.length} />
         </section>
 
         <section className="grid gap-4 pb-8 lg:grid-cols-[1fr_1fr]">
