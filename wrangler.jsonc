@@ -1,8 +1,9 @@
 {
   "name": "ml-book-by-ramim",
   "compatibility_date": "2026-05-26",
+  "main": "worker.js",
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "single-page-application"
+    "binding": "ASSETS"
   }
 }
