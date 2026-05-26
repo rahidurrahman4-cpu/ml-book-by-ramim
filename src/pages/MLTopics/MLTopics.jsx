@@ -76,43 +76,55 @@ export default function MLTopics() {
         </motion.header>
 
         <motion.section variants={fadeUp} className="mt-10 rounded-lg border border-cyan-100/[0.08] bg-[#071521] p-4 md:p-5">
-          <div className="grid gap-4 lg:grid-cols-[1fr_320px_auto]">
-            <label className="relative block">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
+            {/* Search Input */}
+            <label className="relative block flex-1 group">
               <span className="sr-only">Search topics</span>
-              <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-teal-300/70" />
+              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 transition-colors group-focus-within:text-teal-400">
+                <Search size={18} strokeWidth={2.5} />
+              </div>
               <input
                 type="text"
                 placeholder="যেকোনো শব্দ, অংশ বা ব্যাখ্যা খুঁজুন..."
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
-                className="h-12 w-full rounded-md border border-cyan-100/[0.08] bg-[#050b12] pl-12 pr-4 text-sm font-semibold text-slate-200 outline-none transition placeholder:text-slate-600 focus:border-teal-300/50 focus:ring-2 focus:ring-teal-300/10"
+                className="h-12 w-full rounded-xl border border-cyan-100/[0.08] bg-[#050b12]/50 pl-12 pr-4 text-sm font-medium text-slate-200 outline-none transition-all placeholder:text-slate-600 hover:border-cyan-100/[0.15] hover:bg-[#050b12] focus:border-teal-400/50 focus:bg-[#050b12] focus:ring-4 focus:ring-teal-400/10"
               />
             </label>
 
-            <label className="relative block">
-              <span className="sr-only">Filter by chapter</span>
-              <Filter size={17} className="absolute left-4 top-1/2 -translate-y-1/2 text-cyan-300/70" />
-              <select
-                value={selectedChapter}
-                onChange={(event) => setSelectedChapter(event.target.value)}
-                className="h-12 w-full appearance-none rounded-md border border-cyan-100/[0.08] bg-[#050b12] pl-12 pr-10 text-sm font-semibold text-slate-200 outline-none transition focus:border-teal-300/50 focus:ring-2 focus:ring-teal-300/10"
-              >
-                <option value="All">সবগুলো অধ্যায়</option>
-                {bookStructure.map((chapter) => (
-                  <option key={chapter.chapterId} value={chapter.chapterTitle}>
-                    অধ্যায় {chapter.chapterNo}: {chapter.chapterTitle}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <div className="flex gap-3 sm:gap-4">
+              {/* Category Filter */}
+              <label className="relative block flex-1 md:w-60 lg:w-72 md:flex-none group">
+                <span className="sr-only">Filter by chapter</span>
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 transition-colors group-focus-within:text-teal-400">
+                  <Filter size={17} strokeWidth={2.5} />
+                </div>
+                <select
+                  value={selectedChapter}
+                  onChange={(event) => setSelectedChapter(event.target.value)}
+                  className="h-12 w-full appearance-none rounded-xl border border-cyan-100/[0.08] bg-[#050b12]/50 pl-11 pr-10 text-sm font-medium text-slate-200 outline-none transition-all hover:border-cyan-100/[0.15] hover:bg-[#050b12] focus:border-teal-400/50 focus:bg-[#050b12] focus:ring-4 focus:ring-teal-400/10 cursor-pointer"
+                >
+                  <option value="All">সবগুলো অধ্যায়</option>
+                  {bookStructure.map((chapter) => (
+                    <option key={chapter.chapterId} value={chapter.chapterTitle}>
+                      অধ্যায় {chapter.chapterNo}: {chapter.chapterTitle}
+                    </option>
+                  ))}
+                </select>
+                <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 transition-colors group-focus-within:text-teal-400">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </div>
+              </label>
 
-            <div className="grid h-12 grid-cols-2 rounded-md border border-cyan-100/[0.08] bg-[#050b12] p-1">
-              <ViewButton active={viewMode === 'grid'} label="Grid" onClick={() => setViewMode('grid')}>
-                <LayoutGrid size={17} />
-              </ViewButton>
-              <ViewButton active={viewMode === 'list'} label="List" onClick={() => setViewMode('list')}>
-                <List size={17} />
-              </ViewButton>
+              {/* View Toggles */}
+              <div className="hidden h-12 w-[104px] shrink-0 items-center rounded-xl border border-cyan-100/[0.08] bg-[#050b12]/50 p-1 md:flex">
+                <ViewButton active={viewMode === 'grid'} label="Grid view" onClick={() => setViewMode('grid')}>
+                  <LayoutGrid size={18} strokeWidth={2.5} />
+                </ViewButton>
+                <ViewButton active={viewMode === 'list'} label="List view" onClick={() => setViewMode('list')}>
+                  <List size={18} strokeWidth={2.5} />
+                </ViewButton>
+              </div>
             </div>
           </div>
         </motion.section>
@@ -186,8 +198,10 @@ function ViewButton({ active, children, label, onClick }) {
       aria-label={label}
       title={label}
       onClick={onClick}
-      className={`flex items-center justify-center rounded-[5px] transition ${
-        active ? 'bg-teal-300 text-[#06111d]' : 'text-slate-500 hover:text-teal-200'
+      className={`flex h-full flex-1 items-center justify-center rounded-lg transition-all duration-200 ${
+        active 
+          ? 'bg-teal-400 text-[#050b12] shadow-sm' 
+          : 'text-slate-500 hover:bg-cyan-100/[0.04] hover:text-teal-300'
       }`}
     >
       {children}
