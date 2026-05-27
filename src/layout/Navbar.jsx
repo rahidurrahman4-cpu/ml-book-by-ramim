@@ -6,6 +6,7 @@ import { getAllWords } from '../data/wordsIndex';
 const navLinks = [
   { label: 'হোম', path: '/' },
   { label: 'বই', path: '/dashboard' },
+  { label: 'ব্লগ', path: '/blog' },
   { label: 'এমএল শব্দ', path: '/ml-topics' },
   { label: 'আমাদের সম্পর্কে', path: '/about' },
   { label: 'যোগাযোগ', path: '/contact' },
