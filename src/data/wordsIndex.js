@@ -21,6 +21,8 @@ import SemiSupervisedLearningDetailsPage from '../components/MachineLearning/wor
 import ReinforcementDetailsPage from '../components/MachineLearning/word_19_ReinforcementLearning/ReinforcementDetailsPage';
 import GIGODetailsPage from '../components/MachineLearning/word_20_GIGO/GIGODetailsPage';
 import DataDependencyDetailsPage from '../components/MachineLearning/word_21_DataDependency/DataDependencyDetailsPage';
+import BiasDetailsPage from '../components/MachineLearning/word_22_Bias/BiasDetailsPage';
+import GeneralizationDetailsPage from '../components/MachineLearning/word_23_Generalization/GeneralizationDetailsPage';
 
 
 export const bookStructure = [
@@ -202,6 +204,20 @@ export const bookStructure = [
             title: "ডেটা নির্ভরতা (Data Dependency)",
             Component: DataDependencyDetailsPage,
             summary: "মডেলের কাজের ক্ষমতা এবং তার প্রেডিকশন সম্পূর্ণরূপে তার ট্রেইনিং ডেটার গুণগত মানের ওপর নির্ভরশীল।"
+          },
+          {
+            id: "word_22_Bias",
+            path: "bias",
+            title: "বায়াস বা পক্ষপাতিত্ব (Bias)",
+            Component: BiasDetailsPage,
+            summary: "ঐতিহাসিক বা অগোছালো ডেটার কারণে এআই-এর ভুল এবং বৈষম্যমূলক সিদ্ধান্ত নেওয়ার প্রবণতা।"
+          },
+          {
+            id: "word_23_Generalization",
+            path: "generalization",
+            title: "জেনারেলাইজেশন (Generalization)",
+            Component: GeneralizationDetailsPage,
+            summary: "মুখস্থ না করে ডেটার আসল লজিক শিখে সম্পূর্ণ নতুন পরিস্থিতিতে সঠিক সিদ্ধান্ত নেওয়ার এআই সক্ষমতা।"
           }
         ]
       }

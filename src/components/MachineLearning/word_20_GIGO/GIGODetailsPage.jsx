@@ -42,10 +42,14 @@ export default function GIGODetailsPage() {
         {activeTab === 'reading' ? (
           <motion.div key="reading" variants={containerVariants} initial="hidden" animate="visible" exit={{ opacity: 0, y: -10 }} className="space-y-10 md:space-y-12 font-sans text-base sm:text-lg md:text-xl lg:text-[21px] leading-relaxed">
             
-            <motion.div variants={itemVariants} className="pb-3 space-y-1 border-b md:pb-4 md:space-y-2 border-white/5">
-              <div className="text-[10px] md:text-xs font-bold text-slate-500 uppercase">{gigoData.chapter} / {gigoData.part}</div>
-              <h1 className="flex flex-wrap items-center gap-2 text-2xl font-extrabold text-slate-100 sm:text-3xl lg:text-4xl">
-                <Trash2 className="w-6 h-6 text-[#ef4444] md:w-8 md:h-8" /> {gigoData.word_bn} <span className="text-sm font-normal text-slate-500 sm:text-lg">({gigoData.word_en})</span>
+            <motion.div variants={itemVariants} className="pb-3 space-y-1 font-sans border-b md:pb-4 md:space-y-2 border-white/5">
+              <div className="flex flex-wrap items-center gap-1.5 md:gap-2 text-[10px] md:text-xs font-bold text-slate-500 tracking-wide uppercase">
+                <span className="hidden sm:inline">{gigoData.chapter} / {gigoData.part}</span>
+              </div>
+              <h1 className="flex flex-wrap items-center gap-2 text-2xl font-extrabold text-slate-100 sm:text-3xl">
+                <Trash2 className="w-6 h-6 text-slate-400 md:w-7 md:h-7 shrink-0" />
+                {gigoData.word_bn}
+                <span className="font-sans text-sm font-normal sm:text-lg text-slate-500">({gigoData.word_en})</span>
               </h1>
             </motion.div>
 
@@ -54,16 +58,20 @@ export default function GIGODetailsPage() {
                 <div className="flex items-center gap-2 text-slate-400 text-xs font-bold uppercase tracking-wider"><Sparkles size={16} className="text-rose-400"/> {gigoData.real_world_flash.title}</div>
                 {gigoData.real_world_flash.paragraphs.map((p, i) => <p key={i} className="text-justify indent-6">{p}</p>)}
               </div>
-              <div className="lg:col-span-5 bg-[#0b111b] border border-white/5 rounded-3xl p-8 text-center relative overflow-hidden shadow-2xl">
-                 <div className="absolute top-0 w-24 h-4 bg-black/40 rounded-b-xl left-1/2 -translate-x-1/2" />
-                 <div className="relative w-28 h-28 border border-dashed border-rose-500/30 flex flex-col items-center justify-center mx-auto rounded-2xl bg-white/[0.01] mb-6">
-                    {dataCleaned ? <ShieldCheck size={48} className="text-emerald-400" /> : <AlertTriangle size={48} className="text-rose-500 animate-pulse" />}
-                    <span className="text-[10px] font-black uppercase tracking-widest mt-2">{dataCleaned ? "Valid Data" : "Garbage In"}</span>
-                 </div>
-                 <p className={`text-xs font-mono h-8 mb-4 ${dataCleaned ? 'text-emerald-400':'text-rose-400'}`}>{dataCleaned ? "Accuracy: 96% \n Result: Excellent" : "Accuracy: 14% \n Result: Dangerous Bias"}</p>
-                 <button onClick={() => setDataCleaned(!dataCleaned)} className="w-full py-3 rounded-xl bg-white/5 border border-white/10 text-[10px] font-bold text-slate-400 hover:text-white transition-all flex items-center justify-center gap-2">
-                    <RefreshCw size={14} className={dataCleaned ? 'animate-spin':''}/> {dataCleaned ? 'Inject Corrupted Stream' : 'Run Data Cleaning'}
-                 </button>
+              <div className="flex justify-center pt-2 lg:col-span-5">
+                <div className="relative w-full max-w-[240px] md:max-w-[260px] h-64 md:h-72 rounded-2xl border border-white/10 bg-[#0b111b] flex flex-col items-center justify-center p-4 shadow-md overflow-hidden font-sans mx-auto">
+                  <div className="absolute top-0 w-24 h-3 bg-[#030712] rounded-b-lg md:h-4" />
+                  <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:12px_20px]" />
+                  <div className="relative flex items-center justify-center border border-dashed rounded-full w-28 h-28 md:w-32 md:h-32 border-slate-500/30">
+                    {dataCleaned ? <ShieldCheck size={48} className="w-10 h-10 text-slate-400 opacity-70 md:w-12 md:h-12" /> : <AlertTriangle size={48} className="w-10 h-10 text-slate-400 opacity-70 md:w-12 md:h-12" />}
+                  </div>
+                  <span className="mt-4 text-[10px] md:text-xs font-mono tracking-widest text-slate-400 font-bold text-center">
+                    {dataCleaned ? "VALID DATA" : "GARBAGE IN"}
+                  </span>
+                  <button onClick={() => setDataCleaned(!dataCleaned)} className="mt-3 px-3 py-1.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-semibold text-slate-500 hover:text-slate-200 transition-colors active:scale-95 flex items-center justify-center gap-2">
+                    <RefreshCw size={12} className={dataCleaned ? 'animate-spin':''}/> {dataCleaned ? 'Inject Error' : 'Run Cleaning'}
+                  </button>
+                </div>
               </div>
             </motion.div>
 
@@ -78,37 +86,50 @@ export default function GIGODetailsPage() {
                ))}
             </LogbookContainer>
 
-            {/* Reflection Poll */}
-            <motion.div variants={itemVariants} className="p-5 md:p-8 rounded-[2.5rem] border border-white/5 bg-[#0b111b] shadow-2xl space-y-6 relative overflow-hidden font-sans text-slate-300">
-               <div className="absolute top-0 right-0 w-32 h-32 bg-rose-500/5 blur-3xl rounded-full" />
-               <h3 className="flex items-start gap-3 text-base font-bold text-slate-100 md:text-xl relative z-10"><Sparkles className="mt-1 text-rose-400 shrink-0" size={20}/> {gigoData.readers_reflection.title}</h3>
-               <p className="font-serif text-sm italic leading-relaxed text-justify md:text-lg relative z-10">{gigoData.readers_reflection.question}</p>
-               <div className="grid grid-cols-1 gap-4 pt-2 md:gap-5 sm:grid-cols-2 relative z-10">
-                  {gigoData.readers_reflection.options.map(opt => (
-                    <button key={opt.id} onClick={() => setPollSelected(opt.id)} className={`group p-4 md:p-5 rounded-2xl border text-left transition-all flex items-start gap-4 ${pollSelected === opt.id ? (opt.isCorrect ? 'bg-green-500/10 border-green-500/40 text-slate-100' : 'bg-red-500/10 border-red-500/40 text-slate-100') : 'bg-white/[0.02] border-white/5 hover:border-white/10 text-slate-400'}`}>
-                      <div className={`mt-0.5 shrink-0 w-6 h-6 rounded-full border flex items-center justify-center font-black text-xs ${pollSelected === opt.id ? (opt.isCorrect ? 'bg-green-500 border-green-400 text-white' : 'bg-rose-500 border-red-400 text-white') : 'border-white/20'}`}>{opt.id}</div>
-                      <div><span className="block mb-1 text-xs font-black uppercase tracking-widest opacity-50">Option {opt.id}</span><span className="text-sm font-bold md:text-base">{opt.text}</span></div>
-                    </button>
-                  ))}
-               </div>
-               <AnimatePresence>
-                  {pollSelected && (
-                    <motion.div initial={{opacity:0, height:0}} animate={{opacity:1, height:'auto'}} className="p-4 rounded-2xl border bg-white/[0.02] border-white/10 text-slate-300 mt-4 text-sm md:text-base">
-                      {gigoData.readers_reflection.options.map(o => o.id === pollSelected && <p key={o.id} className="leading-relaxed"><span className={`font-black uppercase mr-2 ${o.isCorrect ? 'text-emerald-400' : 'text-rose-400'}`}>{o.isCorrect ? 'Excellent!' : 'Wrong!'}</span>{o.explanation}</p>)}
-                    </motion.div>
-                  )}
-               </AnimatePresence>
+            {/* Inline Reflection Poll */}
+            <motion.div variants={itemVariants} className="p-4 md:p-6 rounded-xl border border-white/10 bg-[#0b111b] shadow-md space-y-4 font-sans">
+              <h3 className="flex items-start gap-2 text-base font-bold text-slate-100 md:text-lg">
+                <Sparkles className="mt-1 text-slate-400 shrink-0" size={16} />
+                <span className="leading-snug">{gigoData.readers_reflection.title}</span>
+              </h3>
+              <p className="font-serif text-sm leading-relaxed text-justify md:text-base text-slate-300">
+                {gigoData.readers_reflection.question}
+              </p>
+              
+              <div className="grid grid-cols-1 gap-3 pt-2 md:gap-4 sm:grid-cols-2">
+                {gigoData.readers_reflection.options.map((opt, i) => (
+                  <button key={opt.id} onClick={() => setPollSelected(opt.id)} className={`p-3 md:p-4 rounded-xl border text-left transition-all flex items-start gap-2.5 text-xs md:text-sm ${pollSelected === opt.id ? (opt.isCorrect ? 'bg-green-500/10 border-green-500/35 text-slate-100' : 'bg-red-500/10 border-red-500/35 text-slate-100') : 'bg-white/5 border-white/10 hover:bg-white/10 text-slate-400'}`}>
+                    <div className="mt-0.5 shrink-0">{pollSelected === opt.id ? (opt.isCorrect ? <CheckCircle className="text-green-500" size={16} /> : <XCircle className="text-red-500" size={16} />) : <div className="w-4 h-4 rounded-full border border-white/30 flex items-center justify-center font-bold text-[10px]">{i === 0 ? '১' : '২'}</div>}</div>
+                    <div><span className="font-bold block text-slate-100 mb-0.5">অপশন {i === 0 ? '১' : '২'} {opt.isCorrect && '(সঠিক উত্তর)'}</span>{opt.text}</div>
+                  </button>
+                ))}
+              </div>
+
+              <AnimatePresence>
+                {pollSelected && (
+                  <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="p-3 md:p-4 rounded-lg border bg-white/[0.03] border-white/10 text-slate-300 mt-4 text-xs md:text-sm overflow-hidden">
+                    {gigoData.readers_reflection.options.map(o => o.id === pollSelected && (
+                      <div key={o.id} className="space-y-1.5"><span className={`flex items-center gap-1 font-bold ${o.isCorrect ? 'text-green-400' : 'text-red-400'}`}>{o.isCorrect ? <CheckCircle size={14} /> : <XCircle size={14} />} {o.isCorrect ? 'চমৎকার! একদম সঠিক উত্তর!' : 'উত্তরটি সঠিক হয়নি মা!'}</span><p className="leading-relaxed">{o.explanation}</p></div>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="p-6 md:p-10 rounded-[2.5rem] border border-white/5 bg-gradient-to-br from-[#0b111b] to-[#070b12] relative overflow-hidden group">
-               <div className="absolute top-0 right-0 w-64 h-64 bg-rose-500/5 blur-[100px] rounded-full group-hover:bg-rose-500/10 transition-all duration-700" />
-               <div className="relative z-10 space-y-4 text-slate-400">
-                  <span className="text-[10px] md:text-xs font-mono font-bold tracking-[0.3em] uppercase flex items-center gap-2 mb-2"><Compass size={14} className="animate-spin-slow text-rose-400" /> Exploring Data Dependencies</span>
-                  <p className="text-base italic leading-relaxed md:text-lg">{gigoData.next_intro.text}</p>
-                  <div className="pt-4">
-                    <button onClick={() => { setActiveTab('lab'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="w-full sm:w-auto inline-flex justify-center items-center gap-3 px-8 py-4 rounded-2xl bg-white text-[#070b12] font-black text-sm hover:bg-slate-200 transition-all active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.1)]">ল্যাবরেটরিতে জুস ব্লেন্ড করুন <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform"/></button>
-                  </div>
-               </div>
+            {/* Visualizer Teaser */}
+            <motion.div variants={itemVariants} className="p-4 md:p-6 rounded-xl border border-white/10 bg-[#0b111b] font-sans">
+              <div className="space-y-3">
+                <span className="text-[9px] md:text-[10px] font-mono font-bold tracking-widest text-slate-400 uppercase flex items-center gap-1">
+                  <FlaskConical size={12} /> interactive sandbox simulator
+                </span>
+                <h3 className="text-base font-bold text-slate-100 md:text-lg">এখনই নিজে ল্যাবে পরীক্ষা করে দেখতে চান?</h3>
+                <p className="text-xs leading-relaxed md:text-sm text-slate-300">উপরের <strong>"🔬 ল্যাব সিমুলেটর"</strong> ট্যাবে ক্লিক করে সরাসরি পরীক্ষা করে নিন!</p>
+                <div className="pt-2">
+                  <button onClick={() => { setActiveTab('lab'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-5 py-2.5 rounded-lg bg-[#1f3a46] text-slate-100 font-bold text-sm hover:bg-[#294957] transition-all group active:scale-95">
+                    লাইভ ল্যাব সিমুলেটর খুলুন <ChevronRight size={14} className="transition-transform group-hover:translate-x-1" />
+                  </button>
+                </div>
+              </div>
             </motion.div>
 
             <motion.div variants={itemVariants} className="pt-4">
